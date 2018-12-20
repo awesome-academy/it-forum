@@ -1,0 +1,83 @@
+header {
+    border-top: none !important;    
+}
+
+.nuxt-progress {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    height: 2px;
+    width: 0%;
+    opacity: 1;
+    transition: width 0.1s, opacity 0.4s;
+    background-color: #3b8070;
+    z-index: 999999;
+}
+
+.nuxt-progress.nuxt-progress-notransition {
+    transition: none;
+}
+
+.nuxt-progress-failed {
+    background-color: red;
+}
+
+._glyph {
+    width: 150px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #00918b;
+}
+
+.nuxt-progress {
+    width: 12%;
+}
+
+.impression {
+    display: none;
+}
+
+.js-hidden {
+    display: list-item;
+}
+
+.grid--cell {
+    /*flex: 1 1 100px;*/
+}
+
+.answers-subheader-div {
+    display: none;
+}
+
+.bottom-share-links {
+    padding-top: 8px;
+    margin-bottom: -8px;
+}
+
+#users-legend {
+    float: left;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+#js-user-header1 {
+    box-sizing: content-box;
+}
+
+.errors {
+    color: #dc3545 !important;
+}
+
+#tabs {
+    float: left;
+}
+
+.additional-links{
+    float: right;
+    position: relative;
+    top: 8px;
+}

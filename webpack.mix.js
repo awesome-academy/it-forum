@@ -13,3 +13,13 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
    .sass('resources/sass/app.scss', 'public/css');
+mix.styles(
+    [
+        'resources/css/home/stacks.css',
+        'resources/css/home/clc.min.css',
+        'resources/css/home/primary-unified.css',
+        'resources/css/home/secondary-unified.css',
+        'resources/css/home/adminLTE.css',
+        'resources/css/home/custom.css'
+    ], 'public/css/template.css');
+mix.extract(['jquery']);
