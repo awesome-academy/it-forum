@@ -5,10 +5,13 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, SoftDeletes;
+
+    protected $dates = ['deleted_at'];
 
     /**
      * The attributes that are mass assignable.
@@ -16,7 +19,18 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'username',
+        'email',
+        'email_verified_at',
+        'password',
+        'fullname',
+        'image_path',
+        'phone',
+        'birthday',
+        'gender',
+        'address',
+        'status',
+        'role_id',
     ];
 
     /**
@@ -27,4 +41,44 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function posts()
+    {
+        return $this->hasMany('App\Post');
+    }
+
+    public function answers()
+    {
+        return $this->hasMany('App\Answer');
+    }
+
+    public function replies()
+    {
+        return $this->hasMany('App\Reply');
+    }
+
+    public function votes()
+    {
+        return $this->hasMany('App\Vote');
+    }
+
+    public function notifications()
+    {
+        return $this->hasMany('App\Notification');
+    }
+
+    public function codes()
+    {
+        return $this->hasMany('App\Code');
+    }
+
+    public function role()
+    {
+        return $this->belongsTo('App\Role');
+    }
+
+    public function follows()
+    {
+        return $this->morphMany('App\Follow', 'followable');
+    }
 }
