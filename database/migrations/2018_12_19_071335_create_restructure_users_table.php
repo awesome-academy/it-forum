@@ -44,7 +44,7 @@ class CreateRestructureUsersTable extends Migration
             $table->dropColumn('gender');
             $table->dropColumn('address');
             $table->dropColumn('status');
-            $table->dropColumn('role_id');
+            $table->dropForeign('users_role_id_foreign');
             $table->dropColumn('deleted_at');
         });
     }
