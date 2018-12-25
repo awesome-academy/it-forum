@@ -1,0 +1,64 @@
+.tag {
+    cursor: pointer;
+}
+.error {
+    color: #df4B39;
+}
+.required {
+    color: #df4B39;
+}
+
+.lamcoder-form-dark {
+    background-color: #f9f9f9;
+    padding: 10px 10px 0px 10px;
+    border: 1px solid #dadada;
+}
+
+.navbar-static-top {
+    z-index: 9;
+}
+
+.lamcoder-btn-show:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.btn {
+    border-radius: 0px;
+}
+
+.box-success {
+    border-top: 3px solid #00a65a;
+}
+
+.box.box-primary {
+    border-top: 3px solid #3c8dbc;
+}
+
+.box.box-info {
+    border-top: 3px solid #00c0ef;
+}
+
+.box.box-danger {
+    border-top: 3px solid #dd4b39;
+}
+
+.box.box-warning {
+    border-top: 3px solid #f39c12;
+}
+
+.box.box-success {
+    border-top: 3px solid #00a65a;
+}
+
+.box.box-default {
+    border-top: 3px solid #d2d6de;
+}
+
+.box-body {
+    padding: 0px;
+}
+
+th {
+    color: #3c8dbc;
+}
