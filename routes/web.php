@@ -21,6 +21,8 @@ Route::group(['middleware' => 'Language'], function() {
     Route::get('/tag', 'TagController@index')->name('home.tag.index');
     Route::get('/tag/detail', 'TagController@detail')->name('home.tag.detail');
     Route::any('/signup', 'LoginController@signup')->name('home.signup');
-    Route::any('/login', 'LoginController@login')->name('home.login');
+    Route::any('/postSignup', 'LoginController@postSignup')->name('home.postSignup');
+    Route::get('/login', 'LoginController@login')->name('home.login');
+    Route::post('/postLogin', 'LoginController@postLogin')->name('home.postLogin');
     Route::get('/logout', 'LoginController@logout')->name('home.logout');
 });
