@@ -17,7 +17,7 @@ return [
     'alpha_dash' => ':attribute may only contain letters, numbers, dashes and underscores.',
     'alpha_num' => ':attribute may only contain letters and numbers.',
     'between' => [
-        'numeric' => ':attribute phải có ký tự từ :min đến :max.',
+        'string' => ':attribute phải có ký tự từ :min đến :max.',
         'file' => ':attribute phải có kích thước từ :min đến :max KB.',
     ],
     'confirmed' => ':attribute chưa trùng khớp.',
@@ -29,7 +29,7 @@ return [
         'numeric' => ':attribute phải không quá :max ký tự.',
         'file' => 'The :attribute phải không quá :max KB.',
     ],
-    'mimes' => ':attribute phải có định dạng là type: :values.',
+    'mimes' => ':attribute phải có định dạng là: :values.',
     'mimetypes' => 'The :attribute must be a file of type: :values.',
     'min' => [
         'numeric' => ':attribute phải có it nhất :min ký tự.',
