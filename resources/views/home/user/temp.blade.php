@@ -10,10 +10,13 @@
                 <div class="favicon favicon-stackoverflowmeta"></div>
                 {{ __('user.metaUser') }}
             </a>
-            <a href="#">
+            <a href="{{ route('home.logout') }}">
                 <div class="favicon favicon-stackexchange"></div>
-                {{ __('user.networkProfile') }}
+                {{ __('account.logout') }}
             </a>
         </div>
+    </div>
+    <div id="main-content">
+        a
     </div>
 </div>

@@ -81,6 +81,7 @@ return [
         'setting' => 'Cài đặt',
         'personalInfo' => 'Thông tin cá nhân',
         'editProfile' => 'Chỉnh sửa hồ sơ',
+        'changeAvatar' => 'Thay đổi ảnh',
         'password' => 'Mật khẩu',
         'editPassword' => 'Chỉnh sửa mật khẩu',
         'notification' => 'Thông báo',

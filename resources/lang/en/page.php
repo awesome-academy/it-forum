@@ -84,6 +84,7 @@ return [
         'setting' => 'Setting',
         'personalInfo' => 'Personal Information',
         'editProfile' => 'Edit Profile',
+        'changeAvatar' => 'Change picture',
         'password' => 'Password',
         'editPassword' => 'Edit password',
         'notification' => 'Notification',

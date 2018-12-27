@@ -54,7 +54,9 @@
             <li class="-ctas">
                 <a href="{{ route('home.user.detail', Auth::id()) }}" class="my-profile js-gps-track wb-hat-checked" data-gps-track="profile_summary.click()">
                     <div class="gravatar-wrapper-24" title="{{ Auth::user()['fullname'] }}">
-                        <img src="#" alt="" width="24" height="24" class="-avatar js-avatar-me" title="{{ Auth::user()['fullname'] }}"></div>
+                        <img alt="" width="24" height="24" class="-avatar js-avatar-me"
+                        title="{{ Auth::user()['fullname'] }}"
+                        src="{{ image_upload_path('user/' . Auth::user()['image_path']) }}"></div>
                     <div class="-rep js-header-rep" title="your reputation: 1">1</div>
                 </a>
             </li>

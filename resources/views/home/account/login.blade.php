@@ -46,7 +46,7 @@
                 <span class="errors">{{ $errors->first('password') }}</span>
                 <br>
                 <a id="forgot-pw" class="fr" href="#">{{ __('page.account.forgot') }}?</a>
-                {{ $errors->first('incorrectInfo') }}
+                <span class="errors">{{ $errors->first('incorrectInfo') }}</span>
                 <br class="cbt">
                 {!! Form::submit(__('page.account.login'), ['class' => 's-btn s-btn__primary s-btn__md', 'id' => 'submit-button']) !!}
             </div>
