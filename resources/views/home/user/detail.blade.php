@@ -57,7 +57,7 @@
                         <div class="grid--cell mt16 fs-body2 profile-user--bio ">
                             @if (!empty($id) && $id == Auth::id())
                             <p>
-                                <a href="#">{{ __('page.user.clickEdit') }}</a>
+                                <a href="{{ route('home.user.setting') }}">{{ __('page.user.clickEdit') }}</a>
                             </p>
                             @endif
                         </div>
