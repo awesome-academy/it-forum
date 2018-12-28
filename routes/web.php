@@ -26,3 +26,8 @@ Route::group(['middleware' => 'Language'], function() {
     Route::post('/postLogin', 'LoginController@postLogin')->name('home.postLogin');
     Route::get('/logout', 'LoginController@logout')->name('home.logout');
 });
+
+Route::group(['middleware' => 'Language', 'prefix' => 'admin'], function() {
+    Route::get('/', 'AdminController@index')->name('admin.index');
+    Route::get('/', 'AdminController@listUser')->name('admin.user.index');
+});
