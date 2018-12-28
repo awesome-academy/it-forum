@@ -26,6 +26,9 @@ return [
         'addComment' => 'add a comment',
         'comment' => 'Your comment',
         'postComment' => 'comment',
+        'asked' => 'asked',
+        'viewed' => 'viewed',
+        'active' => 'active',
         //index page
         'list' => 'Posts',
         'write' => 'Write post',
@@ -42,7 +45,15 @@ return [
         'votes' => '[0,1] vote |[2,*] votes',
         'answers' => '[0,1] answer |[2,*] answers',
         'views' => '[0,1] view |[2,*] views',
+        'question' => '[0,1] question |[2,*] questions',
         'wrote' => 'wrote',
+        // write page
+        'title' => 'Title',
+        'content' => 'Content',
+        'tags' => 'Tag',
+        'post' => 'Post your posts',
+        'cancel' => 'Cancel',
+        'times' => 'times',
     ],
     'account' => [
         'titleLogin' => 'Login page',

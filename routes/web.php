@@ -16,8 +16,16 @@ Route::group(['middleware' => 'Language'], function() {
     Route::get('/', 'HomeController@index')->name('home.index');
     Route::get('/post', 'PostController@index')->name('home.post.index');
     Route::get('/post/detail', 'PostController@detail')->name('home.post.detail');
-    Route::get('/user', 'UserController@index')->name('home.user.index');
-    Route::get('/user/detail', 'UserController@detail')->name('home.user.detail');
+    // User
+    Route::group(['prefix' => 'user'], function() {
+        Route::get('/', 'UserController@index')->name('home.user.index');
+        Route::get('/{id}', 'UserController@detail')->name('home.user.detail')->where(['id' => '[0-9]+']);
+        Route::get('/{id}/activity', 'UserController@activity')->name('home.user.activity')->where(['id' => '[0-9]+']);
+
+        Route::group(['middleware' => 'CheckLogin'], function() {
+            Route::post('/editImage', 'UserController@editImage')->name('home.user.editImage');
+        });
+    });
     Route::get('/tag', 'TagController@index')->name('home.tag.index');
     Route::get('/tag/detail', 'TagController@detail')->name('home.tag.detail');
     Route::any('/signup', 'LoginController@signup')->name('home.signup');
