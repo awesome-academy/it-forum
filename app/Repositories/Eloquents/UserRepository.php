@@ -4,7 +4,6 @@ namespace App\Repositories\Eloquents;
 
 use App\Repositories\Contracts\UserRepositoryInterface;
 use App\User;
-use Validator;
 
 class UserRepository implements UserRepositoryInterface
 {

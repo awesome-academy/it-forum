@@ -13,6 +13,7 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
    .sass('resources/sass/app.scss', 'public/css');
+
 mix.styles(
     [
         'resources/css/home/stacks.css',
@@ -22,4 +23,20 @@ mix.styles(
         'resources/css/home/adminLTE.css',
         'resources/css/home/custom.css'
     ], 'public/css/template.css');
-mix.extract(['jquery']);
+
+mix.styles(
+    [
+        'resources/css/admin/admin.css',
+        'resources/css/admin/fontawesome.css',
+        'node_modules/@fortawesome/fontawesome-free/css/all.min.css',
+    ], 'public/css/admin.css');
+    
+mix.js(
+    [
+        'resources/js/admin/admin.js',
+        'node_modules/@fortawesome/fontawesome-free/js/all.min.js',
+    ], 'public/js/admin.js');
+
+mix.extract(['jquery', 'bootstrap', 'fontawesome']);
+
+mix.sourceMaps();
