@@ -35,7 +35,14 @@ Route::group(['middleware' => 'Language'], function() {
     Route::get('/logout', 'LoginController@logout')->name('home.logout');
 });
 
+/*
+admin route
+*/
+
 Route::group(['middleware' => 'Language', 'prefix' => 'admin'], function() {
-    Route::get('/', 'AdminController@index')->name('admin.index');
-    Route::get('/', 'AdminController@listUser')->name('admin.user.index');
+    Route::get('/', 'admin\UserController@index')->name('admin.index');
+    Route::group(['prefix' => 'user'], function() {
+        Route::get('/', 'admin\UserController@index')->name('admin.user.index');
+        Route::get('/search', 'admin\UserController@search')->name('admin.user.search');
+    });
 });
