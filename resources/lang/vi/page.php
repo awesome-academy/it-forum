@@ -26,6 +26,9 @@ return [
         'addComment' => 'thêm câu trả lời',
         'comment' => 'bình luận',
         'postComment' => 'bình luận',
+        'asked' => 'đã viết',
+        'viewed' => 'đã xem',
+        'active' => 'hoạt động',
         //index page
         'list' => 'Danh sách bài viết',
         'write' => 'Viết bài',
@@ -42,7 +45,14 @@ return [
         'votes' => 'ủng hộ',
         'answers' => 'câu trả lời',
         'views' => 'lượt xem',
+        'question' => 'câu hỏi',
         'wrote' => 'Đã viết từ',
+        // write page
+        'title' => 'Tiêu đề',
+        'content' => 'Nội dung',
+        'tags' => 'Thẻ',
+        'post' => 'Đăng bài',
+        'times' => 'lần',
     ],
     'account' => [
         'titleLogin' => 'Trang đăng nhập',

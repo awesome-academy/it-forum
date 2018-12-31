@@ -4,7 +4,6 @@ namespace App\Repositories\Eloquents;
 
 use App\Repositories\Contracts\UserRepositoryInterface;
 use App\User;
-use Validator;
 
 class UserRepository implements UserRepositoryInterface
 {
@@ -18,6 +17,11 @@ class UserRepository implements UserRepositoryInterface
         'address',
         'phone',
     ];
+
+    public function setFillable($fillable){
+        $this->fillable = $fillable;
+    }
+    
     /**
      * Specify Model class name
      */
@@ -54,6 +58,14 @@ class UserRepository implements UserRepositoryInterface
     public function find($id, $columns = ['*'])
     {
         return $this->model()->findOrFail($id, $columns);
+    }
+
+    /**
+     * Find data by keyword
+     */
+    public function findByKey($field, $keyword)
+    {
+        return $this->model()->where($field, 'LIKE', '%' . $keyword . '%');
     }
 
     /**
