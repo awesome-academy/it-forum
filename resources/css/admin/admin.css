@@ -356,6 +356,11 @@ body.sidebar-toggled footer.sticky-footer {
         width: calc(100% - 90px);
     }
 }
+
 body #content {
     overflow: auto;
+}
+
+table .action {
+    width: 4em !important;
 }
