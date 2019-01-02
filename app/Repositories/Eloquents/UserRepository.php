@@ -86,4 +86,19 @@ class UserRepository implements UserRepositoryInterface
     {
         return $this->model()->destroy($id);
     }
+
+    public function filter($input, $limit = null) {
+        $limit = is_null($limit) ? config('constants.PAGINATION_LIMIT_USER', 4) : $limit;
+        $query = $this->model()->select('*');
+
+        if (!empty($input)) {
+
+            if (!empty($input['username'])) {
+                $query = $query->where('username', 'like', '%' . $input['username'] . '%');
+            }
+        }
+        $query = $query->orderBy('id','desc')->paginate($limit);
+
+        return $query;
+    }
 }

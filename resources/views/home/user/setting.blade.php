@@ -36,7 +36,7 @@
             </ul>
         </div>
     </div>
-    <div id="mainbar" class="user-show-new settings-page" style="width: 775px;">
+    <div id="mainbar" class="user-show-new settings-page">
         <div class="edit-profile edit-careers-profile">
             <h1>{{ __('page.user.editProfile') }}</h1>
             {!! Form::open(['id' => 'edit-profile-form', 'route' => 'home.user.editProfile']) !!}
@@ -46,7 +46,7 @@
                         <div class="col-3">
                             <div class="avatar-wrapper">
                                 <div class="gravatar-wrapper-164">
-                                    <img src="/{{ !empty($currentUser->image_path) ? Config::get('constants.IMAGE_UPLOAD_PATH') . $currentUser->image_path : '' }}" alt="" width="164" height="164" class="main-image">
+                                    <img src="/{{ !empty($currentUser->image_path) ? config('constants.IMAGE_UPLOAD_PATH') . $currentUser->image_path : '' }}" alt="" width="164" height="164" class="main-image">
                                 </div>
                                 <a id="change-picture">{{ __('page.user.changeAvatar') }}</a>
                             </div>
@@ -69,7 +69,7 @@
                 </div>
                 <div id="web-presence" class="inner-container web-presence">
                     <h2>{{ __('page.user.socialAccount') }}</h2>
-                    <div class="row" style="margin-left: 0px">
+                    <div class="row" id="websiteLink">
                         <div class="col-4 with-padding">
                             <label>{{ __('page.user.websiteLink') }}</label>
                             <div class="input-icon">
