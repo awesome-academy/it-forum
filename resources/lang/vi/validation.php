@@ -26,7 +26,8 @@ return [
     'email' => 'Cần đúng định dạng email.',
     'file' => ':attribute phải là 1 file.',
     'max' => [
-        'numeric' => ':attribute phải không quá :max ký tự.',
+        'numeric' => ':attribute phải không quá :max.',
+        'string' => ':attribute phải không quá :max ký tự.',
         'file' => 'The :attribute phải không quá :max KB.',
     ],
     'mimes' => ':attribute phải có định dạng là: :values.',

@@ -18,12 +18,17 @@ Route::group(['middleware' => 'Language'], function() {
     Route::get('/post/detail', 'PostController@detail')->name('home.post.detail');
     // User
     Route::group(['prefix' => 'user'], function() {
+
         Route::get('/', 'UserController@index')->name('home.user.index');
         Route::get('/{id}', 'UserController@detail')->name('home.user.detail')->where(['id' => '[0-9]+']);
         Route::get('/{id}/activity', 'UserController@activity')->name('home.user.activity')->where(['id' => '[0-9]+']);
 
         Route::group(['middleware' => 'CheckLogin'], function() {
+            Route::get('/setting', 'UserController@setting')->name('home.user.setting');
+            Route::post('/editProfile', 'UserController@editProfile')->name('home.user.editProfile');
             Route::post('/editImage', 'UserController@editImage')->name('home.user.editImage');
+            Route::get('/password', 'UserController@password')->name('home.user.password');
+            Route::post('/editPassword', 'UserController@editPassword')->name('home.user.editPassword');
         });
     });
     Route::get('/tag', 'TagController@index')->name('home.tag.index');
