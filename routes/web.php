@@ -1,5 +1,5 @@
-<?php
 
+<?php
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,11 +18,9 @@ Route::group(['middleware' => 'Language'], function() {
     Route::get('/post/detail', 'PostController@detail')->name('home.post.detail');
     // User
     Route::group(['prefix' => 'user'], function() {
-
         Route::get('/', 'UserController@index')->name('home.user.index');
         Route::get('/{id}', 'UserController@detail')->name('home.user.detail')->where(['id' => '[0-9]+']);
         Route::get('/{id}/activity', 'UserController@activity')->name('home.user.activity')->where(['id' => '[0-9]+']);
-
         Route::group(['middleware' => 'CheckLogin'], function() {
             Route::get('/setting', 'UserController@setting')->name('home.user.setting');
             Route::post('/editProfile', 'UserController@editProfile')->name('home.user.editProfile');
@@ -40,7 +38,19 @@ Route::group(['middleware' => 'Language'], function() {
     Route::get('/logout', 'LoginController@logout')->name('home.logout');
 });
 
+/*
+admin route
+*/
+
 Route::group(['middleware' => 'Language', 'prefix' => 'admin'], function() {
-    Route::get('/', 'AdminController@index')->name('admin.index');
-    Route::get('/', 'AdminController@listUser')->name('admin.user.index');
+    Route::get('/', 'Admin\UserController@index')->name('admin.index');
+    Route::group(['prefix' => 'user'], function() {
+        Route::get('/', 'Admin\UserController@index')->name('admin.user.index');
+        Route::get('/search', 'Admin\UserController@search')->name('admin.user.search');
+        Route::get('/create', 'Admin\UserController@create')->name('admin.user.create');
+        Route::post('/add', 'Admin\UserController@add')->name('admin.user.add');
+        Route::get('/delete/{id}', 'Admin\UserController@delete')->name('admin.user.delete');
+        Route::get('/edit/{id}', 'Admin\UserController@edit')->name('admin.user.edit');
+        Route::post('/update', 'Admin\UserController@update')->name('admin.user.update');
+    });
 });

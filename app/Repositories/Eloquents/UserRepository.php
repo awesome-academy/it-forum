@@ -17,6 +17,7 @@ class UserRepository implements UserRepositoryInterface
         'address',
         'phone',
     ];
+
     /**
      * Specify Model class name
      */
@@ -53,6 +54,14 @@ class UserRepository implements UserRepositoryInterface
     public function find($id, $columns = ['*'])
     {
         return $this->model()->findOrFail($id, $columns);
+    }
+
+    /**
+     * Find data by keyword
+     */
+    public function findByKey($field, $keyword)
+    {
+        return $this->model()->where($field, 'LIKE', '%' . $keyword . '%');
     }
 
     /**
