@@ -47,12 +47,12 @@
                     <div class="grid fd-column gs8 gsy">
                         <div class="grid--cell">
                             <h2 class="grid gs12 fw-wrap ai-center fs-headline1 lh-xs fw-bold fc-dark wb-break-all profile-user--name">
-                                <div class="grid--cell">{{ $user->fullname }}</div>
+                                <div class="grid--cell">{{ $user->username }}</div>
 
                             </h2>
                         </div>
                         <h3 class="grid--cell fs-body3 fc-light lh-sm profile-user--role current-position">
-                            Web Developer at Framgia Vietnam
+                            {{ $user->fullname }}
                         </h3>
                         <div class="grid--cell mt16 fs-body2 profile-user--bio ">
                             @if (!empty($id) && $id == Auth::id())

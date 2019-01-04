@@ -2,6 +2,9 @@
 
 return [
     'PAGINATION_LIMIT_NUMBER' => 10,
+    'PAGINATION_LIMIT_TAG' => 16,
+    'PAGINATION_LIMIT_USER' => 16,
+    'PAGINATION_LIMIT_TREDINGPOST' => 10,
     'MAX_FILE_UPLOAD_SIZE' => 20971520,
     'IMAGE_UPLOAD_PATH' => 'uploads/images/user/',
     'GENDER' => [

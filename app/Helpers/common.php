@@ -11,9 +11,11 @@ if (! function_exists('time_from_now')) {
         return $datetime->diffForHumans($now);
     }
 }
+
 if (! function_exists('image_upload_path')) {
-    function image_upload_path($image)
+    function image_upload_path($image = '')
     {
         return '/uploads/images/' . $image;
     }
 }
+?>

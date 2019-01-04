@@ -45,10 +45,6 @@ header {
     display: list-item;
 }
 
-.grid--cell {
-    /*flex: 1 1 100px;*/
-}
-
 .answers-subheader-div {
     display: none;
 }
@@ -76,8 +72,86 @@ header {
     float: left;
 }
 
-.additional-links{
+.additional-links {
     float: right;
     position: relative;
     top: 8px;
+}
+
+.share-edit-post {
+    flex: 1 1 100px;
+}
+
+/* pre write page */
+
+#btnProceed {
+    text-align: right;
+    width: 100%;
+}
+
+#btnProceed a {
+    color: #888;
+}
+
+/* write page */
+
+#tag-editor {
+    margin-top: 20px;
+}
+
+/* pagination */
+.pager a {
+    margin-left: 3px;
+}
+
+.pager > span {
+    margin-left: 3px;
+}
+
+/* tag detail page */
+#excerpt {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-height: 50px; 
+    white-space: nowrap;
+}
+
+/* detail post */
+#qinfo .td {
+    padding-left: 10px;
+}
+
+#sidebar .info1 {
+    margin-left: 10px;
+}
+
+.add-cmt-answer:hover {
+    text-decoration: underline;
+}
+
+.add-cmt-post:hover {
+    text-decoration: underline;
+}
+
+.wmd-container .btn {
+    color: white !important;
+}
+
+#totalAnswer:hover {
+    text-decoration: underline;
+    color: blue;
+}
+
+.hideForm {
+    padding: 8px;
+    background-color: #EEE;
+}
+
+#websiteLink {
+    margin-left: 0px;
+}
+
+.gravatar {
+    width: 48px;
+    height: 48px;
 }

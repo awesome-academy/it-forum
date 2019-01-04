@@ -5,9 +5,10 @@
                 <span class="_glyph">Stack Overfollower</span>
             </a>
         </div>
+        <?php $filterVal = !empty($tagName) ? '[' . $tagName. ']' : ''; ?>
         {!! Form::open(['id' => 'search', 'method' => 'GET', 'class' => 'searchbar js-searchbar']) !!}
             <div class="ps-relative">
-                {!! Form::text('q', '', ['maxlength' => 240, 'class' => 'f-input js-search-field', 'placeholder' => __('layout.header.search') . '…']) !!}
+                {!! Form::text('q', $filterVal, ['maxlength' => 240, 'class' => 'f-input js-search-field', 'placeholder' => __('layout.header.search') . '…']) !!}
             </div>
         {!! Form::close() !!}
         <ol class="-secondary js-secondary-topbar-links drop-icons-responsively the-js-is-handling-responsiveness">
@@ -51,12 +52,13 @@
                 </a>
             </li>
             @if (Auth::check())
+            <?php $currentUser = Auth::user(); ?>
             <li class="-ctas">
-                <a href="{{ route('home.user.detail', Auth::id()) }}" class="my-profile js-gps-track wb-hat-checked" data-gps-track="profile_summary.click()">
-                    <div class="gravatar-wrapper-24" title="{{ Auth::user()['fullname'] }}">
+                <a href="{{ route('home.user.detail', $currentUser->id) }}" class="my-profile js-gps-track wb-hat-checked" data-gps-track="profile_summary.click()">
+                    <div class="gravatar-wrapper-24" title="{{ $currentUser->username }}">
                         <img alt="" width="24" height="24" class="-avatar js-avatar-me"
-                        title="{{ Auth::user()['fullname'] }}"
-                        src="{{ image_upload_path('user/' . Auth::user()['image_path']) }}"></div>
+                        title="{{ $currentUser->username }}"
+                        src="/{{ config('constants.IMAGE_UPLOAD_PATH') . $currentUser->image_path }}"></div>
                     <div class="-rep js-header-rep" title="your reputation: 1">1</div>
                 </a>
             </li>

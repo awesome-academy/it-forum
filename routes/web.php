@@ -19,7 +19,8 @@ Route::group(['middleware' => 'Language'], function() {
     // User
     Route::group(['prefix' => 'user'], function() {
         Route::get('/', 'UserController@index')->name('home.user.index');
-        Route::get('/{id}', 'UserController@detail')->name('home.user.detail')->where(['id' => '[0-9]+']);
+        Route::post('/postIndex', 'UserController@postIndex')->name('home.user.postIndex');
+        Route::get('/{id?}', 'UserController@detail')->name('home.user.detail')->where(['id' => '[0-9]+']);
         Route::get('/{id}/activity', 'UserController@activity')->name('home.user.activity')->where(['id' => '[0-9]+']);
         Route::group(['middleware' => 'CheckLogin'], function() {
             Route::get('/setting', 'UserController@setting')->name('home.user.setting');

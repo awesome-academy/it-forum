@@ -28,7 +28,28 @@ class UserController extends Controller
 
     public function index()
     {
-        return view('home.user.index');
+        $allUsers = $this->userRepository->paginate();
+
+        return view('home.user.index', compact('allUsers'));
+    }
+
+    public function postIndex(Request $request)
+    {
+        $input = $request->all();
+        $allUsers = $this->userRepository->filter($input);
+        $response = [
+            'pagination' => [
+                'total' => $allUsers->total(),
+                'per_page' => $allUsers->perPage(),
+                'current_page' => $allUsers->currentPage(),
+                'last_page' => $allUsers->lastPage(),
+                'from' => $allUsers->firstItem(),
+                'to' => $allUsers->lastItem()
+            ],
+            'data' => $allUsers,
+        ];
+
+        return response()->json($response);
     }
 
     public function detail($id)
