@@ -18,6 +18,8 @@ return [
 
     'alert' => [
         'confirm' => 'Bạn có chắc chắn muốn đăng xuất?',
+        'successAdd' => 'Thêm thành công',
+        'delete' => 'Bạn có chắc chắn muốn xóa',
     ],
 
     'action' => [
@@ -27,6 +29,8 @@ return [
         'edit' => 'Chỉnh sửa',
         'listUser' => 'Danh sách người dùng',
         'search' => 'Tìm kiếm',
+        'addUser' => 'Thêm người dùng',
+        'editUser' => 'Sửa người dùng',
     ],
 
     'form' => [

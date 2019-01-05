@@ -8,7 +8,7 @@
             <div class="dropdown-menu" aria-labelledby="pagesDropdown">
                 <a class="dropdown-item" href="{{ route('admin.user.index') }}">{{ __('admin.action.list') }}</a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">{{ __('admin.action.add') }}</a>
+                <a class="dropdown-item" href="{{ route('admin.user.create') }}">{{ __('admin.action.add') }}</a>
             </div>
         </div>
     </li>

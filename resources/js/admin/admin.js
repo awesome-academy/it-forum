@@ -24,4 +24,24 @@
             'csrftoken': '{{ csrf_token() }}' 
         }
     });
+    (function() {
+        window.addEventListener('load', function() {
+            var forms = document.getElementsByClassName('form-validation');
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+    (function() {
+        $('body').addClass('users-page unified-theme');
+        $('.alert-dismissible').fadeTo(3000, 500).slideUp(500, function() {
+            $('.alert-dismissible').alert('close');
+        })
+    })();
 })(jQuery);

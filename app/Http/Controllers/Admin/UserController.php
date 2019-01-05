@@ -5,6 +5,8 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Contracts\UserRepositoryInterface;
+use App\Http\Requests\AddUserRequest;
+use App\Http\Requests\EditUserRequest;
 use App\User;
 use Input;
 use Auth;
@@ -17,20 +19,6 @@ class UserController extends Controller
     public function __construct(UserRepositoryInterface $userRepository)
     {
         $this->userRepository = $userRepository;
-        $this->userRepository->setFillable($fillable = [
-            'username',
-            'email',
-            'email_verified_at',
-            'password',
-            'fullname',
-            'image_path',
-            'phone',
-            'birthday',
-            'gender',
-            'address',
-            'status',
-            'role_id',
-        ]);
     }
     
     public function index()
@@ -56,5 +44,50 @@ class UserController extends Controller
         } else {
             return $users = $this->userRepository->paginate(config('constants.PAGINATION_LIMIT_NUMBER'));
         }
+    }
+
+    public function create()
+    {
+        return view('admin.user.create');
+    }
+
+    public function add(AddUserRequest $request)
+    {
+        $input = $request->all();
+        $input['password'] = bcrypt($input['password']);
+        $input['image_path'] = config('constants.IMAGE_UPLOAD_PATH') . config('constants.DEFAULT_USER_IMAGE');
+        if (!isset($input['status'])) {
+            $input['status'] = 0;
+        }
+        if ($this->userRepository->create($input)) {
+            \Session::flash('success_alert', __('admin.alert.successAdd'));
+
+            return redirect()->route('admin.user.create');
+        }
+    }
+
+    public function delete($id)
+    {
+        $this->userRepository->delete($id);
+
+        return redirect()->route('admin.user.index');
+    }
+
+    public function edit($id)
+    {
+        $user = $this->userRepository->find($id);
+
+        return view('admin.user.edit', compact('user'));
+    }
+
+    public function update(EditUserRequest $request)
+    {
+        $input = $request->all();
+        if (!isset($input['status'])) {
+            $input['status'] = 0;
+        }
+        $this->userRepository->update($input, $request->id);
+
+        return redirect()->route('admin.user.index');
     }
 }

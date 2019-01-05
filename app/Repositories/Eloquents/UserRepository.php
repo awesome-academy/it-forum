@@ -18,11 +18,6 @@ class UserRepository implements UserRepositoryInterface
         'phone',
     ];
 
-    public function setFillable($fillable)
-    {
-        $this->fillable = $fillable;
-    }
-    
     /**
      * Specify Model class name
      */
