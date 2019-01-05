@@ -54,4 +54,8 @@ Route::group(['middleware' => 'Language', 'prefix' => 'admin'], function() {
         Route::get('/edit/{id}', 'Admin\UserController@edit')->name('admin.user.edit');
         Route::post('/update', 'Admin\UserController@update')->name('admin.user.update');
     });
+    Route::group(['prefix' => 'post'], function() {
+        Route::get('/', 'Admin\PostController@index')->name('admin.post.index');
+        Route::get('/search', 'Admin\PostController@search')->name('admin.post.search');
+    });
 });
