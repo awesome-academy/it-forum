@@ -28,12 +28,13 @@ return [
         'postComment' => 'bình luận',
         'asked' => 'đã viết',
         'viewed' => 'đã xem',
-        'active' => 'hoạt động',
+        'answered' => 'trả lời',
         //index page
         'list' => 'Danh sách bài viết',
         'write' => 'Viết bài',
         'interesting' => 'Bài viết hay',
         'treding' => 'Thịnh hành',
+        'tredingPost' => 'Bài viết thịnh hành',
         'week' => 'tuần',
         'month' => 'tháng',
         'related' => 'Bài viết liên quan',
@@ -53,6 +54,7 @@ return [
         'tags' => 'Thẻ',
         'post' => 'Đăng bài',
         'times' => 'lần',
+        'postCount' => 'Bài viết',
     ],
     'account' => [
         'titleLogin' => 'Trang đăng nhập',
@@ -65,6 +67,7 @@ return [
         'forgot' => 'Quên mật khẩu',
         'dontHaveAcc' => 'Chưa có tài khoản',
         'haveAcc' => 'Đã có tài khoản',
+        'dontLoggedYet' => 'Để bình luận, bạn cần phải :login hoặc :signup một tài khoản ^^',
     ],
     'user' => [
         'list' => 'Danh sách người dùng',
@@ -104,6 +107,10 @@ return [
         'githubLink' => 'Liên kết Github',
         // activity page
         'activity' => 'Hoạt động',
+        'post' => 'Bài viết',
+        'answer' => 'Trả lời',
+        'following' => 'Đang theo dõi',
+        'follower' => 'Người theo dõi',
     ],
     'tag' => [
         // index page
@@ -116,5 +123,16 @@ return [
         'thisWeek' => 'Tuần này',
         // detail page
         'tag' => 'thẻ',
-    ]
+        'interesting' => 'Bài viết hay',
+        'treding' => 'Thịnh hành',
+        'week' => 'tuần',
+        'month' => 'tháng',
+        'info' => 'Thông tin thẻ',
+        'relatedTag' => 'Thẻ liên quan',
+        'noInfo' => 'Thẻ này không có bất cứ thông tin gì, hãy cập nhật',
+    ],
+    'search' => [
+        'title' => 'Tìm kiếm:',
+    ],
+    'postEmpty' => 'Không có bài viết nào',
 ];

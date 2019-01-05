@@ -84,4 +84,107 @@ class TagRepository implements TagRepositoryInterface
     {
         return $this->model()->destroy($id);
     }
+
+    public function getTagsWithPaginate($input, $limit = null)
+    {
+        $limit = (is_null($limit)) ? config('constants.PAGINATION_LIMIT_TAG',  28) : $limit;
+        $query = $this->model()->withCount('posts');
+
+        return $this->search($query, $input, $limit);
+    }
+
+    public function findByName($name, $columns = ['*'])
+    {
+        return $this->model()->select($columns)->where('name', $name)->first();
+    }
+
+    public function getPostByTagName($value='')
+    {
+        return $this->model()->select($columns)->where('name', $name)->first();
+    }
+
+    public function getRelatedTags($tagName, $columns = ['*'])
+    {
+        return $this->model()->select($columns)->where('name', 'like', '%' . $tagName . '%')->get();
+    }
+
+    public function firstOrCreateMultiple($tags)
+    {
+        $tagsId = [];
+
+        foreach ($tags as $k => $t) {
+            if ($tag = $this->model()->firstOrCreate(['name' => $t])) {
+                $tagsId[] = $tag->id;
+            } else {
+                return false;
+            }
+        }
+
+        return $tagsId;
+    }
+
+    // search treding, newest tag
+    public function search($query, $input, $limit) {
+        $appends = [];
+
+        if (!empty($input)) {
+
+            if (!empty($input['name'])) {
+                $query = $query->where('name', 'like', '%' . $input['name'] . '%');
+            }
+
+            if (!empty($input['isPopular'])) {
+                $query = $query->orderBy('posts_count', 'desc');
+            } else {
+                $query = $query->orderBy('created_at', 'desc');
+            }
+        }
+        $query = $query->orderBy('posts_count', 'desc')->paginate($limit);
+
+        return $query;
+    }
+
+    // search treding, week, month post
+    public function searchPosts($query, $input, $limit = null) {
+        $appends = [];
+        $timeControl = new \Carbon\Carbon();
+
+        $startWeek = $timeControl->startOfWeek()->toDateString();
+        $endWeek = $timeControl->endOfWeek()->toDateString();
+        $startMonth = $timeControl->startOfMonth()->toDateString();
+        $endMonth = $timeControl->endOfMonth()->toDateString();
+        // filter by tab
+        if (!empty($input['tab'])) {
+
+            if ($input['tab'] == 'treding') {
+                $query->orderBy('total_view', 'desc');
+
+            } elseif ($input['tab'] == 'week') {
+                $query->whereBetween('posts.created_at', array($startWeek, $endWeek));
+
+            } elseif ($input['tab'] == 'month') {
+                $query->whereBetween('posts.created_at', array($startMonth, $endMonth));
+            }
+            $appends['tab'] = $input['tab'];
+        } else {
+            $query->orderBy('total_vote', 'desc');
+        }
+        $query = $query->orderBy('id', 'desc')->paginate($limit)->appends($appends);
+
+        return $query;
+    }
+
+    // get post by tag name
+    public function getPostsbyTagName($input, $limit = null)
+    {
+        $limit = (is_null($limit)) ? config('constants.PAGINATION_LIMIT_NUMBER',  16) : $limit;
+        $query = $this->model()->with('posts')->where('name', $input['tagName'])->first();
+
+        if (empty($query)) {
+            return false;
+        }
+        $postQuery = $query->posts()->with('user');
+
+        return $this->searchPosts($postQuery, $input, $limit);
+    }
 }

@@ -1,76 +1,69 @@
 @extends('home.master')
 
-@section('title', __('tag.tagList'))
+@section('title', __('page.tag.list'))
 @section('link-header')
 @endsection
 
 @section('content')
-<div id="mainbar-full">
-    <h1 class="fs-headline1 mb24">
-        {{ __('page.tag.list') }}
-    </h1>
-    <p class="mb24">
-        {{ __('page.tag.description') }}
-    </p>
-    <div class="grid mb24">
-        <div class="grid--cell">
-            {!! Form::open(['id' => 'login-form', 'route' => 'home.postLogin']) !!}
-                {!! Form::text('tagfilter', '', ['id' => 'tagfilter', 'class' => 'f-input s-filter-input', 'placeholder' => __('page.tag.filter') . '...', 'maxlength' => 35]) !!}
-            {!! Form::close() !!}
+<div id="list">
+    <div id="mainbar-full">
+        <h1 class="fs-headline1 mb24">
+            {{ __('page.tag.list') }}
+        </h1>
+        <p class="mb24">
+            {{ __('page.tag.description') }}
+        </p>
+        <div class="grid mb24">
+            <div class="grid--cell">
+                    {!! Form::open(['id' => 'formFilter', 'data-route' => route('home.tag.postIndex')]) !!}
+                        {!! Form::text('name', '', ['id' => 'username', 'class' => 's-input', 'placeholder' => __('page.tag.filter') . '...', 'autocomplete' => 'off', 'v-model' => 'name']) !!}
+                    {!! Form::close() !!}
+            </div>
+            <div class="grid--cell ml-auto grid tabs-filter s-btn-group tt-capitalize">
+                <a href="#" @click.prevent="isPopular = 1"
+                    :class="[isPopular ? 'is-selected ' + classDefault : classDefault]">
+                    {{ __('page.tag.popular') }}
+                </a>
+                <a href="#" @click.prevent="isPopular = 0"
+                    :class="[!isPopular ? 'is-selected ' + classDefault : classDefault]">
+                    {{ __('page.tag.new') }}
+                </a>
+            </div>
         </div>
-        <div class="grid--cell ml-auto grid tabs-filter s-btn-group tt-capitalize">
-            <a href="#" class="youarehere is-selected grid--cell s-btn s-btn__muted s-btn__outlined py8 ws-nowrap" data-title="most popular tags">
-                {{ __('page.tag.popular') }}
-            </a>
-            <a href="#" class="grid--cell s-btn s-btn__muted s-btn__outlined py8 ws-nowrap" data-title="recently created tags">
-                {{ __('page.tag.new') }}
-            </a>
-        </div>
-    </div>
-    <div id="tags_list">
-        <div id="tags-browser" class="grid-layout">
-            <div class="grid-layout--cell tag-cell">
-                <a href="#" class="post-tag" data-title="" rel="tag">javascript</a>
-                <span class="item-multiplier">
-                    <span class="item-multiplier-x">×</span>&nbsp;
-                    <span class="item-multiplier-count">1727673</span>
-                </span>
-                <div class="excerpt">
-                    JavaScript (not to be confused with Java) is a high-level, dynamic, multi-paradigm, object-oriented, prototype-based, weakly-typed language used for both client-side and server-side scripting. Its pri…
-                </div>
-                <div class="grid jc-space-between">
-                    <div class="grid--cell stats-row">
-                        <a href="#" data-title="501 questions tagged javascript in the last 24 hours">
-                            501 {{ __('page.tag.postedToday') }}
-                        </a>, 
-                        <a href="#" data-title="5033 questions tagged javascript in the last 7 days">
-                            5033 {{ __('page.tag.thisWeek') }}
-                        </a>
+        <div id="tags_list">
+            <div id="tags-browser" class="grid-layout">
+                <div class="grid-layout--cell tag-cell" v-for="tag in allItems">
+                    <a :href="'{{ route('home.tag.index') }}/' + tag.name" class="post-tag" data-title="" rel="tag">@{{ tag.name }}</a>
+                    <span class="item-multiplier">
+                        <span class="item-multiplier-x">×</span>&nbsp;
+                        <span class="item-multiplier-count">@{{ tag.posts_count }}</span>
+                    </span>
+                    <div class="excerpt">
+                        @{{ tag.description }}
+                    </div>
+                    <div class="grid jc-space-between">
+                        <div class="grid--cell stats-row">
+                            <a href="#" data-title="501 questions tagged javascript in the last 24 hours">
+                                @{{ tag.posts_count * 123 }} {{ __('page.tag.postedToday') }}
+                            </a>, 
+                            <a href="#" data-title="5033 questions tagged javascript in the last 7 days">
+                                @{{ tag.posts_count * 2341 }} {{ __('page.tag.thisWeek') }}
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="pager fr">
-            <span class="page-numbers current">1</span>         
-            <a href="#" data-title="go to page 2"> 
-                <span class="page-numbers">2</span> 
-            </a> 
-            <a href="#" data-title="go to page 3"> 
-                <span class="page-numbers">3</span> 
-            </a> 
-            <a href="#" data-title="go to page 4"> 
-                <span class="page-numbers">4</span>
-            </a> 
-            <a href="#" data-title="go to page 5"> 
-                <span class="page-numbers">5</span> 
-            </a> 
-            <span class="page-numbers dots">…</span>         
-            <a href="#" data-title="go to page 1580"> 
-                <span class="page-numbers">1580</span> 
-            </a> 
-            <a href="#" rel="next" data-title="go to page 2"> 
-                <span class="page-numbers next">{{ __('pagination.next') }}</span> 
-            </a> 
+            <div class="pager fr" v-if="pagination.total != 0">
+                <a href="#" @click.prevent="changePage(pagination.current_page - 1)">
+                    <span class="page-numbers">{{ __('pagination.previous') }}</span>
+                </a>
+                <a href="#" v-for="page in pagesNumber" @click.prevent="changePage(page)">
+                    <span :class="[ page == isActived ? 'page-numbers current' : 'page-numbers']">@{{ page }}</span>
+                </a>
+                <a href="#" @click.prevent="changePage(pagination.current_page + 1)">
+                    <span class="page-numbers">{{ __('pagination.next') }}</span>
+                </a>
+            </div>
         </div>
     </div>
 </div>
