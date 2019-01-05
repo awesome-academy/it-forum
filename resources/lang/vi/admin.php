@@ -32,6 +32,7 @@ return [
         'search' => 'Tìm kiếm',
         'addUser' => 'Thêm người dùng',
         'editUser' => 'Sửa người dùng',
+        'editPost' => 'Sửa bài viết',
     ],
 
     'form' => [

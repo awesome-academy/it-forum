@@ -57,5 +57,9 @@ Route::group(['middleware' => 'Language', 'prefix' => 'admin'], function() {
     Route::group(['prefix' => 'post'], function() {
         Route::get('/', 'Admin\PostController@index')->name('admin.post.index');
         Route::get('/search', 'Admin\PostController@search')->name('admin.post.search');
+        Route::post('/add', 'Admin\PostController@add')->name('admin.post.add');
+        Route::get('/delete/{id}', 'Admin\PostController@delete')->name('admin.post.delete');
+        Route::get('/edit/{id}', 'Admin\PostController@edit')->name('admin.post.edit');
+        Route::post('/update', 'Admin\PostController@update')->name('admin.post.update');
     });
 });
