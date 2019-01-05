@@ -9,7 +9,7 @@
         @endif
 
         @php
-        $lastPage = $paginator->lastPage();
+        $lastPage = $paginator->lastPage()
         @endphp
         @for ($i = 1; $i <= $lastPage; $i++)
             @if ($i == $paginator->currentPage())

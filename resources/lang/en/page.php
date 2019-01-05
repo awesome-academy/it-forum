@@ -28,12 +28,13 @@ return [
         'postComment' => 'comment',
         'asked' => 'asked',
         'viewed' => 'viewed',
-        'active' => 'active',
+        'answered' => 'answered',
         //index page
         'list' => 'Posts',
         'write' => 'Write post',
         'interesting' => 'Interesting',
         'treding' => 'Trending',
+        'tredingPost' => 'Trending post',
         'week' => 'Week',
         'month' => 'Month',
         'related' => 'Related',
@@ -54,6 +55,7 @@ return [
         'post' => 'Post your posts',
         'cancel' => 'Cancel',
         'times' => 'times',
+        'postCount' => '[0,1] post |[2,*] posts',
     ],
     'account' => [
         'titleLogin' => 'Login page',
@@ -66,6 +68,7 @@ return [
         'forgot' => 'Forgot',
         'dontHaveAcc' => 'Don\'t have an account',
         'haveAcc' => 'Have an account',
+        'dontLoggedYet' => 'To answer a question, you must :login, :signup for an account ^^',
     ],
     'user' => [
         'list' => 'User list',
@@ -108,6 +111,10 @@ return [
         'githubLink' => 'GitHub link or username',
         // Activity page
         'activity' => 'Activity',
+        'post' => 'Bài viết',
+        'answer' => 'Trả lời',
+        'following' => 'Đang theo dõi',
+        'follower' => 'Người theo dõi',
     ],
     'tag' => [
         // index page
@@ -120,5 +127,16 @@ return [
         'thisWeek' => 'this week',
         // detail page
         'tag' => '[0,1] tag |[2,*] tags',
+        'interesting' => 'Interesting',
+        'treding' => 'Trending',
+        'week' => 'Week',
+        'month' => 'Month',
+        'info' => 'Infomation',
+        'relatedTag' => 'Related',
+        'noInfo' => 'This tag don\'t have any infomation',
     ],
+    'search' => [
+        'title' => 'Search:',
+    ],
+    'postEmpty' => 'No posts',
 ];
