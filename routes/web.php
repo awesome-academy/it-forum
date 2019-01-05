@@ -15,7 +15,10 @@ Route::group(['middleware' => 'Language'], function() {
     Route::get('changeLanguage/{language}', 'LanguageController@changeLanguage')->name('language.change');
     Route::get('/', 'HomeController@index')->name('home.index');
     Route::get('/post', 'PostController@index')->name('home.post.index');
+    Route::get('/post/all', 'PostController@all')->name('home.post.all');
     Route::get('/post/detail', 'PostController@detail')->name('home.post.detail');
+    Route::get('/post/write', 'PostController@write')->name('home.post.write')->middleware('CheckLogin');
+    Route::post('/post/postWrite', 'PostController@postWrite')->name('home.post.postWrite')->middleware('CheckLogin');
     // User
     Route::group(['prefix' => 'user'], function() {
         Route::get('/', 'UserController@index')->name('home.user.index');

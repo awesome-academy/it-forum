@@ -5,6 +5,7 @@ return [
     'PAGINATION_LIMIT_TAG' => 16,
     'PAGINATION_LIMIT_USER' => 16,
     'PAGINATION_LIMIT_TREDINGPOST' => 10,
+    'PAGINATION_LIMIT_OWN_TAG' => 30,
     'MAX_FILE_UPLOAD_SIZE' => 20971520,
     'IMAGE_UPLOAD_PATH' => 'uploads/images/user/',
     'DEFAULT_USER_IMAGE' => 'avater.png',
