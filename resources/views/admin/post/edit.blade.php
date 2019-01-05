@@ -48,6 +48,10 @@
                 {!! Form::textarea('content', $post->content, ['id' => 'content', 'class' => 'form-control', 'placeholder' => '*', 'required']) !!}
             </div>
             <div class="form-group">
+                {!! Form::label('content', __('admin.category.tag')) !!}
+                {!! Form::text('tags', $tags, ['id' => 'tags', 'class' => 'form-control disable', 'required', 'readonly']) !!}
+            </div>
+            <div class="form-group">
                 <div class="form-check">
                     {!! Form::checkbox('status', '1', config('constants.CHECKBOX.' . $post->status), ['id' => 'status', 'class' => 'form-check-input']) !!}
                     {!! Form::label('status', __('admin.active'), ['class' => 'form-check-label']) !!}

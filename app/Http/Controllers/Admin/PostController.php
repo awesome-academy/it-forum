@@ -23,16 +23,18 @@ class PostController extends Controller
     public function index()
     {
         $posts = $this->postRepository->paginate(config('constants.PAGINATION_LIMIT_NUMBER'));
+        $tags = $this->setTag($posts);
 
-        return view('admin.post.index', compact('posts'));
+        return view('admin.post.index', compact('posts', 'tags'));
     }
 
     public function search(Request $request)
     {
         if ($request->ajax()) {
             $posts = $this->checkSearchValue($request->search);
+            $tags = $this->setTag($posts);
 
-            return view('admin.layout.posttable', compact('posts'));
+            return view('admin.layout.posttable', compact('posts', 'tags'));
         }
     }
 
@@ -55,8 +57,9 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = $this->postRepository->find($id);
-
-        return view('admin.post.edit', compact('post'));
+        $tags = $this->getTag($post->tags);
+        
+        return view('admin.post.edit', compact('post', 'tags'));
     }
 
     public function update(EditPostRequest $request)
@@ -68,5 +71,25 @@ class PostController extends Controller
         $this->postRepository->update($input, $request->id);
 
         return redirect()->route('admin.post.index');
+    }
+
+    public function getTag($tags)
+    {
+        $listTag = '';
+        foreach ($tags as $tag) {
+            $listTag .= $tag->name . ', ';
+        }
+
+        return rtrim($listTag, ', ');
+    }
+
+    public function setTag($posts)
+    {
+        $tags = [];
+        foreach ($posts as $post) {
+            array_push($tags, $this->getTag($post->tags));
+        }
+
+        return $tags;
     }
 }

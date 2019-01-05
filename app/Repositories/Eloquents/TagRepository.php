@@ -2,17 +2,17 @@
 
 namespace App\Repositories\Eloquents;
 
-use App\Repositories\Contracts\PostRepositoryInterface;
-use App\Post;
+use App\Repositories\Contracts\TagRepositoryInterface;
+use App\Tag;
 
-class PostRepository implements PostRepositoryInterface
+class TagRepository implements TagRepositoryInterface
 {
     /**
      * Specify Model class name
      */
     public function model()
     {
-        return new Post;
+        return new Tag;
     }
     /**
      */
@@ -25,7 +25,7 @@ class PostRepository implements PostRepositoryInterface
      */
     public function all($columns = ['*'])
     {
-        return $this->model()->with('user', 'tags')->all();
+        return $this->model()->all();
     }
 
     /**
@@ -35,7 +35,7 @@ class PostRepository implements PostRepositoryInterface
     {
         $limit = is_null($limit) ? config('repository.pagination.limit', 10) : $limit;
 
-        return $this->model()->with('user', 'tags')->paginate($limit, $columns);
+        return $this->model()->with('posts')->paginate($limit, $columns);
     }
     /**
      * Find data by id

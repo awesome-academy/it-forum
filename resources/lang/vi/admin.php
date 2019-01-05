@@ -14,6 +14,7 @@ return [
     'category' => [
         'user' => 'Người dùng',
         'post' => 'Bài viết',
+        'tag' => 'Thẻ',
     ],
 
     'alert' => [
@@ -29,6 +30,7 @@ return [
         'edit' => 'Chỉnh sửa',
         'listUser' => 'Danh sách người dùng',
         'listPost' => 'Danh sách bài viết',
+        'listTag' => 'Danh sách thẻ',
         'search' => 'Tìm kiếm',
         'addUser' => 'Thêm người dùng',
         'editUser' => 'Sửa người dùng',
@@ -53,5 +55,6 @@ return [
         'total_vote' => 'Lượt vote',
         'total_answer' => 'Lượt trả lời',
         'total_view' => 'Lượt xem',
+        'name' => 'Tên',
     ],
 ];

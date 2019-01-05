@@ -10,6 +10,7 @@
         <td class="align-middle">{{ $post->user->username }}</td>
         <td class="align-middle">{{ $post->title }}</td>
         <td class="align-middle">{{ $post->content }}</td>
+        <td class="align-middle">{{ $tags[$i - 1] }}</td>
         <td class="align-middle">{{ $post->total_vote }}</td>
         <td class="align-middle">{{ $post->total_answer }}</td>
         <td class="align-middle">{{ $post->total_view }}</td>
