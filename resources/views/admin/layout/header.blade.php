@@ -7,11 +7,11 @@
     <ul class="navbar-nav ml-auto ml-md-0">
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{ __('admin.welcome') }}, {{ Auth::user()['fullname'] }}
+                {{ __('admin.welcome') }}, {{ Auth::user()['username'] }}
                 <i class="fas fa-user-circle fa-fw"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">{{ __('admin.logout') }}</a>
+                <a class="dropdown-item" href="{{ route('admin.logout') }}" data-toggle="modal" data-target="#logoutModal">{{ __('admin.logout') }}</a>
             </div>
         </li>
     </ul>
