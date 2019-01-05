@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Contracts\PostRepositoryInterface;
+use App\Http\Requests\EditPostRequest;
 use App\Post;
 use Input;
 use Auth;
@@ -42,5 +43,30 @@ class PostController extends Controller
         } else {
             return $posts = $this->postRepository->paginate(config('constants.PAGINATION_LIMIT_NUMBER'));
         }
+    }
+
+    public function delete($id)
+    {
+        $this->postRepository->delete($id);
+
+        return redirect()->route('admin.post.index');
+    }
+
+    public function edit($id)
+    {
+        $post = $this->postRepository->find($id);
+
+        return view('admin.post.edit', compact('post'));
+    }
+
+    public function update(EditPostRequest $request)
+    {
+        $input = $request->all();
+        if (!isset($input['status'])) {
+            $input['status'] = 0;
+        }
+        $this->postRepository->update($input, $request->id);
+
+        return redirect()->route('admin.post.index');
     }
 }
