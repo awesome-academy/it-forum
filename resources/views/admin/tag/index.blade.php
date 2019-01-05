@@ -7,7 +7,7 @@
             <div class='col-xs-12 col-sm-6 pt-sm-3 pt-md-2'>
                 <h5>
                     <i class="fas fa-table"></i>
-                    {{ __('admin.action.listPost') }}
+                    {{ __('admin.action.listTag') }}
                 </h5>
             </div>
             <div class='col-xs-12 col-sm-6'>
@@ -30,13 +30,8 @@
                 <thead>
                 <tr>
                     <th>{{ __('admin.form.id') }}</th>
-                    <th>{{ __('admin.form.username') }}</th>
-                    <th>{{ __('admin.form.title') }}</th>
-                    <th>{{ __('admin.form.content') }}</th>
-                    <th>{{ __('admin.category.tag') }}</th>
-                    <th>{{ __('admin.form.total_vote') }}</th>
-                    <th>{{ __('admin.form.total_answer') }}</th>
-                    <th>{{ __('admin.form.total_view') }}</th>
+                    <th>{{ __('admin.form.name') }}</th>
+                    <th>{{ __('admin.category.post') }}</th>
                     <th>{{ __('admin.form.status') }}</th>
                     <th>{{ __('admin.form.action') }}</th>
                 </tr>
@@ -45,23 +40,18 @@
                     @php
                         $i = 0
                     @endphp
-                    @foreach ($posts as $post)
+                    @foreach ($tags as $tag)
                         @php
                             $i++
                         @endphp
                         <tr>
                             <td class="align-middle">{{ $i }}</td>
-                            <td class="align-middle">{{ $post->user->username }}</td>
-                            <td class="align-middle">{{ $post->title }}</td>
-                            <td class="align-middle">{{ $post->content }}</td>
-                            <td class="align-middle">{{ $tags[$i - 1] }}</td>
-                            <td class="align-middle">{{ $post->total_vote }}</td>
-                            <td class="align-middle">{{ $post->total_answer }}</td>
-                            <td class="align-middle">{{ $post->total_view }}</td>
-                            <td class="align-middle">{{ __('admin.' . config('constants.STATUS.' . $post->status)) }}</td>
+                            <td class="align-middle">{{ $tag->name }}</td>
+                            <td class="align-middle">{{ $tag->posts->count() }}</td>
+                            <td class="align-middle">{{ __('admin.' . config('constants.STATUS.' . $tag->status)) }}</td>
                             <td class="align-middle">
-                                <a class="btn btn-primary action" id="action" href="{{ route('admin.post.edit', ['id' => $post->id] ) }}">{{ __('admin.edit') }}</a>
-                                <a class="btn btn-danger action" onclick="return confirm('{{ __('admin.alert.delete') }}')" href="{{ route('admin.post.delete', ['id' => $post->id] ) }}" id="action">{{ __('admin.delete') }}</a>
+                                <a class="btn btn-primary action" id="action" href="">{{ __('admin.edit') }}</a>
+                                <a class="btn btn-danger action" onclick="return confirm('{{ __('admin.alert.delete') }}')" href="" id="action">{{ __('admin.delete') }}</a>
                             </td>
                         </tr>
                     @endforeach
@@ -69,7 +59,7 @@
             </table>
         </div>
         <div class="d-flex justify-content-center">
-            {{ $posts->links() }}
+            {{ $tags->links() }}
         </div>
     </div>
 </div>

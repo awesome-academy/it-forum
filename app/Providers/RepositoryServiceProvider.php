@@ -10,6 +10,7 @@ class RepositoryServiceProvider extends ServiceProvider
     protected $repositoryList = [
         'App\Repositories\Contracts\UserRepositoryInterface' => 'App\Repositories\Eloquents\UserRepository',
         'App\Repositories\Contracts\PostRepositoryInterface' => 'App\Repositories\Eloquents\PostRepository',
+        'App\Repositories\Contracts\TagRepositoryInterface' => 'App\Repositories\Eloquents\TagRepository',
     ];
 
     /**

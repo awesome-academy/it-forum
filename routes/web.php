@@ -62,4 +62,8 @@ Route::group(['middleware' => 'Language', 'prefix' => 'admin'], function() {
         Route::get('/edit/{id}', 'Admin\PostController@edit')->name('admin.post.edit');
         Route::post('/update', 'Admin\PostController@update')->name('admin.post.update');
     });
+    Route::group(['prefix' => 'tag'], function() {
+        Route::get('/', 'Admin\TagController@index')->name('admin.tag.index');
+        Route::get('/search', 'Admin\TagController@search')->name('admin.tag.search');
+    });
 });

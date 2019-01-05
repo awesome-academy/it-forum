@@ -17,4 +17,9 @@
         <i class="fas fa-fw fa-chart-area"></i>
         <span>{{ __('admin.category.post') }}</span></a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.tag.index') }}">
+        <i class="fas fa-fw fa-chart-area"></i>
+        <span>{{ __('admin.category.tag') }}</span></a>
+    </li>
 </ul>
