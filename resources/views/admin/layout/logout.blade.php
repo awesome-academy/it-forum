@@ -10,7 +10,7 @@
             <div class="modal-body">{{ __('admin.alert.confirm') }}</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">{{ __('admin.cancel') }}</button>
-                <a class="btn btn-primary" href="#">{{ __('admin.logout') }}</a>
+                <a class="btn btn-primary" href="{{ route('admin.logout') }}">{{ __('admin.logout') }}</a>
             </div>
         </div>
     </div>

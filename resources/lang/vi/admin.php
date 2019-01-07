@@ -33,8 +33,10 @@ return [
         'listTag' => 'Danh sách thẻ',
         'search' => 'Tìm kiếm',
         'addUser' => 'Thêm người dùng',
+        'addTag' => 'Thêm thẻ',
         'editUser' => 'Sửa người dùng',
         'editPost' => 'Sửa bài viết',
+        'editTag' => 'Sửa thẻ',
     ],
 
     'form' => [

@@ -2,7 +2,7 @@
     <li class="nav-item ">
         <div class="dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" id="pagesDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-fw fa-folder"></i>
+                <i class="fas fa-user"></i>
                 <span>{{ __('admin.category.user') }}</span>
             </a>
             <div class="dropdown-menu" aria-labelledby="pagesDropdown">
@@ -14,12 +14,21 @@
     </li>
     <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.post.index') }}">
-        <i class="fas fa-fw fa-chart-area"></i>
-        <span>{{ __('admin.category.post') }}</span></a>
+            <i class="fas fa-clipboard"></i>
+            <span>{{ __('admin.category.post') }}</span>
+        </a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('admin.tag.index') }}">
-        <i class="fas fa-fw fa-chart-area"></i>
-        <span>{{ __('admin.category.tag') }}</span></a>
+    <li class="nav-item ">
+        <div class="dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" id="pagesDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-tags"></i>
+                <span>{{ __('admin.category.tag') }}</span>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+                <a class="dropdown-item" href="{{ route('admin.tag.index') }}">{{ __('admin.action.list') }}</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{{ route('admin.tag.create') }}">{{ __('admin.action.add') }}</a>
+            </div>
+        </div>
     </li>
 </ul>
