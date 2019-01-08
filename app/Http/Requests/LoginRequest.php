@@ -25,7 +25,7 @@ class LoginRequest extends FormRequest
     {
         return [
             'email' => 'required|email',
-            'password' => 'required'
+            'password' => 'required',
         ];
     }
 
@@ -34,7 +34,7 @@ class LoginRequest extends FormRequest
         return [
             'email' => __('validation.email'),
             'email.required' => __('validation.required', ['attribute' => __('user.email')]),
-            'password.required' => __('validation.required', ['attribute' => __('user.password')])
+            'password.required' => __('validation.required', ['attribute' => __('user.password')]),
         ];
     }
 }

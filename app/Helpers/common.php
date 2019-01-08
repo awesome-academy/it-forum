@@ -18,4 +18,3 @@ if (! function_exists('image_upload_path')) {
         return '/uploads/images/' . $image;
     }
 }
-?>

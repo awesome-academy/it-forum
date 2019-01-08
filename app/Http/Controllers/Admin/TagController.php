@@ -39,7 +39,8 @@ class TagController extends Controller
     public function checkSearchValue($key)
     {
         if ($key != '') {
-            return $tags = $this->tagRepository->findByKey('name', $key)->paginate(config('constants.PAGINATION_LIMIT_NUMBER'));
+            return $tags = $this->tagRepository->findByKey('name', $key)
+                ->paginate(config('constants.PAGINATION_LIMIT_NUMBER'));
         } else {
             return $tags = $this->tagRepository->paginate(config('constants.PAGINATION_LIMIT_NUMBER'));
         }

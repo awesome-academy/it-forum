@@ -22,9 +22,10 @@ class Tag extends Model
         return $this->belongsToMany('App\Post', 'posts_tags')->withTimestamps();
     }
 
-    public static function boot() {
+    public static function boot()
+    {
         parent::boot();
-        static::deleting(function($tag) {
+        static::deleting(function ($tag) {
              $tag->posts()->detach();
         });
     }

@@ -41,7 +41,8 @@ class PostController extends Controller
     public function checkSearchValue($key)
     {
         if ($key != '') {
-            return $posts = $this->postRepository->findByKey('title', $key)->paginate(config('constants.PAGINATION_LIMIT_NUMBER'));
+            return $posts = $this->postRepository->findByKey('title', $key)
+                ->paginate(config('constants.PAGINATION_LIMIT_NUMBER'));
         } else {
             return $posts = $this->postRepository->paginate(config('constants.PAGINATION_LIMIT_NUMBER'));
         }
