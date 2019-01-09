@@ -3,22 +3,25 @@
 @section('content')
 <div class="card m-1">
     <div class="card-header">
-        <div id="mainbar-full" class="user-show-new">
-            <div class="subheader reloaded js-user-header" id="js-user-header1">
-                @yield('tab')
-            </div>
+        <div id="mainbar-full" class="tag-show-new">
             <div id="main-content">
                 @if (Session::has('success_alert'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    {{ Session::get('success_alert') }}
-                </div>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ Session::get('success_alert') }}
+                    </div>
                 @endif
                 @if (Session::has('error_alert'))
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    {{ Session::get('error_alert') }}
-                </div>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ Session::get('error_alert') }}
+                    </div>
                 @endif
-                @yield('detail-content')
+                @if($errors->any())
+                    @foreach ($errors->all() as $error)
+                        <div class="alert alert-danger fade show" role="alert">
+                            {{ $error }}
+                        </div>
+                    @endforeach
+                @endif
             </div>
         </div>
         <div class='pt-sm-3 pt-md-2'>
@@ -27,7 +30,6 @@
                 {{ __('admin.action.addTag') }}
             </h5>
         </div>
-
     </div>
     <div class="card-body form-validation">
         {!! Form::open(['class' => 'form-validation', 'route' => 'admin.tag.add', 'novalidate']) !!}

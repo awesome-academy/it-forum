@@ -16,6 +16,7 @@ return [
     'alpha' => ':attribute may only contain letters.',
     'alpha_dash' => ':attribute may only contain letters, numbers, dashes and underscores.',
     'alpha_num' => ':attribute may only contain letters and numbers.',
+    'only_num' => ':attribute chỉ được chứa số.',
     'between' => [
         'string' => ':attribute phải có ký tự từ :min đến :max.',
         'file' => ':attribute phải có kích thước từ :min đến :max KB.',
@@ -25,6 +26,7 @@ return [
     'digits_between' => ':attribute must be between :min and :max digits.',
     'email' => 'Cần đúng định dạng email.',
     'file' => ':attribute phải là 1 file.',
+    'date' => ':attribute không đúng định dạng ngày tháng.',
     'max' => [
         'numeric' => ':attribute phải không quá :max.',
         'string' => ':attribute phải không quá :max ký tự.',
@@ -33,7 +35,7 @@ return [
     'mimes' => ':attribute phải có định dạng là: :values.',
     'mimetypes' => 'The :attribute must be a file of type: :values.',
     'min' => [
-        'numeric' => ':attribute phải có it nhất :min ký tự.',
+        'numeric' => ':attribute phải có ít nhất :min ký tự.',
         'file' => ':attribute phải ít nhất :min kb.',
         'string' => ':attribute phải ít nhất :min ký tự.',
     ],
