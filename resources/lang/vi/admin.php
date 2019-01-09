@@ -15,7 +15,8 @@ return [
         'user' => 'Người dùng',
         'post' => 'Bài viết',
         'tag' => 'Thẻ',
-        'report' => 'Báo cáo'
+        'report' => 'Báo cáo',
+        'config' => 'Cấu hình',
     ],
 
     'alert' => [
@@ -36,10 +37,12 @@ return [
         'search' => 'Tìm kiếm',
         'addUser' => 'Thêm người dùng',
         'addTag' => 'Thêm thẻ',
+        'addConfig' => 'Thêm cấu hình',
         'editUser' => 'Sửa người dùng',
         'editPost' => 'Sửa bài viết',
         'editTag' => 'Sửa thẻ',
         'editReport' => 'Sửa báo cáo',
+        'editConfig' => 'Sửa cấu hình',
     ],
 
     'form' => [

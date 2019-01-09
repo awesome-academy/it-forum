@@ -14,5 +14,6 @@ class Config extends Model
     protected $fillable = [
         'name',
         'content',
+        'status',
     ];
 }

@@ -85,4 +85,13 @@ Route::group(['middleware' => ['Language', 'auth', 'admin'], 'prefix' => 'admin'
         Route::get('/edit/{id}', 'Admin\ReportController@edit')->name('admin.report.edit');
         Route::post('/update', 'Admin\ReportController@update')->name('admin.report.update'); 
     });
+    Route::group(['prefix' => 'config'], function() {
+        Route::get('/', 'Admin\ConfigController@index')->name('admin.config.index');
+        Route::get('/search', 'Admin\ConfigController@search')->name('admin.config.search');
+        Route::get('/create', 'Admin\ConfigController@create')->name('admin.config.create');
+        Route::post('/add', 'Admin\ConfigController@add')->name('admin.config.add');
+        Route::get('/delete/{id}', 'Admin\ConfigController@delete')->name('admin.config.delete');
+        Route::get('/edit/{id}', 'Admin\ConfigController@edit')->name('admin.config.edit');
+        Route::post('/update', 'Admin\ConfigController@update')->name('admin.config.update');
+    });
 });
