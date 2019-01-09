@@ -196,4 +196,17 @@ class PostRepository implements PostRepositoryInterface
 
         return $relatedPosts;
     }
+
+    public function createReplies(array $input)
+    {
+        $input['repliable_id'] = $input['post_id'];
+        $input['repliable_type'] = 'App\Post';
+
+        return $this->model()->find($input['post_id'])->replies()->create($input);
+    }
+
+    public function increaseAnswerTotal($id)
+    {
+        $this->model()->find($id)->increment('total_answer', 1);
+    }
 }

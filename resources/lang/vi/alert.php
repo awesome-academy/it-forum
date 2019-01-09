@@ -20,6 +20,10 @@ return [
         'update' => 'Cập nhật không thành công.',
         'delete' => 'Xóa không thành công',
         'oldPassword' => 'Mật khẩu cũ không chính xác',
+        'needLogin' => 'Bạn cần phải đăng nhập mới sử dụng đưọc chức năng này',
+        'vote' => 'Vote lỗi',
+        'report' => 'Lỗi khi báo cáo',
+        'follow' => 'Theo dõi lỗi',
     ],
     'success' => [
         'login' => 'Đăng nhập thành công.',
@@ -27,5 +31,10 @@ return [
         'create' => 'Tạo thành công.',
         'update' => 'Cập nhật thành công.',
         'delete' => 'Xóa thành công',
+        'vote' => 'Vote thành công',
+        'unvote' => 'Unvote thành công',
+        'report' => 'Báo cáo thành công',
+        'follow' => 'Theo dõi thành công',
+        'unfollow' => 'Bỏ theo dõi thành công',
     ],
 ];

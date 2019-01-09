@@ -20,6 +20,10 @@ return [
         'update' => 'Updated error.',
         'delete' => 'Deleted error',
         'oldPassword' => 'Old password is incorrect',
+        'needLogin' => 'You must login or register new account to use this function!',
+        'vote' => 'Vote error',
+        'report' => 'Report error',
+        'follow' => 'Follow error',
     ],
     'success' => [
         'login' => 'Login success.',
@@ -27,5 +31,10 @@ return [
         'create' => 'Created success.',
         'update' => 'Updated success.',
         'delete' => 'Deleted success',
+        'vote' => 'Vote success',
+        'unvote' => 'Unvote success',
+        'report' => 'Report success',
+        'follow' => 'Follow error',
+        'unfollow' => 'Unfollow success',
     ],
 ];

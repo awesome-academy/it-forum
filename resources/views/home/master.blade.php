@@ -21,6 +21,7 @@
     <div class="container">
         @include('home.layout.leftbar')
         <div id="content" class="snippet-hidden">
+            @include('home.layout.alert')
             <div class="inner-content">
                 @yield('mainbar-header')
                 @yield('content')
@@ -28,18 +29,16 @@
             </div>
         </div>
     </div>
-
     @include('home.layout.footer')
-
-    <script src="{{ asset('js/manifest.js') }}"></script>
-    <script src="{{ asset('js/vendor.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
-
     <script>
         $(document).ready(function() {
             $('.nuxt-progress').animate({ width: "100%" }, 1000, function() {
                 $('.nuxt-progress').css('opacity', 0);
             });
+
+            $('body').addClass('users-page unified-theme');
+            $('.alert-dismissible').fadeTo(3000, 500).slideUp(500);
         });
     </script>
     @yield('js')

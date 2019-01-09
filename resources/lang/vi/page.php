@@ -19,6 +19,8 @@ return [
         'downVote' => 'không ủng hộ',
         'favorite' => 'yêu thích',
         'share' => 'Chia sẻ bài viết',
+        'report' => 'Báo cáo',
+        'note' => 'Ghi chú',
         'edit' => 'Chỉnh sửa',
         'posted' => 'đã viết',
         'active' => 'hoạt động',
@@ -111,6 +113,7 @@ return [
         'answer' => 'Trả lời',
         'following' => 'Đang theo dõi',
         'follower' => 'Người theo dõi',
+        'followingTag' => 'Thẻ đang theo dõi',
     ],
     'tag' => [
         // index page
@@ -130,9 +133,12 @@ return [
         'info' => 'Thông tin thẻ',
         'relatedTag' => 'Thẻ liên quan',
         'noInfo' => 'Thẻ này không có bất cứ thông tin gì, hãy cập nhật',
+        'ownTags' => 'Danh sách thẻ của bạn',
+        'noTag' => 'Không có thẻ nào',
     ],
     'search' => [
         'title' => 'Tìm kiếm:',
     ],
     'postEmpty' => 'Không có bài viết nào',
+    'admin' => 'Trang quản trị cho nhân viên',
 ];
