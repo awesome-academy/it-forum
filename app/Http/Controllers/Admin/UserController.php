@@ -40,7 +40,8 @@ class UserController extends Controller
     public function checkSearchValue($key)
     {
         if ($key != '') {
-            return $users = $this->userRepository->findByKey('email', $key)->paginate(config('constants.PAGINATION_LIMIT_NUMBER'));
+            return $users = $this->userRepository->findByKey('email', $key)
+                ->paginate(config('constants.PAGINATION_LIMIT_NUMBER'));
         } else {
             return $users = $this->userRepository->paginate(config('constants.PAGINATION_LIMIT_NUMBER'));
         }

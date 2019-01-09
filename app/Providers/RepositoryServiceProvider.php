@@ -11,6 +11,7 @@ class RepositoryServiceProvider extends ServiceProvider
         'App\Repositories\Contracts\UserRepositoryInterface' => 'App\Repositories\Eloquents\UserRepository',
         'App\Repositories\Contracts\PostRepositoryInterface' => 'App\Repositories\Eloquents\PostRepository',
         'App\Repositories\Contracts\TagRepositoryInterface' => 'App\Repositories\Eloquents\TagRepository',
+        'App\Repositories\Contracts\ReportRepositoryInterface' => 'App\Repositories\Eloquents\ReportRepository',
     ];
 
     /**

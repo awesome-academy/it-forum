@@ -2,27 +2,17 @@
 
 namespace App\Repositories\Eloquents;
 
-use App\Repositories\Contracts\UserRepositoryInterface;
-use App\User;
+use App\Repositories\Contracts\ReportRepositoryInterface;
+use App\Report;
 
-class UserRepository implements UserRepositoryInterface
+class ReportRepository implements ReportRepositoryInterface
 {
-    protected $fillable = [
-        'id',
-        'username',
-        'fullname',
-        'email',
-        'image_path',
-        'address',
-        'phone',
-    ];
-
     /**
      * Specify Model class name
      */
     public function model()
     {
-        return new User;
+        return new Report;
     }
     /**
      */
@@ -45,7 +35,7 @@ class UserRepository implements UserRepositoryInterface
     {
         $limit = is_null($limit) ? config('repository.pagination.limit', 10) : $limit;
 
-        return $this->model()->paginate($limit, $columns);
+        return $this->model()->with('post', 'user')->paginate($limit, $columns);
     }
     /**
      * Find data by id
@@ -60,7 +50,9 @@ class UserRepository implements UserRepositoryInterface
      */
     public function findByKey($field, $keyword)
     {
-        return $this->model()->where($field, 'LIKE', '%' . $keyword . '%');
+        return $this->model()->whereHas('post', function ($query) use ($field, $keyword) {
+            $query->where($field, 'LIKE', '%' . $keyword . '%');
+        })->get();
     }
 
     /**
@@ -93,20 +85,5 @@ class UserRepository implements UserRepositoryInterface
     public function delete($id)
     {
         return $this->model()->destroy($id);
-    }
-
-    public function filter($input, $limit = null)
-    {
-        $limit = is_null($limit) ? config('constants.PAGINATION_LIMIT_USER', 4) : $limit;
-        $query = $this->model()->select('*');
-
-        if (!empty($input)) {
-            if (!empty($input['username'])) {
-                $query = $query->where('username', 'like', '%' . $input['username'] . '%');
-            }
-        }
-        $query = $query->orderBy('id', 'desc')->paginate($limit);
-
-        return $query;
     }
 }

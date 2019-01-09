@@ -12,11 +12,11 @@ class PostController extends Controller
      */
     public function index()
     {
-    	return view('home.post.index');
+        return view('home.post.index');
     }
 
     public function detail()
     {
-    	return view('home.post.detail');
+        return view('home.post.detail');
     }
 }

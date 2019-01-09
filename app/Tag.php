@@ -22,15 +22,17 @@ class Tag extends Model
         return $this->belongsToMany('App\Post', 'posts_tags')->withTimestamps();
     }
 
-    public static function boot() {
-        parent::boot();
-        static::deleting(function($tag) {
-             $tag->posts()->detach();
-        });
+    public function follows()
+    {
+        return $this->morphMany('App\Follow', 'followable');
     }
 
-    public function follow()
+    public static function boot()
     {
-        return $this->morphOne('App\Follow', 'followable');
+        parent::boot();
+        static::deleting(function ($tag) {
+            $tag->follows()->delete();
+            $tag->posts()->detach();
+        });
     }
 }

@@ -22,4 +22,12 @@ class NotificationContent extends Model
     {
         return $this->hasMany('App\Notification', 'notification_content_id');
     }
+
+    public static function boot()
+    {
+        parent::boot();
+        static::deleting(function ($notificationContent) {
+            $notificationContent->notifications()->delete();
+        });
+    }
 }

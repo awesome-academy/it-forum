@@ -87,7 +87,7 @@ class TagRepository implements TagRepositoryInterface
 
     public function getTagsWithPaginate($input, $limit = null)
     {
-        $limit = (is_null($limit)) ? config('constants.PAGINATION_LIMIT_TAG',  28) : $limit;
+        $limit = (is_null($limit)) ? config('constants.PAGINATION_LIMIT_TAG', 28) : $limit;
         $query = $this->model()->withCount('posts');
 
         return $this->search($query, $input, $limit);
@@ -98,7 +98,7 @@ class TagRepository implements TagRepositoryInterface
         return $this->model()->select($columns)->where('name', $name)->first();
     }
 
-    public function getPostByTagName($value='')
+    public function getPostByTagName($value = '')
     {
         return $this->model()->select($columns)->where('name', $name)->first();
     }
@@ -124,11 +124,11 @@ class TagRepository implements TagRepositoryInterface
     }
 
     // search treding, newest tag
-    public function search($query, $input, $limit) {
+    public function search($query, $input, $limit)
+    {
         $appends = [];
 
         if (!empty($input)) {
-
             if (!empty($input['name'])) {
                 $query = $query->where('name', 'like', '%' . $input['name'] . '%');
             }
@@ -145,7 +145,8 @@ class TagRepository implements TagRepositoryInterface
     }
 
     // search treding, week, month post
-    public function searchPosts($query, $input, $limit = null) {
+    public function searchPosts($query, $input, $limit = null)
+    {
         $appends = [];
         $timeControl = new \Carbon\Carbon();
 
@@ -155,15 +156,12 @@ class TagRepository implements TagRepositoryInterface
         $endMonth = $timeControl->endOfMonth()->toDateString();
         // filter by tab
         if (!empty($input['tab'])) {
-
             if ($input['tab'] == 'treding') {
                 $query->orderBy('total_view', 'desc');
-
             } elseif ($input['tab'] == 'week') {
-                $query->whereBetween('posts.created_at', array($startWeek, $endWeek));
-
+                $query->whereBetween('posts.created_at', [$startWeek, $endWeek]);
             } elseif ($input['tab'] == 'month') {
-                $query->whereBetween('posts.created_at', array($startMonth, $endMonth));
+                $query->whereBetween('posts.created_at', [$startMonth, $endMonth]);
             }
             $appends['tab'] = $input['tab'];
         } else {
@@ -177,7 +175,7 @@ class TagRepository implements TagRepositoryInterface
     // get post by tag name
     public function getPostsbyTagName($input, $limit = null)
     {
-        $limit = (is_null($limit)) ? config('constants.PAGINATION_LIMIT_NUMBER',  16) : $limit;
+        $limit = (is_null($limit)) ? config('constants.PAGINATION_LIMIT_NUMBER', 16) : $limit;
         $query = $this->model()->with('posts')->where('name', $input['tagName'])->first();
 
         if (empty($query)) {

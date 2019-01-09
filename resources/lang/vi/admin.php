@@ -15,6 +15,7 @@ return [
         'user' => 'Người dùng',
         'post' => 'Bài viết',
         'tag' => 'Thẻ',
+        'report' => 'Báo cáo'
     ],
 
     'alert' => [
@@ -31,12 +32,14 @@ return [
         'listUser' => 'Danh sách người dùng',
         'listPost' => 'Danh sách bài viết',
         'listTag' => 'Danh sách thẻ',
+        'listReport' => 'Danh sách báo cáo',
         'search' => 'Tìm kiếm',
         'addUser' => 'Thêm người dùng',
         'addTag' => 'Thêm thẻ',
         'editUser' => 'Sửa người dùng',
         'editPost' => 'Sửa bài viết',
         'editTag' => 'Sửa thẻ',
+        'editReport' => 'Sửa báo cáo',
     ],
 
     'form' => [
@@ -58,5 +61,6 @@ return [
         'total_answer' => 'Lượt trả lời',
         'total_view' => 'Lượt xem',
         'name' => 'Tên',
+        'comment' => 'Bình luận',
     ],
 ];

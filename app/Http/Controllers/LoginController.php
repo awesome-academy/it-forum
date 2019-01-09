@@ -34,7 +34,6 @@ class LoginController extends Controller
         $input = $request->all();
 
         if (!empty($input)) {
-
             if (Auth::attempt(['email' => $input['email'], 'password' => $input['password']])) {
                 \Session::flash('success_alert', __('alert.success.login'));
 
@@ -62,7 +61,6 @@ class LoginController extends Controller
         $input = $request->all();
 
         if (!empty($input)) {
-
             $input['password'] = bcrypt($input['password']);
             $input['fullname'] = 'your fullname';
 

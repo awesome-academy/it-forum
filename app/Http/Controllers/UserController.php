@@ -44,7 +44,7 @@ class UserController extends Controller
                 'current_page' => $allUsers->currentPage(),
                 'last_page' => $allUsers->lastPage(),
                 'from' => $allUsers->firstItem(),
-                'to' => $allUsers->lastItem()
+                'to' => $allUsers->lastItem(),
             ],
             'data' => $allUsers,
         ];
@@ -93,7 +93,6 @@ class UserController extends Controller
         $currentUser = Auth::user();
 
         if (!empty($input)) {
-
             if ($this->userRepository->update($input, $currentUser->id)) {
                 return redirect()->route('home.user.setting');
             } else {
@@ -111,7 +110,7 @@ class UserController extends Controller
         if (!empty($input)) {
             // name for image file
             $fileName1 = $input['image']->getClientOriginalName();
-            $fileName2 =  md5($currentUser->id . '_' . $fileName1) . '.' . $input['image']->getClientOriginalExtension();
+            $fileName2 = md5($currentUser->id . '_' . $fileName1) . '.' . $input['image']->getClientOriginalExtension();
             $input['image_path'] = $fileName2;
 
             if ($this->userRepository->update($input, $currentUser->id)) {
@@ -133,9 +132,9 @@ class UserController extends Controller
         $currentUser = Auth::user();
 
         if (!empty($input)) {
-            $current_password = $currentUser->password;
+            $currentPassword = $currentUser->password;
             // check correct old password
-            if (Hash::check($input['oldPassword'], $current_password)) {
+            if (Hash::check($input['oldPassword'], $currentPassword)) {
                 $input['password'] = Hash::make($input['password']);
 
                 if ($this->userRepository->update($input, $currentUser->id)) {
@@ -146,10 +145,12 @@ class UserController extends Controller
 
                     return redirect()->route('home.user.password');
                 } else {
-                    return redirect()->route('home.user.password')->withErrors(['errorUpdate' => __('alert.error.update')]);
+                    return redirect()->route('home.user.password')
+                        ->withErrors(['errorUpdate' => __('alert.error.update')]);
                 }
             } else {
-                return redirect()->route('home.user.password')->withErrors(['oldPassword' => __('alert.error.oldPassword')]);
+                return redirect()->route('home.user.password')
+                ->withErrors(['oldPassword' => __('alert.error.oldPassword')]);
             }
         }
     }

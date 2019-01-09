@@ -7,7 +7,7 @@ use Closure;
 class Language
 {
     /**
-     * Handle language 
+     * Handle language
      * Lam pham
      */
     public function handle($request, Closure $next)

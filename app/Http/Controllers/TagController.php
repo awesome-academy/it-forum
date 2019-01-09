@@ -34,7 +34,7 @@ class TagController extends Controller
                 'current_page' => $allTags->currentPage(),
                 'last_page' => $allTags->lastPage(),
                 'from' => $allTags->firstItem(),
-                'to' => $allTags->lastItem()
+                'to' => $allTags->lastItem(),
             ],
             'data' => $allTags,
         ];
