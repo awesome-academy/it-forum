@@ -8,9 +8,10 @@
     $('#search').on('keyup', function() {
         var $value = $(this).val();
         var search = window.location.href;
+        var tmp = search.split("?");
         $.ajax ({
-            type: 'get',
-            url: search + '/search',
+        type: 'get',
+        url: tmp[0] + '/search',
             data: {
                 'search': $value,
             },

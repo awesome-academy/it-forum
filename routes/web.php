@@ -1,4 +1,3 @@
-
 <?php
 /*
 |--------------------------------------------------------------------------
@@ -48,7 +47,7 @@ Route::group(['middleware' => 'Language'], function() {
 admin route
 */
 
-Route::group(['middleware' => ['Language', 'admin'], 'prefix' => 'admin'], function() {
+Route::group(['middleware' => ['Language', 'auth', 'admin'], 'prefix' => 'admin'], function() {
     Route::get('/', 'Admin\UserController@index')->name('admin.index');
     Route::get('/logout', 'Admin\UserController@logout')->name('admin.logout');
     Route::group(['prefix' => 'user'], function() {
@@ -76,5 +75,14 @@ Route::group(['middleware' => ['Language', 'admin'], 'prefix' => 'admin'], funct
         Route::get('/delete/{id}', 'Admin\TagController@delete')->name('admin.tag.delete');
         Route::get('/edit/{id}', 'Admin\TagController@edit')->name('admin.tag.edit');
         Route::post('/update', 'Admin\TagController@update')->name('admin.tag.update');
+    });
+    Route::group(['prefix' => 'report'], function() {
+        Route::get('/', 'Admin\ReportController@index')->name('admin.report.index');
+        Route::get('/search', 'Admin\ReportController@search')->name('admin.report.search');
+        Route::get('/create', 'Admin\ReportController@create')->name('admin.report.create');
+        Route::post('/add', 'Admin\ReportController@add')->name('admin.report.add');
+        Route::get('/delete/{id}', 'Admin\ReportController@delete')->name('admin.report.delete');
+        Route::get('/edit/{id}', 'Admin\ReportController@edit')->name('admin.report.edit');
+        Route::post('/update', 'Admin\ReportController@update')->name('admin.report.update'); 
     });
 });

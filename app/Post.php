@@ -51,4 +51,16 @@ class Post extends Model
     {
         return $this->morphMany('App\Vote', 'voteable');
     }
+
+    public static function boot()
+    {
+        parent::boot();
+        static::deleting(function ($post) {
+            $post->reports()->delete();
+            $post->answers()->delete();
+            $post->replies()->delete();
+            $post->votes()->delete();
+            $post->tag()->detach();
+        });
+    }
 }

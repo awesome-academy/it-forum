@@ -20,4 +20,12 @@ class Role extends Model
     {
         return $this->hasMany('App\User');
     }
+
+    public static function boot()
+    {
+        parent::boot();
+        static::deleting(function ($role) {
+            $role->users()->delete();
+        });
+    }
 }

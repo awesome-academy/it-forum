@@ -48,14 +48,6 @@ class User extends Authenticatable
         return $this->hasMany('App\Post');
     }
 
-    public static function boot()
-    {
-        parent::boot();
-        static::deleting(function ($user) {
-            $user->posts()->delete();
-        });
-    }
-
     public function answers()
     {
         return $this->hasMany('App\Answer');
@@ -81,6 +73,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Code');
     }
 
+    public function reports()
+    {
+        return $this->hasMany('App\Report');
+    }
+    
     public function role()
     {
         return $this->belongsTo('App\Role');
@@ -89,5 +86,20 @@ class User extends Authenticatable
     public function follows()
     {
         return $this->morphMany('App\Follow', 'followable');
+    }
+    
+    public static function boot()
+    {
+        parent::boot();
+        static::deleting(function ($user) {
+            $user->posts()->delete();
+            $user->answers()->delete();
+            $user->replies()->delete();
+            $user->votes()->delete();
+            $user->notifications()->delete();
+            $user->codes()->delete();
+            $user->reports()->delete();
+            $user->follows()->delete();
+        });
     }
 }

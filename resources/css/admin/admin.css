@@ -364,3 +364,9 @@ body #content {
 table .action {
     width: 4em !important;
 }
+
+div .scrollable {
+    max-width: 15em;
+    max-height: 10em;
+    overflow: auto;
+}

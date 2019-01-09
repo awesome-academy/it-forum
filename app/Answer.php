@@ -38,4 +38,13 @@ class Answer extends Model
     {
         return $this->morphMany('App\Vote', 'voteable');
     }
+    
+    public static function boot()
+    {
+        parent::boot();
+        static::deleting(function ($answer) {
+            $answer->replies()->delete();
+            $answer->votes()->delete();
+        });
+    }
 }

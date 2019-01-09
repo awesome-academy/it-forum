@@ -21,7 +21,7 @@
     <li class="nav-item ">
         <div class="dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" id="pagesDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-tags"></i>
+                <i class="fas fa-tag"></i>
                 <span>{{ __('admin.category.tag') }}</span>
             </a>
             <div class="dropdown-menu" aria-labelledby="pagesDropdown">
@@ -30,5 +30,11 @@
                 <a class="dropdown-item" href="{{ route('admin.tag.create') }}">{{ __('admin.action.add') }}</a>
             </div>
         </div>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('admin.report.index') }}">
+            <i class="fas fa-flag"></i>
+            <span>{{ __('admin.category.report') }}</span>
+        </a>
     </li>
 </ul>
