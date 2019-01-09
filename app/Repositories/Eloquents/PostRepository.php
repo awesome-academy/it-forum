@@ -84,4 +84,78 @@ class PostRepository implements PostRepositoryInterface
     {
         return $this->model()->destroy($id);
     }
+
+    // post index
+    public function getPostWithUserLimit($input, $limit = null)
+    {
+        $limit = (is_null($limit)) ? config('constants.PAGINATION_LIMIT_NUMBER', 16) : $limit;
+        $query = $this->model()->with('user')->with('tags');
+
+        return $this->search($query, $input, $limit);
+    }
+
+    // get post with paginate at post all, search module
+    public function getPostWithUserPaginate($input, $limit = null)
+    {
+        $limit = (is_null($limit)) ? config('constants.PAGINATION_LIMIT_NUMBER', 16) : $limit;
+        $query = $this->model()->with('user')->with('tags');
+
+        return $this->search($query, $input, $limit, true);
+    }
+
+    public function getTreadingPostLimit($limit = null)
+    {
+        $limit = (is_null($limit)) ? config('constants.PAGINATION_LIMIT_TREDINGPOST', 16) : $limit;
+        $query = $this->model()->with('tags')->orderBy('total_view', 'desc')->orderBy('id', 'desc')
+            ->take($limit)->get();
+
+        return $query;
+    }
+
+    public function getOwnTags()
+    {
+        $limit = config('constants.PAGINATION_LIMIT_OWN_TAG', 16);
+        $currentUserId = \Auth::id();
+        $tags = $this->model()->select('id')->where('user_id', $currentUserId)->with('tags')->get()->pluck('tags');
+        $ownTags = collect([]);
+
+        foreach ($tags as $key => $value) {
+            $ownTags = $ownTags->merge($value);
+        }
+
+        return $ownTags->unique('id')->take($limit);
+    }
+
+    // search treding, week, month post
+    public function search($query, $input, $limit, $isPaginate = false)
+    {
+        $appends = [];
+        $timeControl = new \Carbon\Carbon();
+
+        $startWeek = $timeControl->startOfWeek()->toDateString();
+        $endWeek = $timeControl->endOfWeek()->toDateString();
+        $startMonth = $timeControl->startOfMonth()->toDateString();
+        $endMonth = $timeControl->endOfMonth()->toDateString();
+        // filter by tab
+        if (!empty($input['tab'])) {
+            if ($input['tab'] == 'treding') {
+                $query->orderBy('total_view', 'desc');
+            } elseif ($input['tab'] == 'week') {
+                $query->whereBetween('created_at', [$startWeek, $endWeek]);
+            } elseif ($input['tab'] == 'month') {
+                $query->whereBetween('created_at', [$startMonth, $endMonth]);
+            }
+        } else {
+            $query->orderBy('total_vote', 'desc');
+        }
+
+        if (!empty($input['q'])) {
+            $query->where('title', 'like', '%' . $input['q'] . '%');
+        }
+        // is paginate?
+        $query = $isPaginate == true ? $query->orderBy('id', 'desc')->paginate($limit)->appends($appends)
+            : $query->orderBy('id', 'desc')->take($limit)->get();
+
+        return $query;
+    }
 }

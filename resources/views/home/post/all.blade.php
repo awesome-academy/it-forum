@@ -5,7 +5,6 @@
 @endsection
 
 @section('content')
-
 <div id="mainbar">
     <div class="grid">
         <h1 class="grid--cell fl1 fs-headline1">
@@ -17,26 +16,26 @@
             </a>
         </div>
     </div>
-    @php 
-        $input['tab'] = !empty($input['tab']) ? $input['tab'] : '';
-    @endphp
+    <?php $input['tab'] = !empty($input['tab']) ? $input['tab'] : ''; ?>
     <div class="grid ai-center mb16">
-        <div class="grid--cell fl1 fs-body3"></div>
+        <div class="grid--cell fl1 fs-body3">
+            {{ count($allPosts) }} {{ trans_choice('page.post.question', count($allPosts)) }}
+        </div>
         <div class="grid--cell">
             <div class="grid tabs-filter s-btn-group tt-capitalize">
-                <a href="{{ route('home.post.index') }}"
-                    class="{{ empty($input['tab']) ? 'is-selected' : '' }} youarehere grid--cell s-btn s-btn__muted s-btn__outlined py8 ws-nowrap">
+                <a href="{{ route('home.post.all') }}"
+                    class="{{ empty($input['tab']) ? 'is-selected' : '' }} grid--cell s-btn s-btn__muted s-btn__outlined py8 ws-nowrap">
                     {{ __('page.post.interesting') }}
                 </a>
-                <a href="{{ route('home.post.index', ['tab' => 'trending']) }}"
+                <a href="{{ route('home.post.all', ['tab' => 'trending']) }}"
                     class="{{ ($input['tab'] == 'trending') ? 'is-selected' : '' }} grid--cell s-btn s-btn__muted s-btn__outlined py8 ws-nowrap">
                     <span class="bounty-indicator-tab">{{ count($allPosts) }}</span>{{ __('page.post.trending') }}
                 </a>
-                <a href="{{ route('home.post.index', ['tab' => 'week']) }}"
+                <a href="{{ route('home.post.all', ['tab' => 'week']) }}"
                     class="{{ ($input['tab'] == 'week') ? 'is-selected' : '' }} grid--cell s-btn s-btn__muted s-btn__outlined py8 ws-nowrap">
                     {{ __('page.post.week') }}
                 </a>
-                <a href="{{ route('home.post.index', ['tab' => 'month']) }}"
+                <a href="{{ route('home.post.all', ['tab' => 'month']) }}"
                     class="{{ ($input['tab'] == 'month') ? 'is-selected' : '' }} grid--cell s-btn s-btn__muted s-btn__outlined py8 ws-nowrap">
                     {{ __('page.post.month') }}
                 </a>
@@ -49,7 +48,7 @@
                 <!-- posts section -->
                 @forelse ($allPosts as $key => $post)
                     <div class="question-summary narrow">
-                        <div onclick="" class="cp">
+                        <div class="cp">
                             <div class="votes">
                                 <div class="mini-counts"><span>{{ $post->total_vote }}</span></div>
                                 {{ trans_choice('page.post.votes', $post->total_vote) }}
@@ -103,19 +102,21 @@
                             <h3>
                                 {{ __('page.postEmpty') }}
                             </h3>
+                            <p>
+                                {{ __('page.post.lookingForMore') }}
+                                <a href="{{ route('home.post.all') }}">{{ __('page.post.allList') }}</a>, {{ __('page.post.or') }}
+                                <a href="{{ route('home.tag.index') }}">{{ __('page.post.popularTag') }}</a>.
+                            </p>
                         </div>
                     </div>
                 @endforelse
                 <!-- end post section -->
             </div>
+            <!-- pagination -->
+            @include('home.layout.pagination', ['paginator' => $allPosts])
+            <!-- end pagination -->
         </div>
     </div>
-    <br class="cbt">
-    <h2 class="bottom-notice">
-        {{ __('page.post.lookingForMore') }}
-        <a href="{{ route('home.post.all') }}">{{ __('page.post.allList') }}</a>, {{ __('page.post.or') }}
-        <a href="{{ route('home.tag.index') }}">{{ __('page.post.popularTag') }}</a>.
-    </h2>
 </div>
 @endsection
 
