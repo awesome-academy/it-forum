@@ -32,6 +32,8 @@ class EditConfigRequest extends FormRequest
     public function messages()
     {
         return [
+            'name.required' => __('validation.required', ['attribute' => __('admin.form.name')]),
+            'content.required' => __('validation.required', ['attribute' => __('admin.form.content')]),
             'name.unique' => __('validation.unique', ['attribute' => __('admin.form.name')]),
             'content.min' => __('validation.min.numeric', ['attribute' => __('admin.form.content'), 'min' => 6]),
         ];

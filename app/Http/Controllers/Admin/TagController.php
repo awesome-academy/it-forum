@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Contracts\TagRepositoryInterface;
 use App\Http\Requests\AddTagRequest;
+use App\Http\Requests\EditTagRequest;
 use App\Tag;
 use Input;
 use Auth;
@@ -79,7 +80,7 @@ class TagController extends Controller
         return view('admin.tag.edit', compact('tag'));
     }
 
-    public function update(AddTagRequest $request)
+    public function update(EditTagRequest $request)
     {
         $input = $request->all();
         if (!isset($input['status'])) {

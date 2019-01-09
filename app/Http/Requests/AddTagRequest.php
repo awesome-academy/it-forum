@@ -24,7 +24,15 @@ class AddTagRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
+            'name' => 'required|unique:tags,name',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => __('validation.required', ['attribute' => __('admin.form.name')]),
+            'name.unique' => __('validation.unique', ['attribute' => __('admin.form.name')]),
         ];
     }
 }

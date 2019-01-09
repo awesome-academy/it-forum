@@ -24,8 +24,19 @@ class EditPostRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|min:6',
+            'title' => 'required|min:6|unique:posts,title,' . $this->id,
             'content' => 'required|min:6',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'title.required' => __('validation.required', ['attribute' => __('admin.form.title')]),
+            'content.required' => __('validation.required', ['attribute' => __('admin.form.content')]),
+            'title.unique' => __('validation.unique', ['attribute' => __('admin.form.title')]),
+            'title.min' => __('validation.min.numeric', ['attribute' => __('admin.form.title'), 'min' => 6]),
+            'content.min' => __('validation.min.numeric', ['attribute' => __('admin.form.content'), 'min' => 6]),
         ];
     }
 }
