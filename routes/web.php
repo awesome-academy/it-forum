@@ -14,6 +14,7 @@ Route::group(['middleware' => 'Language'], function() {
     Route::get('changeLanguage/{language}', 'LanguageController@changeLanguage')->name('language.change');
     Route::get('/', 'HomeController@index')->name('home.index');
     Route::get('/post', 'PostController@index')->name('home.post.index');
+    Route::get('/post/all', 'PostController@all')->name('home.post.all');
     Route::get('/post/detail', 'PostController@detail')->name('home.post.detail');
     // User
     Route::group(['prefix' => 'user'], function() {
@@ -83,6 +84,6 @@ Route::group(['middleware' => ['Language', 'auth', 'admin'], 'prefix' => 'admin'
         Route::post('/add', 'Admin\ReportController@add')->name('admin.report.add');
         Route::get('/delete/{id}', 'Admin\ReportController@delete')->name('admin.report.delete');
         Route::get('/edit/{id}', 'Admin\ReportController@edit')->name('admin.report.edit');
-        Route::post('/update', 'Admin\ReportController@update')->name('admin.report.update'); 
+        Route::post('/update', 'Admin\ReportController@update')->name('admin.report.update');
     });
 });

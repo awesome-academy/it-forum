@@ -70,7 +70,7 @@
                         </a>
                     </h3>
                     <div class="excerpt">
-                        {!! str_limit(strip_tags($post->content), 400) !!}
+                        {!! str_limit(strip_tags($post->content), config('constants.LIMIT_WORD')) !!}
                     </div>
                     <div class="tags t-nodeûjs t-angular t-webpack t-angular6">
                         @foreach ($post->tags as $tag)
