@@ -33,12 +33,11 @@ class EditProfileRequest extends FormRequest
     public function messages()
     {
         return [
-            'between' => __('validation.between.string',
-                [
-                    'attribute' => __('user.username'),
-                    'min' => 3,
-                    'max' => 20,
-                ]),
+            'between' => __('validation.between.string', [
+                'attribute' => __('user.username'),
+                'min' => 3,
+                'max' => 20,
+            ]),
             'username.unique' => __('validation.unique', ['attribute' => __('user.username')]),
             'username.required' => __('validation.required', ['attribute' => __('user.username')]),
             'fullname.max' => __('validation.max.string', ['attribute' => __('user.fullname'), 'max' => 100]),

@@ -39,7 +39,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
     public function posts()
@@ -47,10 +48,11 @@ class User extends Authenticatable
         return $this->hasMany('App\Post');
     }
 
-    public static function boot() {
+    public static function boot()
+    {
         parent::boot();
-        static::deleting(function($user) {
-             $user->posts()->delete();
+        static::deleting(function ($user) {
+            $user->posts()->delete();
         });
     }
 

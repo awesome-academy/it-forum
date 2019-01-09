@@ -33,12 +33,11 @@ class EditPasswordRequest extends FormRequest
     {
         return [
             'confirmed' => __('validation.confirmed', ['attribute' => __('user.password')]),
-            'between' => __('validation.between.string',
-                [
-                    'attribute' => __('user.password'),
-                    'min' => 6,
-                    'max' => 20,
-                ]),
+            'between' => __('validation.between.string', [
+                'attribute' => __('user.password'),
+                'min' => 6,
+                'max' => 20,
+            ]),
             'oldPassword.required' => __('validation.required', ['attribute' => __('user.oldPassword')]),
             'password.required' => __('validation.required', ['attribute' => __('user.password')]),
         ];
