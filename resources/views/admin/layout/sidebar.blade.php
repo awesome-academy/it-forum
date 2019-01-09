@@ -37,4 +37,17 @@
             <span>{{ __('admin.category.report') }}</span>
         </a>
     </li>
+    <li class="nav-item ">
+        <div class="dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" id="pagesDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-wrench"></i>
+                <span>{{ __('admin.category.config') }}</span>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+                <a class="dropdown-item" href="{{ route('admin.config.index') }}">{{ __('admin.action.list') }}</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{{ route('admin.config.create') }}">{{ __('admin.action.add') }}</a>
+            </div>
+        </div>
+    </li>
 </ul>
