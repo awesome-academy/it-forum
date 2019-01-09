@@ -15,7 +15,7 @@ Route::group(['middleware' => 'Language'], function() {
     Route::get('/', 'HomeController@index')->name('home.index');
     Route::get('/post', 'PostController@index')->name('home.post.index');
     Route::get('/post/all', 'PostController@all')->name('home.post.all');
-    Route::get('/post/detail', 'PostController@detail')->name('home.post.detail');
+    Route::get('/post/{id}', 'PostController@detail')->name('home.post.detail')->where(['id' => '[0-9]+']);
     // User
     Route::group(['prefix' => 'user'], function() {
         Route::get('/', 'UserController@index')->name('home.user.index');

@@ -4,6 +4,7 @@ namespace App\Repositories\Eloquents;
 
 use App\Repositories\Contracts\PostRepositoryInterface;
 use App\Post;
+use App\Tag;
 
 class PostRepository implements PostRepositoryInterface
 {
@@ -103,7 +104,7 @@ class PostRepository implements PostRepositoryInterface
         return $this->search($query, $input, $limit, true);
     }
 
-    public function getTreadingPostLimit($limit = null)
+    public function gettrendingPostLimit($limit = null)
     {
         $limit = (is_null($limit)) ? config('constants.PAGINATION_LIMIT_TREDINGPOST', 16) : $limit;
         $query = $this->model()->with('tags')->orderBy('total_view', 'desc')->orderBy('id', 'desc')
@@ -157,5 +158,42 @@ class PostRepository implements PostRepositoryInterface
             : $query->orderBy('id', 'desc')->take($limit)->get();
 
         return $query;
+    }
+
+    public function increaseViewTotal($id)
+    {
+        $this->model()->find($id)->increment('total_view', 1);
+    }
+
+    public function findPostWithUser($id)
+    {
+        return $this->model()->with('user')->with('tags')->findOrFail($id);
+    }
+
+    // get replies with posts
+    public function getRepliesFromPost($post)
+    {
+        return $post->replies()->with('user')->get();
+    }
+
+    // get replies with posts
+    public function findVoteFromPost($post)
+    {
+        return $post->votes()->where(['voteable_id' => $post->id, 'user_id' => \Auth::id()])->first();
+    }
+
+    public function getRelatedPost($listTag, $postId)
+    {
+        $relatedPosts = collect([]);
+        foreach ($listTag->pluck('id') as $key => $tag) {
+            $relatedPosts = $relatedPosts->merge(Tag::with('posts')->find($tag)->posts);
+        }
+
+        $relatedPosts = $relatedPosts->unique('id');
+        $relatedPosts = $relatedPosts->filter(function ($item) use ($postId) {
+            return $item->id != $postId;
+        });
+
+        return $relatedPosts;
     }
 }
