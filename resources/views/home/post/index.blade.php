@@ -152,7 +152,7 @@
             </a>
         </h4>
         <ul>
-            @foreach ($treadingPost as $post)
+            @foreach ($trendingPost as $post)
             <li>
                 <a href="{{ route('home.post.detail', $post->id) }}" class="js-gps-track question-hyperlink mb0">
                     {{ $post->title }}

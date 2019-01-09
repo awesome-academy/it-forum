@@ -90,7 +90,7 @@ header {
 }
 
 #btnProceed a {
-    color: #888;
+    color: #888
 }
 
 /* write page */
@@ -144,11 +144,7 @@ header {
 
 .hideForm {
     padding: 8px;
-    background-color: #EEE;
-}
-
-#websiteLink {
-    margin-left: 0px;
+    background-color: #eee;
 }
 
 .gravatar {
@@ -156,9 +152,31 @@ header {
     height: 48px;
 }
 
-.image32 {
+.scale32 {
     width: 32px;
     height: 32px;
+}
+
+.scale36 {
+    width: 36px;
+    height: 36px;
+}
+
+.scale18 {
+    width: 18px;
+    height: 18px;
+}
+
+.vote-best-answer {
+    cursor: pointer;
+}
+
+.custom-popup {
+    position: absolute;
+    top: 100.5px;
+    left: 497px;
+    display: none;
+    min-width: 375px;
 }
 
 /* code snippet custom at detail post */
@@ -188,11 +206,45 @@ header {
 }
 
 .iframe-embedded {
-    height: 245px;
+    height: 247px;
     width: 646px;
-    border: 1px solid #BBB;
+    border: 1px solid #bbb;
 }
 
 .newComment {
-    background-color: #DFEBF4;
+    background-color: #dfebf4;
+}
+
+/* user detail page */
+.button-follow {
+    display: inline-block;
+    width: 100px;
+    height: 20px;
+    font-size: 14px;
+    /*margin-left:190px;*/
+    background-color: #fff !important;
+    border: 2px solid #f48024 !important;
+    color: #f48024 !important;
+}
+
+.button-follow:hover {
+    background-color: #f48024 !important;
+    border: 2px solid #fff !important;
+    color: #fff !important;
+}
+
+.followed {
+    background-color: #f48024 !important;
+    border: 2px solid #fff !important;
+    color: #fff !important;
+}
+
+.followed:hover {
+    background-color: #fff !important;
+    border: 2px solid #f48024 !important;
+    color: #f48024 !important;
+}
+
+.custom-username {
+    height: 50px;
 }
