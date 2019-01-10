@@ -25,9 +25,10 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.6.3",
-        "fontawesome": "^4.7.2",
         "ckeditor": "^4.11.1",
+        "fontawesome": "^4.7.2",
         "jquery-tageditor": "^1.0.1",
+        "toastr": "^2.1.4",
         "vue-resource": "^1.5.1"
     }
 }

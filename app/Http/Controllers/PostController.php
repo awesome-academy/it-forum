@@ -93,4 +93,87 @@ class PostController extends Controller
             return view('home.post.index');
         }
     }
+
+    public function postComment(Request $request)
+    {
+        $input = $request->all();
+        $currentUser = Auth::user();
+
+        if ($request->ajax() && !empty($input['target']) && !empty($input['post_id']) && Auth::check()) {
+            $validator = \Validator::make(
+                $input,
+                ['content' => 'required|between:20,2000'],
+                [
+                    'between' => __(
+                        'validation.between.string',
+                        [
+                            'attribute' => __('page.post.content'),
+                            'min' => 20,
+                            'max' => 2000,
+                        ]
+                    ),
+                    'content.required' => __('validation.required', ['attribute' => __('page.post.content')]),
+                ]
+            );
+
+            if ($validator->fails()) {
+                return $this->returnResponse($validator->messages()->first('content'), 403);
+            } else {
+                $returnHTML = '';
+                $input['user_id'] = $currentUser->id;
+
+                if ($input['target'] == 1) {
+                    $postReply = $this->postRepository->createReplies($input);
+                    $returnHTML = view('home.post.view.postReplyView', compact('postReply'))->render();
+                } elseif ($input['target'] == 2) {
+                    if (empty($input['answer_id'])) {
+                        return $this->returnResponse('Error!!!', 403);
+                    } else {
+                        $answerReply = $this->answerRepository->createReplies($input);
+                        $returnHTML = view('home.post.view.answerReplyView', compact('answerReply'))->render();
+                    }
+                } elseif ($input['target'] == 3) {
+                    $input['content'] = $this->removeSpace($input['content']);
+                    $input['content'] = $this->insertIframeEmbedded($input['content']);
+                    $answer = $this->answerRepository->create($input);
+                    $this->postRepository->increaseAnswerTotal($input['post_id']);
+                    $returnHTML = view('home.post.view.answerView', compact('answer', 'input'))->render();
+                } else {
+                    return $this->returnResponse('Error!!!', 403);
+                }
+
+                return $this->returnResponse($returnHTML, 200);
+            }
+        } else {
+            return $this->returnResponse(__('alert.error.needLogin'), 401);
+        }
+    }
+
+    public function returnResponse($content, $returnCode)
+    {
+        $data = [
+            'returnCode' => $returnCode,
+            'content' => $content,
+        ];
+
+        return response()->json($data);
+    }
+
+    // remove space in content
+    public function removeSpace($input = '')
+    {
+        $pattern = '/&nbsp;/';
+        $iframe = '';
+
+        return preg_replace($pattern, $iframe, $input);
+    }
+
+    // insert code compile iframe
+    public function insertIframeEmbedded($input = '')
+    {
+        $pattern = '/<p>{@embed:(.+?)}<\/p>/';
+        $iframe = '<iframe src="$1" scrolling="no" class="iframe-embedded"></iframe>';
+
+        return preg_replace($pattern, $iframe, $input);
+    }
 }

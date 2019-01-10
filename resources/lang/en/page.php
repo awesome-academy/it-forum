@@ -19,6 +19,8 @@ return [
         'downVote' => 'down vote',
         'favorite' => 'favorite',
         'share' => 'share',
+        'report' => 'Report',
+        'note' => 'Note',
         'edit' => 'edit',
         'posted' => 'posted',
         'active' => 'active',
@@ -111,10 +113,11 @@ return [
         'githubLink' => 'GitHub link or username',
         // Activity page
         'activity' => 'Activity',
-        'post' => 'Bài viết',
-        'answer' => 'Trả lời',
-        'following' => 'Đang theo dõi',
-        'follower' => 'Người theo dõi',
+        'post' => 'Post',
+        'answer' => 'Answer',
+        'following' => 'Following',
+        'follower' => 'Follower',
+        'followingTag' => 'Tag following',
     ],
     'tag' => [
         // index page
@@ -134,9 +137,12 @@ return [
         'info' => 'Infomation',
         'relatedTag' => 'Related',
         'noInfo' => 'This tag don\'t have any infomation',
+        'ownTags' => 'Your tags',
+        'noTag' => 'There are no tags',
     ],
     'search' => [
         'title' => 'Search:',
     ],
     'postEmpty' => 'No posts',
+    'admin' => 'Admin page for employee',
 ];

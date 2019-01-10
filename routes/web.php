@@ -13,8 +13,10 @@
 Route::group(['middleware' => 'Language'], function() {
     Route::get('changeLanguage/{language}', 'LanguageController@changeLanguage')->name('language.change');
     Route::get('/', 'HomeController@index')->name('home.index');
+    Route::get('/test', 'HomeController@test')->name('home.test');
     Route::get('/post', 'PostController@index')->name('home.post.index');
     Route::get('/post/all', 'PostController@all')->name('home.post.all');
+    Route::post('/post/postComment', 'PostController@postComment')->name('home.post.postComment');
     Route::get('/post/{id}', 'PostController@detail')->name('home.post.detail')->where(['id' => '[0-9]+']);
     // User
     Route::group(['prefix' => 'user'], function() {

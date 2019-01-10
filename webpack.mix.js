@@ -36,7 +36,10 @@ mix.js(
         'resources/js/admin/admin.js',
         'node_modules/@fortawesome/fontawesome-free/js/all.min.js',
     ], 'public/js/admin.js');
+// ckeditor
+mix.js('resources/js/post-detail.js', 'public/js/custom.js');
+mix.copyDirectory('node_modules/ckeditor', 'public/plugins/ckeditor');
 
-mix.extract(['jquery', 'bootstrap', 'fontawesome']);
+// mix.extract(['jquery', 'bootstrap', 'fontawesome']);
 
 mix.sourceMaps();

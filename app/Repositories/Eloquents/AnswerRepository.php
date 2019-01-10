@@ -103,4 +103,12 @@ class AnswerRepository implements AnswerRepositoryInterface
     {
         return $this->model()->destroy($id);
     }
+
+    public function createReplies(array $input)
+    {
+        $input['repliable_id'] = $input['answer_id'];
+        $input['repliable_type'] = 'App\Answer';
+
+        return $this->model()->find($input['answer_id'])->replies()->create($input);
+    }
 }

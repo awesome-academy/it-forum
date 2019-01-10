@@ -55,10 +55,6 @@
                         <div class="post-menu">
                             <a href="#" id="btnShare" class="short-link">{{ __('page.post.share') }}</a>
                             <span class="lsep">|</span>
-                            @if (Auth::id() == $post->user->id)
-                                <a href="{{ route('home.post.edit', $post->id) }}" class="suggest-edit-post">{{ __('page.post.edit') }}</a>
-                                <a href="#" onclick="return false" data-toggle="modal" data-target="#exampleModal" id="btnReportPost" class="short-link">{{ __('page.post.report') }}</a>
-                            @endif
                         </div>
                     </div>
                     <div class="post-signature owner grid--cell fl0">
@@ -165,19 +161,6 @@
                                         <path d="M2 10h32L18 26z"></path>
                                     </svg>
                                 </button>
-                                @if ($answer->id == $answer->post->best_answer_id)
-                                    <div class="vote-best-answer fc-green-500" data-answer-id="{{ $answer->id }}" data-post-id="{{ $post->id }}" data-action="{{ route('home.post.postBestAnswer') }}">
-                                        <svg class="svg-icon iconCheckmarkLg scale36">
-                                            <path d="M6 14l8 8L30 6v8L14 30l-8-8z"></path>
-                                        </svg>
-                                    </div>
-                                @elseif (Auth::id() == $answer->user->id)
-                                    <div class="vote-best-answer" data-answer-id="{{ $answer->id }}" data-post-id="{{ $post->id }}" data-action="{{ route('home.post.postBestAnswer') }}">
-                                        <svg class="svg-icon iconCheckmarkLg scale36">
-                                            <path d="M6 14l8 8L30 6v8L14 30l-8-8z"></path>
-                                        </svg>
-                                    </div>
-                                @endif
                             </div>
                         </div>
                         <div class="answercell post-layout--right">
@@ -277,6 +260,24 @@
                     'signup' => '<a href="' . route('home.signup') . '">' . __('page.account.signup') . '</a>',
                 ]) !!}
             </h2>
+        @else
+        <!-- end answers section -->
+        {!! Form::open(['id' => 'formAnswer', 'route' => 'home.post.postComment']) !!}
+            <h2 class="space">{{ __('page.post.comment') }}</h2>
+            <div class="post-editor js-post-editor js-wz-element">
+                <div class="ps-relative"> 
+                    <div class="wmd-container mb8">
+                        {!! Form::textarea('content', null, ['id' => 'editor', 'class' => 'wmd-button-bar btr-sm', 'rows' => '8']) !!}
+                    </div>
+                    {{ Form::hidden('target', 3) }}
+                    {{ Form::hidden('key', $key, ['id' => 'keyInput']) }}
+                    <div><span id="formAnswerErrors" class="errors"></span></div>
+                    <div class="wmd-container mb8">
+                        <a class="btn postComment" data-ckeditor="yes" data-target="answersPost" data-form="formAnswer">{{ __('page.post.comment') }}</a>
+                    </div>
+                </div>
+            </div>
+        {!! Form::close() !!}
         @endif
     </div>
 </div>
@@ -356,7 +357,7 @@
 @endsection
 
 @section('js')
-<script> var CKEDITOR_BASEPATH = '/js/ckeditor/'; </script>
+<script> var CKEDITOR_BASEPATH = '/plugins/ckeditor/'; </script>
 <script src="{{ asset('plugins/ckeditor/ckeditor.js') }}"></script>
 <script src="{{ asset('plugins/ckeditor/config.js') }}"></script>
 <script src="{{ asset('js/custom.js') }}"></script>

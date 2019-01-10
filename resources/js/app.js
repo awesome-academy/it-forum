@@ -8,6 +8,8 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+window.toastr = require('toastr');
+window.bootstrap = require('bootstrap');
 
 /**
  * The following block of code may be used to automatically register your
