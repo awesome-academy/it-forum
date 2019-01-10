@@ -6,7 +6,10 @@
             <div class="comment-body">
                 <span class="comment-copy">{{ $answerReply->content }}</span>
                 –&nbsp;
-                <a href="{{ route('home.user.detail', Auth::user()->id) }}" class="comment-user">{{ Auth::user()->username }}</a>
+                @php
+                    $currentUser = Auth::user();
+                @endphp
+                <a href="{{ route('home.user.detail', $currentUser['id']) }}" class="comment-user">{{ $currentUser['username'] }}</a>
                 <span class="comment-date">
                     <a class="comment-link">
                         <span class="relativetime-clean">{{ time_from_now($answerReply->created_at) }}</span>

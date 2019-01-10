@@ -33,15 +33,18 @@
                         <div class="user-action-time">
                             {{ __('page.post.wrote') }} <span class="relativetime">{{ time_from_now($answer->created_at) }}</span>
                         </div>
+                        @php
+                            $currentUser = Auth::user();
+                        @endphp
                         <div class="user-gravatar32 wb-hat-checked">
                             <a href="#">
                                 <div class="gravatar-wrapper-32">
-                                    {{ HTML::image(image_upload_path(Auth::user()->image_path), '', ['class' => 'scale32']) }}
+                                    {{ Html::image('/' . config('constants.IMAGE_UPLOAD_PATH') . $currentUser['image_path'], '', ['class' => 'scale32']) }}
                                 </div>
                             </a>
                         </div>
                         <div class="user-details">
-                            <a href="{{ route('home.user.detail', Auth::user()->id) }}">{{ Auth::user()->username }}</a>
+                            <a href="{{ route('home.user.detail', $currentUser['id']) }}">{{ $currentUser['username'] }}</a>
                         </div>
                     </div>
                 </div>

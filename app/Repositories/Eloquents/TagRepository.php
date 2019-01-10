@@ -98,7 +98,7 @@ class TagRepository implements TagRepositoryInterface
         return $this->model()->select($columns)->where('name', $name)->first();
     }
 
-    public function getPostByTagName($value = '')
+    public function getPostByTagName()
     {
         return $this->model()->select($columns)->where('name', $name)->first();
     }

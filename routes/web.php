@@ -39,6 +39,7 @@ Route::group(['middleware' => 'Language'], function() {
         Route::get('/{tagName?}', 'TagController@detail')->name('home.tag.detail')->where(['tagName' => '[-0-9.a-z]+']);
         Route::get('/i/{tagName}', 'TagController@info')->name('home.tag.info')->where(['tagName' => '[-0-9.a-z]+']);
     });
+    Route::get('/search', 'SearchController@search')->name('home.search');
     Route::any('/signup', 'LoginController@signup')->name('home.signup');
     Route::any('/postSignup', 'LoginController@postSignup')->name('home.postSignup');
     Route::get('/login', 'LoginController@login')->name('home.login');

@@ -167,6 +167,16 @@ header {
     height: 18px;
 }
 
+.scale24 {
+    width: 24px;
+    height: 24px;
+}
+
+.scale48 {
+    width: 48px;
+    height: 48px;
+}
+
 .vote-best-answer {
     cursor: pointer;
 }

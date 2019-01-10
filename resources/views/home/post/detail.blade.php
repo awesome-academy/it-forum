@@ -183,7 +183,7 @@
                                         <div class="user-gravatar32 wb-hat-checked">
                                             <a href="#">
                                                 <div class="gravatar-wrapper-32">
-                                                    <img src="{{ image_upload_path($answer->user->image_path) }}" class="scale32">
+                                                    {{ Html::image('/' . config('constants.IMAGE_UPLOAD_PATH') . $answer->user->image_path, '', ['class' => 'scale24 -avatar js-avatar-me']) }}
                                                 </div>
                                             </a>
                                         </div>
