@@ -18,8 +18,10 @@
     @include('admin.layout.header')
     <div id="wrapper">
         @include('admin.layout.sidebar')
-        <div class="container-fluid" id="content">
+        <div id="content-wrapper">
+            <div class="container-fluid" id="content">
                 @yield('content')
+            </div>
         </div>
     </div>
     @include('admin.layout.logout')
@@ -28,5 +30,6 @@
     <script src="{{ asset('js/vendor.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/admin.js') }}"></script>
+    @yield('script')
 </body>
 </html>

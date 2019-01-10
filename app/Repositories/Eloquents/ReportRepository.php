@@ -4,6 +4,7 @@ namespace App\Repositories\Eloquents;
 
 use App\Repositories\Contracts\ReportRepositoryInterface;
 use App\Report;
+use Carbon\Carbon;
 
 class ReportRepository implements ReportRepositoryInterface
 {
@@ -26,6 +27,32 @@ class ReportRepository implements ReportRepositoryInterface
     public function all($columns = ['*'])
     {
         return $this->model()->all();
+    }
+
+    /**
+     * Retrieve all data of this month only
+     */
+    public function getDataMonth()
+    {
+        return $this->model()->where('created_at', '>=', Carbon::now()->startOfMonth())->get();
+    }
+
+    /**
+     * Retrieve all data of this week only
+     */
+    public function getDataWeek()
+    {
+        return $this->model()->where('created_at', '>=', Carbon::now()->startOfWeek())->get();
+    }
+
+    /**
+     * Retrieve all data between two days
+     */
+    public function getDataBetween($start, $end)
+    {
+        return $this->model()
+        ->whereBetween('created_at', [date('Y-m-d', $start) . ' 00:00:00', date('Y-m-d', $end) . ' 23:59:59'])
+        ->get();
     }
 
     /**

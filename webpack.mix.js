@@ -14,6 +14,8 @@ const mix = require('laravel-mix');
 mix.js('resources/js/app.js', 'public/js')
    .sass('resources/sass/app.scss', 'public/css');
 
+mix.extract(['jquery', 'bootstrap']);
+
 mix.styles(
     [
         'resources/css/home/stacks.css',
@@ -26,17 +28,22 @@ mix.styles(
 
 mix.styles(
     [
-        'resources/css/admin/admin.css',
-        'resources/css/admin/fontawesome.css',
         'node_modules/@fortawesome/fontawesome-free/css/all.min.css',
+        'resources/css/admin/admin.css',
+        'resources/css/admin/jquery-ui.min.css',
     ], 'public/css/admin.css');
     
 mix.js(
     [
-        'resources/js/admin/admin.js',
         'node_modules/@fortawesome/fontawesome-free/js/all.min.js',
+        'resources/js/admin/admin.js',
+        'resources/js/admin/chart.min.js',
+        'resources/js/admin/jquery-ui.min.js',
     ], 'public/js/admin.js');
+// ckeditor
+mix.js('resources/js/post-detail.js', 'public/js/custom.js');
+mix.copyDirectory('node_modules/ckeditor', 'public/plugins/ckeditor');
 
-mix.extract(['jquery', 'bootstrap', 'fontawesome']);
+// mix.extract(['jquery', 'bootstrap', 'fontawesome']);
 
 mix.sourceMaps();

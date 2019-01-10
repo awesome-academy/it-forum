@@ -1,0 +1,62 @@
+<script>
+    $(document).ready(function() {
+        $('#from, #to').datepicker({
+        autoSize: true,
+        changeDay: true,
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: 'dd-mm-yy',
+        maxDate: 0,
+        minDate: new Date(1900, 1 - 1, 1),
+        yearRange: '1900:+nn',
+        dayNamesShort: [
+            "{{ __('admin.day.short.cn') }}",
+            "{{ __('admin.day.short.t2') }}",
+            "{{ __('admin.day.short.t3') }}",
+            "{{ __('admin.day.short.t4') }}",
+            "{{ __('admin.day.short.t5') }}",
+            "{{ __('admin.day.short.t6') }}",
+            "{{ __('admin.day.short.t7') }}",
+        ],
+        dayNamesMin: [
+            "{{ __('admin.day.short.cn') }}",
+            "{{ __('admin.day.short.t2') }}",
+            "{{ __('admin.day.short.t3') }}",
+            "{{ __('admin.day.short.t4') }}",
+            "{{ __('admin.day.short.t5') }}",
+            "{{ __('admin.day.short.t6') }}",
+            "{{ __('admin.day.short.t7') }}",
+        ],
+        monthNames: [
+            "{{ __('admin.month.normal.thg1') }}",
+            "{{ __('admin.month.normal.thg2') }}",
+            "{{ __('admin.month.normal.thg3') }}",
+            "{{ __('admin.month.normal.thg4') }}",
+            "{{ __('admin.month.normal.thg5') }}",
+            "{{ __('admin.month.normal.thg6') }}",
+            "{{ __('admin.month.normal.thg7') }}",
+            "{{ __('admin.month.normal.thg8') }}",
+            "{{ __('admin.month.normal.thg9') }}",
+            "{{ __('admin.month.normal.thg10') }}",
+            "{{ __('admin.month.normal.thg11') }}",
+            "{{ __('admin.month.normal.thg12') }}",
+        ],
+        monthNamesShort: [
+            "{{ __('admin.month.short.thg1')}}",
+            "{{ __('admin.month.short.thg2')}}",
+            "{{ __('admin.month.short.thg3')}}",
+            "{{ __('admin.month.short.thg4')}}",
+            "{{ __('admin.month.short.thg5')}}",
+            "{{ __('admin.month.short.thg6')}}",
+            "{{ __('admin.month.short.thg7')}}",
+            "{{ __('admin.month.short.thg8')}}",
+            "{{ __('admin.month.short.thg9')}}",
+            "{{ __('admin.month.short.thg10') }}",
+            "{{ __('admin.month.short.thg11') }}",
+            "{{ __('admin.month.short.thg12') }}",
+        ],
+        defaultDate: new Date(2019, 1 - 1, 1),
+        firstDay: 1
+        }) ;
+    });
+</script>

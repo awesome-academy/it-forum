@@ -10,8 +10,15 @@ return [
     'edit' => 'Edit',
     'delete' => 'Delete',
     'welcome' => 'Welcome',
+    'current' => 'Current',
+    'thisWeek' => 'This week',
+    'thisMonth' => 'This month',
+    'count' => 'Amount',
+    'from' => 'From',
+    'to' => 'To',
 
     'category' => [
+        'home' => 'Home',
         'user' => 'User',
         'post' => 'Post',
         'tag' => 'Tag',

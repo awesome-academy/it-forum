@@ -10,8 +10,15 @@ return [
     'edit' => 'Sửa',
     'delete' => 'Xóa',
     'welcome' => 'Xin chào',
+    'current' => 'Hiện tại',
+    'thisWeek' => 'Tuần này',
+    'thisMonth' => 'Tháng này',
+    'count' => 'Số lượng',
+    'from' => 'Từ',
+    'to' => 'Đến',
 
     'category' => [
+        'home' => 'Trang chủ',
         'user' => 'Người dùng',
         'post' => 'Bài viết',
         'tag' => 'Thẻ',
@@ -65,5 +72,48 @@ return [
         'total_view' => 'Lượt xem',
         'name' => 'Tên',
         'comment' => 'Bình luận',
+    ],
+
+    'day' => [
+        'short' => [
+            'cn' => 'CN',
+            't2' => 'T2',
+            't3' => 'T3',
+            't4' => 'T4',
+            't5' => 'T5',
+            't6' => 'T6',
+            't7' => 'T7',
+        ],
+    ],
+
+    'month' => [
+        'normal' => [
+            'thg1' => 'Tháng 1',
+            'thg2' => 'Tháng 2',
+            'thg3' => 'Tháng 3',
+            'thg4' => 'Tháng 4',
+            'thg5' => 'Tháng 5',
+            'thg6' => 'Tháng 6', 
+            'thg7' => 'Tháng 7',
+            'thg8' => 'Tháng 8',
+            'thg9' => 'Tháng 9', 
+            'thg10' => 'Tháng 10',
+            'thg11' => 'Tháng 11',
+            'thg12' => 'Tháng 12',
+        ],
+        'short' => [
+            'thg1' => 'Thg1',
+            'thg2' => 'Thg2',
+            'thg3' => 'Thg3',
+            'thg4' => 'Thg4',
+            'thg5' => 'Thg5',
+            'thg6' => 'Thg6',
+            'thg7' => 'Thg7',
+            'thg8' => 'Thg8',
+            'thg9' => 'Thg9',
+            'thg10' => 'Thg10',
+            'thg11' => 'Thg11',
+            'thg12' => 'Thg12'
+        ],
     ],
 ];

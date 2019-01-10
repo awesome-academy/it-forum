@@ -5,10 +5,41 @@
         $('body').toggleClass('sidebar-toggled');
         $('.sidebar').toggleClass('toggled');
     });
+    (function($) {    
+        function checkWidth(init) {
+            if ($(window).width() < 528) {
+                if (init) {
+                    if (!$('body').hasClass('sidebar-toggled')) {
+                        $('body').addClass('sidebar-toggled');
+                    }
+                    if (!$('.sidebar').hasClass('toggled')) {
+                        $('.sidebar').addClass('toggled');
+                    }
+                }
+            } else {
+                if (!init) {
+                    if ($('body').hasClass('sidebar-toggled')) {
+                        $('body').removeClass('sidebar-toggled');
+                    }
+                    if ($('.sidebar').hasClass('toggled')) {
+                        $('.sidebar').removeClass('toggled');
+                    }
+                }
+            }
+        }
+        checkWidth(true);
+        $(window).resize(function() {
+            if ($(window).width() < 514) {
+                checkWidth(true);
+            } else {
+                checkWidth(false);
+            }
+        });
+    })(jQuery);
     $('#search').on('keyup', function() {
         var $value = $(this).val();
         var search = window.location.href;
-        var tmp = search.split("?");
+        var tmp = search.split('?');
         $.ajax ({
         type: 'get',
         url: tmp[0] + '/search',

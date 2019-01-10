@@ -3,8 +3,10 @@
 namespace App\Repositories\Eloquents;
 
 use App\Repositories\Contracts\PostRepositoryInterface;
+use Carbon\Carbon;
 use App\Post;
 use App\Tag;
+use App\Answer;
 
 class PostRepository implements PostRepositoryInterface
 {
@@ -26,7 +28,33 @@ class PostRepository implements PostRepositoryInterface
      */
     public function all($columns = ['*'])
     {
-        return $this->model()->with('user', 'tags')->all();
+        return $this->model()->all();
+    }
+
+    /**
+     * Retrieve all data of this month only
+     */
+    public function getDataMonth()
+    {
+        return $this->model()->where('created_at', '>=', Carbon::now()->startOfMonth())->get();
+    }
+
+    /**
+     * Retrieve all data of this week only
+     */
+    public function getDataWeek()
+    {
+        return $this->model()->where('created_at', '>=', Carbon::now()->startOfWeek())->get();
+    }
+
+    /**
+     * Retrieve all data between two days
+     */
+    public function getDataBetween($start, $end)
+    {
+        return $this->model()
+            ->whereBetween('created_at', [date('Y-m-d', $start) . ' 00:00:00', date('Y-m-d', $end) . ' 23:59:59'])
+            ->get();
     }
 
     /**

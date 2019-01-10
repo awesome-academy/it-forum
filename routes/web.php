@@ -49,7 +49,10 @@ admin route
 */
 
 Route::group(['middleware' => ['Language', 'auth', 'admin'], 'prefix' => 'admin'], function() {
-    Route::get('/', 'Admin\UserController@index')->name('admin.index');
+    Route::get('/', 'Admin\HomeController@index')->name('admin.index');
+    Route::get('/search/custom', 'Admin\HomeController@customSearch')->name('admin.search.custom');
+    Route::get('/search/week', 'Admin\HomeController@weekSearch')->name('admin.search.week');
+    Route::get('/search/month', 'Admin\HomeController@monthSearch')->name('admin.search.month');
     Route::get('/logout', 'Admin\UserController@logout')->name('admin.logout');
     Route::group(['prefix' => 'user'], function() {
         Route::get('/', 'Admin\UserController@index')->name('admin.user.index');
