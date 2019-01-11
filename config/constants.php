@@ -9,6 +9,8 @@ return [
     'MAX_FILE_UPLOAD_SIZE' => 20971520,
     'TOTAL_VIEW_HOT' => 100,
     'LIMIT_WORD' => 400,
+    'UNVOTED' => 'unvoted',
+    'UNFOLLOWED' => 'unfollowed',
     'IMAGE_UPLOAD_PATH' => 'uploads/images/user/',
     'DEFAULT_USER_IMAGE' => 'avater.png',
     'GENDER' => [

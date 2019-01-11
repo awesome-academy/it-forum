@@ -18,6 +18,7 @@ Route::group(['middleware' => 'Language'], function() {
     Route::get('/post/all', 'PostController@all')->name('home.post.all');
     Route::post('/post/postVote', 'PostController@postVote')->name('home.post.postVote');
     Route::post('/post/postComment', 'PostController@postComment')->name('home.post.postComment');
+    Route::post('/post/postBestAnswer', 'PostController@postBestAnswer')->name('home.post.postBestAnswer');
     Route::get('/post/{id}', 'PostController@detail')->name('home.post.detail')->where(['id' => '[0-9]+']);
     // User
     Route::group(['prefix' => 'user'], function() {
