@@ -31,7 +31,7 @@
                 </div>
                 <div class="my12 fw-normal lh-sm" title="reputation">
                     <div class="grid gs8 grid__center">
-                        <div class="grid--cell fs-title fc-dark">1</div>
+                        <div class="grid--cell fs-title fc-dark">{{ $user->posts->sum('total_vote') }}</div>
                         <div class="grid--cell fs-fine fc-light tt-uppercase">{{ __('page.user.reputation') }}</div>
                     </div>
                 </div>
@@ -85,18 +85,6 @@
                                     </div>
                                     <div class="grid--cell fl1">
                                         {{ __('page.user.memberFor') }} <span title="2017-08-04 17:50:24Z">{{ time_from_now($user->created_at) }}</span>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="grid--cell wb-break-word ow-break-word">
-                                <div class="grid gs8 gsx ai-center">
-                                    <div class="grid--cell fc-black-350">
-                                        <svg aria-hidden="true" class="svg-icon iconClock" width="18" height="18" viewBox="0 0 18 18">
-                                            <path d="M9 17A8 8 0 1 1 9 1a8 8 0 0 1 0 16zm0-2A6 6 0 1 0 9 3a6 6 0 0 0 0 12zM8 5h1.01L9 9.36l3.22 2.1-.6.93L8 10V5z"></path>
-                                        </svg>
-                                    </div>
-                                    <div class="grid--cell fl1">
-                                        {{ __('page.user.lastSince') }} <span title="2018-12-23 04:50:24Z" class="relativetime">1 min ago</span>
                                     </div>
                                 </div>
                             </li>

@@ -5,10 +5,13 @@
                 <span class="_glyph">Stack Overfollower</span>
             </a>
         </div>
-        <?php $filterVal = !empty($tagName) ? '[' . $tagName. ']' : ''; ?>
-        {!! Form::open(['id' => 'search', 'method' => 'GET', 'class' => 'searchbar js-searchbar']) !!}
+        @php
+            $filterTag = !empty($tagName) ? '[' . $tagName . ']' : '';
+            $filterPost = !empty($filterPost) ? $filterPost : '';
+        @endphp
+        {!! Form::open(['id' => 'search', 'method' => 'GET', 'class' => 'searchbar js-searchbar', 'route' => 'home.search']) !!}
             <div class="ps-relative">
-                {!! Form::text('q', $filterVal, ['maxlength' => 240, 'class' => 'f-input js-search-field', 'placeholder' => __('layout.header.search') . '…']) !!}
+                {!! Form::text('q', $filterTag . $filterPost, ['id' => 'inputSearch', 'autocomplete' => 'off', 'maxlength' => 240, 'class' => 'f-input js-search-field', 'placeholder' => __('layout.header.search') . '…']) !!}
             </div>
         {!! Form::close() !!}
         <ol class="-secondary js-secondary-topbar-links drop-icons-responsively the-js-is-handling-responsiveness">
@@ -52,13 +55,10 @@
                 </a>
             </li>
             @if (Auth::check())
-            <?php $currentUser = Auth::user(); ?>
             <li class="-ctas">
-                <a href="{{ route('home.user.detail', $currentUser->id) }}" class="my-profile js-gps-track wb-hat-checked" data-gps-track="profile_summary.click()">
-                    <div class="gravatar-wrapper-24" title="{{ $currentUser->username }}">
-                        <img alt="" width="24" height="24" class="-avatar js-avatar-me"
-                        title="{{ $currentUser->username }}"
-                        src="/{{ config('constants.IMAGE_UPLOAD_PATH') . $currentUser->image_path }}"></div>
+                <a href="{{ route('home.user.detail', Auth::id()) }}" class="my-profile js-gps-track wb-hat-checked" data-gps-track="profile_summary.click()">
+                    <div class="gravatar-wrapper-24" title="{{ Auth::user()['fullname'] }}">
+                        {{ Html::image(config('constants.IMAGE_UPLOAD_PATH') . Auth::user()->image_path, '', ['class' => 'scale24 -avatar js-avatar-me']) }}
                     <div class="-rep js-header-rep" title="your reputation: 1">1</div>
                 </a>
             </li>

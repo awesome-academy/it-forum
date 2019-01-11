@@ -1,6 +1,6 @@
 @extends('home.master')
 
-@section('title', $tagName)
+@section('title', __('page.search.title') . ' ' . $input['q'])
 @section('link-header')
 @endsection
 
@@ -9,35 +9,33 @@
 <div id="mainbar">
     <div class="grid">
         <h1 class="grid--cell fl1 fs-headline1 mb24">
-            {{ __('page.tag.list') }} [{{ $tagName }}]
+            {{ __('page.search.title') . ' ' . $input['q'] }}
         </h1>
     </div>
-    <?php $input['tab'] = !empty($input['tab']) ? $input['tab'] : ''; ?>
+    @php
+        $input['tab'] = !empty($input['tab']) ? $input['tab'] : '';
+    @endphp
     <div class="grid ai-center mb16">
         <div class="grid--cell fl1 fs-body3">
-            {{ $allPosts->count() }} {{ trans_choice('page.post.postCount', $allPosts->count()) }}
+            {{ $allPosts->count() }} {{ trans_choice('page.tag.tag', $allPosts->count()) }}
         </div>
         <div class="grid--cell">
             <div class="grid tabs-filter s-btn-group tt-capitalize">
-                <a href="{{ route('home.tag.info', $tagName) }}"
-                    class=" grid--cell s-btn s-btn__muted s-btn__outlined py8 ws-nowrap">
-                    {{ __('page.tag.info') }}
-                </a>
-                <a href="{{ route('home.tag.detail', $tagName) }}"
+                <a href="{{ route('home.search', ['q' => $input['q']]) }}"
                     class="{{ empty($input['tab']) ? 'is-selected' : '' }} youarehere grid--cell s-btn s-btn__muted s-btn__outlined py8 ws-nowrap">
-                    {{ __('page.tag.interesting') }}
+                    {{ __('page.post.interesting') }}
                 </a>
-                <a href="{{ route('home.tag.detail', [$tagName, 'tab' => 'treding']) }}"
-                    class="{{ ($input['tab'] == 'treding') ? 'is-selected' : '' }} grid--cell s-btn s-btn__muted s-btn__outlined py8 ws-nowrap">
-                    <span class="bounty-indicator-tab">{{ $allPosts->count() }}</span>{{ __('page.tag.trending') }}
+                <a href="{{ route('home.search', ['tab' => 'trending', 'q' => $input['q']]) }}"
+                    class="{{ ($input['tab'] == 'trending') ? 'is-selected' : '' }} grid--cell s-btn s-btn__muted s-btn__outlined py8 ws-nowrap">
+                    <span class="bounty-indicator-tab">{{ $allPosts->count() }}</span>{{ __('page.post.trending') }}
                 </a>
-                <a href="{{ route('home.tag.detail', [$tagName, 'tab' => 'week']) }}"
+                <a href="{{ route('home.search', ['tab' => 'week', 'q' => $input['q']]) }}"
                     class="{{ ($input['tab'] == 'week') ? 'is-selected' : '' }} grid--cell s-btn s-btn__muted s-btn__outlined py8 ws-nowrap">
-                    {{ __('page.tag.week') }}
+                    {{ __('page.post.week') }}
                 </a>
-                <a href="{{ route('home.tag.detail', [$tagName, 'tab' => 'month']) }}"
+                <a href="{{ route('home.search', ['tab' => 'month', 'q' => $input['q']]) }}"
                     class="{{ ($input['tab'] == 'month') ? 'is-selected' : '' }} grid--cell s-btn s-btn__muted s-btn__outlined py8 ws-nowrap">
-                    {{ __('page.tag.month') }}
+                    {{ __('page.post.month') }}
                 </a>
             </div>
         </div>
@@ -55,11 +53,17 @@
                                 <div class="viewcount">{{ trans_choice('page.post.votes', $post->total_vote) }}</div>
                             </div>
                         </div>
-                        <div class="status answered">
-                            <strong>{{ $post->total_answer }}</strong>{{ trans_choice('page.post.answers', $post->total_answer) }}
-                        </div>
+                        @if (!empty($post->best_answer_id))
+                            <div class="status answered-accepted">
+                                <strong>{{ $post->total_answer }}</strong>{{ trans_choice('page.post.answers', $post->total_answer) }}
+                            </div>
+                        @else
+                            <div class="status {{ ($post->total_answer > 0) ? 'answered' : '' }}">
+                                <strong>{{ $post->total_answer }}</strong>{{ trans_choice('page.post.answers', $post->total_answer) }}
+                            </div>
+                        @endif
                     </div>
-                    <div class="views">
+                    <div class="views {{ ($post->total_view > 100) ? 'hot' : '' }}">
                         {{ $post->total_view }} {{ trans_choice('page.post.views', $post->total_view) }}
                     </div>
                 </div>
@@ -70,24 +74,24 @@
                         </a>
                     </h3>
                     <div class="excerpt">
-                        {!! str_limit(strip_tags($post->content), config('constants.LIMIT_WORD')) !!}
-                    </div>
+                        {!! str_limit(strip_tags($post->content), 400) !!}
+                    </div>          
                     <div class="tags t-nodeûjs t-angular t-webpack t-angular6">
                         @foreach ($post->tags as $tag)
-                        <a href="{{ route('home.tag.detail', $tag->name) }}" class="post-tag" rel="tag">
+                        <a href="{{ route('home.tag.detail', $tag->name) }}" class="post-tag" data-title="" rel="tag">
                             {{ $tag->name }}
                         </a>
                         @endforeach
                     </div>
                     <div class="started fr">
                         <div class="user-info user-hover">
-                            <div class="user-action-time">
-                                {{ __('page.post.wrote') }} <span class="relativetime">{{ $post->created_at }}</span>
+                            <div class="user-action-time" title="{{ $post->created_at }}">
+                                {{ __('page.post.wrote') }} <span class="relativetime">{{ time_from_now($post->created_at) }}</span>
                             </div>
                             <div class="user-gravatar32">
                                 <a href="#">
                                     <div class="gravatar-wrapper-32">
-                                        <img src="/{{ config('constants.IMAGE_UPLOAD_PATH') . $post->user->image_path }}" class="image32">
+                                        {{ Html::image(image_upload_path($post->user->image_path), '', ['class' => 'scale24']) }}
                                     </div>
                                 </a>
                             </div>
@@ -130,19 +134,45 @@
 
 @section('rightbar')
 <div id="sidebar">
+    @if (Auth::check())
+        <div id="hot-network-questions" class="module tex2jax_ignore">
+            <h4>
+                <a href="#" class="js-gps-track s-link s-link__inherit">
+                    {{ __('page.tag.ownTags') }}
+                </a>
+            </h4>
+        </div>
+        <div class="tags t-nodeûjs t-angular t-webpack t-angular6">
+        @if (count($ownTags) > 0)
+            @foreach ($ownTags as $tag)
+                <a href="{{ route('home.tag.detail', $tag->name) }}" class="post-tag">
+                    {{ $tag->name }}
+                </a>
+            @endforeach
+            <a href="" rel="tag">
+                ...
+            </a>
+        @else
+            <p>{{ __('page.tag.noTag') }}...</p>
+        @endif
+        </div>
+    @endif
+    <div class="clearfix"></div>
     <div id="hot-network-questions" class="module tex2jax_ignore">
         <h4>
             <a href="#" class="js-gps-track s-link s-link__inherit">
-                {{ __('page.tag.relatedTag') }}
+                {{ __('page.post.trendingPost') }}
             </a>
         </h4>
-    </div>
-    <div class="tags t-nodeûjs t-angular t-webpack t-angular6">
-        @foreach ($relatedTags as $tag)
-            <a href="{{ route('home.tag.detail', $tag->name) }}" class="post-tag" data-title="" rel="tag">
-                {{ $tag->name }}
-            </a>
-        @endforeach
+        <ul>
+            @foreach ($trendingPost as $post)
+            <li>
+                <a href="{{ route('home.post.detail', $post->id) }}" class="js-gps-track question-hyperlink mb0">
+                    {{ $post->title }}
+                </a>
+            </li>
+            @endforeach
+        </ul>
     </div>
 </div>
 @endsection
