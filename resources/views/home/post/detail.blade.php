@@ -19,6 +19,10 @@
         <div class="post-layout">
             <div class="votecell post-layout--left">
                 <div class="js-voting-container grid fd-column ai-stretch gs4 fc-black-150">
+                    {!! Form::open(['id' => 'post-vote', 'class' => '', 'route' => 'home.post.postVote' ]) !!}
+                        {{ Form::hidden('post_id', $post->id) }}
+                        {{ Form::hidden('', 0, ['id' => 'post-vote-score']) }}
+                    {!! Form::close() !!}
                     <button class="{{ !empty($postVote) && $postVote->score == 1 ? 'is-selected' : '' }} js-vote-up-btn grid--cell s-btn s-btn__unset c-pointer post-vote post-vote-up" data-id="{{ $post->id }}">
                         <svg class="svg-icon m0 iconArrowUpLg scale36">
                             <path d="M2 26h32L18 10z"></path>
@@ -30,11 +34,6 @@
                             <path d="M2 10h32L18 26z"></path>
                         </svg>
                     </button>
-                    <div class="js-accepted-answer-indicator grid--item fc-green-500 ta-center p4 d-none">
-                        <svg class="svg-icon iconCheckmarkLg scale36">
-                            <path d="M6 14l8 8L30 6v8L14 30l-8-8z"></path>
-                        </svg>
-                    </div>
                 </div>
             </div>
             <div class="postcell post-layout--right">
@@ -150,6 +149,11 @@
                     <div class="post-layout">
                         <div class="votecell post-layout--left">
                             <div class="js-voting-container grid fd-column ai-stretch gs4 fc-black-150">
+                                {!! Form::open(['id' => 'answer-vote-' . $key, 'route' => 'home.post.postVote']) !!}
+                                    {{ Form::hidden('post_id', $post->id) }}
+                                    {{ Form::hidden('answer_id', $answer->id) }}
+                                    {{ Form::hidden('', 0, ['id' => 'answer-vote-score-' . $key]) }}
+                                {!! Form::close() !!}
                                 <button class="{{ !empty($answersVotes[$key]) && $answersVotes[$key]->score == 1 ? 'is-selected' : '' }} answer-vote-up voteup{{ $key }} js-vote-up-btn grid--cell s-btn s-btn__unset c-pointer answer-vote answer-vote-{{ $key }}-up" data-key="{{ $key }}">
                                     <svg class="svg-icon m0 iconArrowUpLg scale36">
                                         <path d="M2 26h32L18 10z"></path>
