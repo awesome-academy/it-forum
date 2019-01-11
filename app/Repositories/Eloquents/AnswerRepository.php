@@ -111,4 +111,34 @@ class AnswerRepository implements AnswerRepositoryInterface
 
         return $this->model()->find($input['answer_id'])->replies()->create($input);
     }
+
+    public function createVote(array $input)
+    {
+        $data = [
+            'user_id' => $input['user_id'],
+            'voteable_id' => $input['answer_id'],
+            'voteable_type' => 'App\Answer',
+        ];
+        $answer = $this->model()->find($input['answer_id'])->votes()->where('user_id', $input['user_id']);
+        $oldScore = !empty($answer->first()->score) ? $answer->first()->score : 0;
+
+        if ($score = $answer->updateOrCreate($data, ['score' => $input['score']])) {
+            return ['oldScore' => $oldScore, 'newScore' => $score->score];
+        } else {
+            return false;
+        }
+    }
+
+    public function updateVoteTotal($id, $score)
+    {
+        $temp = $score['newScore'] - $score['oldScore'];
+
+        if ($temp > 0) {
+            $this->model()->find($id)->increment('total_vote', $temp);
+        } elseif ($temp < 0) {
+            $this->model()->find($id)->decrement('total_vote', abs($temp));
+        }
+
+        return $temp;
+    }
 }

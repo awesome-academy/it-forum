@@ -5,6 +5,11 @@
     <div class="post-layout">
         <div class="votecell post-layout--left">
             <div class="js-voting-container grid fd-column ai-stretch gs4 fc-black-150">
+                {!! Form::open(['id' => 'answer-vote-' . $key, 'route' => 'home.post.postVote']) !!}
+                    {{ Form::hidden('post_id', $input['post_id']) }}
+                    {{ Form::hidden('answer_id', $answer->id) }}
+                    {{ Form::hidden('', 0, ['id' => 'answer-vote-score-' . $key]) }}
+                {!! Form::close() !!}
                 <button class="answer-vote-up voteup{{ $key }} js-vote-up-btn grid--cell s-btn s-btn__unset c-pointer answer-vote answer-vote-{{ $key }}-up" data-key="{{ $key }}">
                     <svg class="svg-icon m0 iconArrowUpLg scale36">
                         <path d="M2 26h32L18 10z"></path>

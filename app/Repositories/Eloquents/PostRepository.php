@@ -209,4 +209,34 @@ class PostRepository implements PostRepositoryInterface
     {
         $this->model()->find($id)->increment('total_answer', 1);
     }
+
+    public function createVote(array $input)
+    {
+        $data = [
+            'user_id' => $input['user_id'],
+            'voteable_id' => $input['post_id'],
+            'voteable_type' => 'App\Post',
+        ];
+        $post = $this->model()->find($input['post_id'])->votes()->where('user_id', $input['user_id']);
+        $oldScore = !empty($post->first()->score) ? $post->first()->score : 0;
+
+        if ($score = $post->updateOrCreate($data, ['score' => $input['score']])) {
+            return ['oldScore' => $oldScore, 'newScore' => $score->score];
+        } else {
+            return false;
+        }
+    }
+
+    public function updateVoteTotal($id, $score)
+    {
+        $temp = $score['newScore'] - $score['oldScore'];
+
+        if ($temp > 0) {
+            $this->model()->find($id)->increment('total_vote', $temp);
+        } elseif ($temp < 0) {
+            $this->model()->find($id)->decrement('total_vote', abs($temp));
+        }
+
+        return $temp;
+    }
 }

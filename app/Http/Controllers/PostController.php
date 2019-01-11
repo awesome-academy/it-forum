@@ -149,6 +149,36 @@ class PostController extends Controller
         }
     }
 
+    public function postVote(Request $request)
+    {
+        $input = $request->all();
+        $currentUser = Auth::user();
+
+        if ($request->ajax() && Auth::check()) {
+            if (in_array($input['score'], ['-1', '0', '1'])) {
+                $input['user_id'] = $currentUser->id;
+
+                if (!empty($input['answer_id'])) {
+                    if ($score = $this->answerRepository->createVote($input)) {
+                        $chlech = $this->answerRepository->updateVoteTotal($input['answer_id'], $score);
+
+                        return $this->returnResponse(['score' => $chlech], 200);
+                    }
+                } else {
+                    if ($score = $this->postRepository->createVote($input)) {
+                        $chlech = $this->postRepository->updateVoteTotal($input['post_id'], $score);
+
+                        return $this->returnResponse(['score' => $chlech], 200);
+                    }
+                }
+            } else {
+                return $this->returnResponse('Loi.', 403);
+            }
+        } else {
+            return $this->returnResponse(__('alert.error.needLogin'), 401);
+        }
+    }
+
     public function returnResponse($content, $returnCode)
     {
         $data = [

@@ -51,6 +51,81 @@ $('#toComment').on('click', function() {
     scrollTopTo(commentBoxY)
 });
 
+// vote post
+$('body').on('click', '.post-vote', function() {
+
+    if ($(this).hasClass('post-vote-up') && $(this).hasClass('is-selected')) {
+        $('#post-vote-score').attr('data-score', 0);
+    } else if ($(this).hasClass('post-vote-up')) {
+        $('#post-vote-score').attr('data-score', 1);
+    } else if ($(this).hasClass('post-vote-down') && $(this).hasClass('is-selected')) {
+        $('#post-vote-score').attr('data-score', 0);
+    } else {
+        $('#post-vote-score').attr('data-score', -1);
+    }
+
+    var url = $('#post-vote').attr('action');
+    var score = $('#post-vote-score').attr('data-score');
+    var formData = $('#post-vote').serialize() + '&score=' + score;
+
+    postVote(url, formData, 'post-vote', score);
+});
+
+$('body').on('click', '.answer-vote', function() {
+    var key = $(this).attr('data-key');
+
+    if ($(this).hasClass('answer-vote-' + key + '-up') && $(this).hasClass('is-selected')) {
+        $('#answer-vote-score-' + key).attr('data-score', 0);
+    } else if ($(this).hasClass('answer-vote-' + key + '-up')) {
+        $('#answer-vote-score-' + key).attr('data-score', 1);
+    } else if ($(this).hasClass('answer-vote-' + key + '-down') && $(this).hasClass('is-selected')) {
+        $('#answer-vote-score-' + key).attr('data-score', 0);
+    } else {
+        $('#answer-vote-score-' + key).attr('data-score', -1);
+    }
+
+    var url = $('#answer-vote-' + key).attr('action');
+    var score = $('#answer-vote-score-' + key).attr('data-score');
+    var formData = $('#answer-vote-' + key).serialize() + '&score=' + score;
+    
+    postVote(url, formData, 'answer-vote-' + key, score);
+});
+
+function postVote(url, formData, el, score) {
+
+    jQuery.ajax({
+
+        url: url,
+        type: 'POST',
+        dataType: 'json',
+        data: formData,
+
+        success: function(data, textStatus, xhr) {
+
+            if (data.returnCode == 200) {
+                changeStatus(el, score);
+                var tempScore = parseInt($('.' + el + '-label').html()) + data.content.score;
+                $('.' + el + '-label').html(tempScore);
+            } else if (data.returnCode == 401) {
+                toastr.error(data.content);
+            }
+        },
+    });
+}
+
+function changeStatus(el, score) {
+    if (score >= 1) {
+        $('.' + el + '-up').addClass('is-selected');
+        $('.' + el + '-down').removeClass('is-selected');
+    } else if (score <= -1){
+        $('.' + el + '-down').addClass('is-selected');
+        $('.' + el + '-up').removeClass('is-selected');
+    } else {
+        $('.' + el + '-down').removeClass('is-selected');
+        $('.' + el + '-up').removeClass('is-selected');
+    }
+}
+
 // ckeditor, answer and write page
 editor = CKEDITOR.replace('editor');
 if (editor) {
