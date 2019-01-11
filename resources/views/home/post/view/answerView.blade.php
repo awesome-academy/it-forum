@@ -21,6 +21,11 @@
                         <path d="M2 10h32L18 26z"></path>
                     </svg>
                 </button>
+                <div class="vote-best-answer" data-answer-id="{{ $answer->id }}" data-post-id="{{ $input['post_id'] }}" data-action="{{ route('home.post.postBestAnswer') }}">
+                    <svg class="svg-icon iconCheckmarkLg scale36">
+                        <path d="M6 14l8 8L30 6v8L14 30l-8-8z"></path>
+                    </svg>
+                </div>
             </div>
         </div>
         <div class="answercell post-layout--right">

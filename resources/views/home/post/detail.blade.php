@@ -165,6 +165,19 @@
                                         <path d="M2 10h32L18 26z"></path>
                                     </svg>
                                 </button>
+                                @if ($answer->id == $answer->post->best_answer_id)
+                                    <div class="vote-best-answer fc-green-500" data-answer-id="{{ $answer->id }}" data-post-id="{{ $post->id }}" data-action="{{ route('home.post.postBestAnswer') }}">
+                                        <svg class="svg-icon iconCheckmarkLg scale36">
+                                            <path d="M6 14l8 8L30 6v8L14 30l-8-8z"></path>
+                                        </svg>
+                                    </div>
+                                @elseif (Auth::id() == $answer->user->id)
+                                    <div class="vote-best-answer" data-answer-id="{{ $answer->id }}" data-post-id="{{ $post->id }}" data-action="{{ route('home.post.postBestAnswer') }}">
+                                        <svg class="svg-icon iconCheckmarkLg scale36">
+                                            <path d="M6 14l8 8L30 6v8L14 30l-8-8z"></path>
+                                        </svg>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                         <div class="answercell post-layout--right">

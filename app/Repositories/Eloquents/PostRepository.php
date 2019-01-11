@@ -5,6 +5,7 @@ namespace App\Repositories\Eloquents;
 use App\Repositories\Contracts\PostRepositoryInterface;
 use App\Post;
 use App\Tag;
+use App\Answer;
 
 class PostRepository implements PostRepositoryInterface
 {
@@ -238,5 +239,31 @@ class PostRepository implements PostRepositoryInterface
         }
 
         return $temp;
+    }
+
+    public function voteBestAnswer($input)
+    {
+        $answer = Answer::where([
+            'post_id' => $input['post_id'],
+            'id' => $input['answer_id'],
+        ])->first();
+
+        if (!empty($answer)) {
+            $post = $this->model()->findOrFail($input['post_id']);
+
+            if ($post->user_id == $input['user_id']) {
+                if ($post->best_answer_id == $input['answer_id']) {
+                    $post->update(['best_answer_id' => 0]);
+
+                    return config('constants.UNVOTED');
+                }
+
+                return $post->update(['best_answer_id' => $input['answer_id']]);
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 }

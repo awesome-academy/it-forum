@@ -238,3 +238,37 @@ $('body').on('click', '.postComment', function() {
         }
     });
 });
+
+$('body').on('click', '.vote-best-answer', function() {
+    var url = $(this).attr('data-action');
+    var answerId = $(this).attr('data-answer-id');
+    var postId = $(this).attr('data-post-id');
+    var token = $('meta[name="csrf-token"]').attr('content');
+    var self = $(this);
+
+    jQuery.ajax({
+
+        url: url,
+        type: 'POST',
+        dataType: 'json',
+        data: {
+            answer_id: answerId,
+            post_id: postId,
+            _token: token
+        },
+
+        success: function(data, textStatus, xhr) {
+
+            if (data.returnCode == 200) {
+                $('.vote-best-answer').removeClass('fc-green-500');
+                $(self).addClass('fc-green-500');
+                toastr.success(data.content);
+            } else if (data.returnCode == 202) {
+                $('.vote-best-answer').removeClass('fc-green-500');
+                toastr.success(data.content);
+            } else if (data.returnCode == 401) {
+                toastr.error(data.content);
+            }
+        },
+    });
+});

@@ -179,6 +179,27 @@ class PostController extends Controller
         }
     }
 
+    public function postBestAnswer(Request $request)
+    {
+        $input = $request->all();
+
+        if ($request->ajax() && !empty($input['answer_id']) && !empty($input['post_id']) && Auth::check()) {
+            $input['user_id'] = Auth::id();
+
+            if ($result = $this->postRepository->voteBestAnswer($input)) {
+                if ($result === config('constants.UNVOTED')) {
+                    return $this->returnResponse(__('alert.success.unvote'), 202);
+                }
+
+                return $this->returnResponse(__('alert.success.vote'), 200);
+            } else {
+                return $this->returnResponse(__('alert.error.vote'), 401);
+            }
+        } else {
+            return $this->returnResponse(__('alert.error.needLogin'), 401);
+        }
+    }
+
     public function returnResponse($content, $returnCode)
     {
         $data = [
