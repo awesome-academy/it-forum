@@ -144,5 +144,16 @@ return [
         'title' => 'Search:',
     ],
     'postEmpty' => 'No posts',
+    'followerEmpty' => 'No Followers',
+    'followingEmpty' => 'No Followings',
+    'followTagEmpty' => 'No Following tags',
     'admin' => 'Admin page for employee',
+    'write' => [
+        'welcome' => 'Welcome to Stack OverFollower!',
+        'wContent' => 'We’d love to help you, but the reality is that not every question gets answered. To improve your chances, here are some tips:',
+        'search' => 'Search, and research',
+        'sContent' => 'Have you thoroughly searched for an answer before asking your question? Sharing your research helps everyone. Tell us what you found (on this site or elsewhere) and why it didn’t meet your needs. This demonstrates that you’ve taken the time to try to help yourself, it saves us from reiterating obvious answers, and above all, it helps you get a more specific and relevant answer!',
+        'beOnTop' => 'Be on-topic',
+        'bContent' => 'Our community is defined by a specific set of topics in the help center; please stick to those topics and avoid asking for opinions or open-ended discussion. If your question is about the site itself, ask on our meta-discussion site. If you’re looking for a different topic, it might be covered on another Stack Exchange site.',
+    ],
 ];

@@ -140,5 +140,16 @@ return [
         'title' => 'Tìm kiếm:',
     ],
     'postEmpty' => 'Không có bài viết nào',
+    'followerEmpty' => 'Không có ai theo dõi bạn',
+    'followingEmpty' => 'Bạn không theo dõi ai',
+    'followTagEmpty' => 'Bạn không theo dõi thẻ nào',
     'admin' => 'Trang quản trị cho nhân viên',
+    'write' => [
+        'welcome' => 'Chào mừng bạn đến với Stack OverFollower!',
+        'wContent' => 'Chúng tôi rất thích giúp bạn, nhưng thực tế là không phải câu hỏi nào cũng được trả lời. Để cải thiện cơ hội của bạn, đây là một số mẹo:',
+        'search' => 'Tìm kiếm và nghiên cứu',
+        'sContent' => 'Bạn đã tìm kiếm kỹ câu trả lời trước khi đặt câu hỏi chưa? Chia sẻ nghiên cứu của bạn giúp mọi người. Hãy cho chúng tôi những gì bạn tìm thấy (trên trang web này hoặc ở nơi khác) và lý do tại sao nó không đáp ứng nhu cầu của bạn. Điều này chứng tỏ rằng bạn đã dành thời gian để cố gắng tự giúp mình, nó giúp chúng ta tránh nhắc lại câu trả lời rõ ràng, và trên hết, nó giúp bạn có được câu trả lời cụ thể và phù hợp hơn!',
+        'beOnTop' => 'Trở thành chủ đề',
+        'bContent' => 'Cộng đồng của chúng tôi được xác định bởi một nhóm chủ đề cụ thể trong trung tâm trợ giúp; vui lòng bám vào những chủ đề đó và tránh hỏi ý kiến hoặc thảo luận mở. Nếu câu hỏi của bạn là về chính trang web, hãy hỏi trên trang web thảo luận meta của chúng tôi. Nếu bạn đang tìm kiếm một chủ đề khác, nó có thể được đề cập trên một trang web Stack Exchange khác.',
+    ],
 ];
