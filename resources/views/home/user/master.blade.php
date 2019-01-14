@@ -10,16 +10,6 @@
         @yield('tab')
     </div>
     <div id="main-content">
-        @if (Session::has('success_alert'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ Session::get('success_alert') }}
-        </div>
-        @endif
-        @if (Session::has('error_alert'))
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            {{ Session::get('error_alert') }}
-        </div>
-        @endif
         @yield('detail-content')
     </div>
 </div>

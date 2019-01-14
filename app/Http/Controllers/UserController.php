@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\Contracts\UserRepositoryInterface;
+use App\Repositories\Contracts\TagRepositoryInterface;
 use App\Http\Requests\EditProfileRequest;
 use App\Http\Requests\EditImageRequest;
 use App\Http\Requests\EditPasswordRequest;
 use App\User;
+use App\Follow;
 use Auth;
 use Config;
 use Hash;
@@ -20,10 +22,17 @@ class UserController extends Controller
      * Author: Lampham
      */
     protected $userRepository;
+    protected $tagRepository;
+    protected $follow;
 
-    public function __construct(UserRepositoryInterface $userRepository)
-    {
+    public function __construct(
+        UserRepositoryInterface $userRepository,
+        TagRepositoryInterface $tagRepository,
+        Follow $follow
+    ) {
         $this->userRepository = $userRepository;
+        $this->tagRepository = $tagRepository;
+        $this->follow = $follow;
     }
 
     public function index()
@@ -66,10 +75,44 @@ class UserController extends Controller
     public function activity($id)
     {
         if (!empty($id)) {
-            return view('home.user.activity', compact('activePage', 'id'));
+            $allPostsUser = $this->userRepository->getPostsUser($id);
+
+            return view('home.user.activity', compact('allPostsUser', 'id'));
         }
 
         return view('home.index');
+    }
+
+    public function answer($id)
+    {
+        if (!empty($id)) {
+            $allAnswersUser = $this->userRepository->getAnswerUser($id);
+
+            return view('home.user.activity.answer', compact('allAnswersUser', 'id'));
+        }
+
+        return view('home.index');
+    }
+
+    public function following($id)
+    {
+        $allFollowings = $this->follow->getFollowingList($id);
+
+        return view('home.user.activity.following', compact('id', 'allFollowings'));
+    }
+
+    public function follower($id)
+    {
+        $allFollowers = $this->follow->getFollowerList($id);
+
+        return view('home.user.activity.follower', compact('id', 'allFollowers'));
+    }
+
+    public function followingTag($id)
+    {
+        $allFollowingTags = $this->follow->getFollowingTagList($id);
+
+        return view('home.user.activity.followingTag', compact('id', 'allFollowingTags'));
     }
 
     public function setting()

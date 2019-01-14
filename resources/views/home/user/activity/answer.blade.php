@@ -2,12 +2,12 @@
 
 @section('tab')
 <div id="tabs">
-	<a href="{{ route('home.user.detail', $id) }}" data-shortcut="P">
-	    {{ __('page.user.profile') }}
-	</a>
-	<a href="{{ route('home.user.activity', $id) }}" class="youarehere" data-shortcut="A">
-	    {{ __('page.user.activity') }}
-	</a>
+    <a href="{{ route('home.user.detail', $id) }}">
+        {{ __('page.user.profile') }}
+    </a>
+    <a href="{{ route('home.user.activity', $id) }}" class="youarehere">
+        {{ __('page.user.activity') }}
+    </a>
 </div>
 <div class="additional-links">
     <a href="{{ route('home.logout') }}">
@@ -25,12 +25,12 @@
                     {{ __('page.user.activity') }}
                     <ul>
                         <li>
-                            <a href="{{ route('home.user.activity', $id) }}" class="youarehere">
+                            <a href="{{ route('home.user.activity', $id) }}">
                                 {{ __('page.user.activity') }}
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('home.user.answer', $id) }}">
+                            <a href="{{ route('home.user.answer', $id) }}" class="youarehere">
                                 {{ __('page.user.answer') }}
                             </a>
                         </li>
@@ -59,31 +59,34 @@
             <div id="question-mini-list">
                 <div>
                     <!-- posts section -->
-                    @if (!empty($allPostsUser))
-                        @foreach ($allPostsUser as $key => $post)
-                            <div class="question-summary narrow">
-                                <div onclick="" class="cp">
-                                </div>
-                                <div class="summary">
-                                    <h3>
-                                        <a href="{{ route('home.post.detail', $post->id) }}" class="question-hyperlink">{{ $post->title }}</a>
-                                    </h3>
-                                    <div class="tags t-angular t-angular-material2">
-                                        @foreach ($post->tags as $tag)
-                                        <a href="{{ route('home.tag.detail', $tag->name) }}" class="post-tag" title="{{ $tag->name }}" rel="tag">{{ $tag->name }}</a> 
-                                        @endforeach
+                    @if (!empty($allAnswersUser))
+                        @foreach ($allAnswersUser as $key => $answer)
+                            <div id="answer-{{ $key }}" class="answer">
+                                <h3 class="">
+                                    <a href="{{ route('home.post.detail', $answer->post->id) }}" class="">{{ $answer->post->title }}</a>
+                                </h3>
+                                <div class="post-layout">
+                                    <div class="votecell post-layout--left">
+                                        <div class="js-voting-container grid fd-column ai-stretch gs4 fc-black-150">
+                                            <div class="label label-default js-vote-count grid--cell fc-black-500 fs-title grid fd-column ai-center">{{ $answer->total_vote }}</div>
+                                            <div class="js-accepted-answer-indicator grid--item fc-green-500 ta-center p4 d-none">
+                                                <svg class="svg-icon iconCheckmarkLg scale36">
+                                                    <path d="M6 14l8 8L30 6v8L14 30l-8-8z"></path>
+                                                </svg>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="started">
-                                        <a href="{{ route('home.user.detail', $post->user->id) }}">{{ $post->user->username }}</a> 
-                                        <a href="#" class="started-link">{{ __('page.post.wrote') }}
-                                            <span class="relativetime">{{ time_from_now($post->created_at) }}</span></a>
+                                    <div class="answercell post-layout--right">
+                                        <div class="post-text">
+                                            {!! $answer->content !!}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         @endforeach
                     @endif
                     <!-- end post section -->
-                    @include('home.layout.pagination', ['paginator' => $allPostsUser])
+                    @include('home.layout.pagination', ['paginator' => $allAnswersUser])
                 </div>
             </div>
         </div>
