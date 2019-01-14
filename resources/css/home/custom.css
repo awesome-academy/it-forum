@@ -181,6 +181,11 @@ header {
     height: 48px;
 }
 
+.scale53 {
+    width: 53px;
+    height: 53px;
+}
+
 .vote-best-answer {
     cursor: pointer;
 }

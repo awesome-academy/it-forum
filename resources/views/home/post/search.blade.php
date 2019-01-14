@@ -5,7 +5,6 @@
 @endsection
 
 @section('content')
-{{-- mainbar --}}
 <div id="mainbar">
     <div class="grid">
         <h1 class="grid--cell fl1 fs-headline1 mb24">
@@ -17,7 +16,7 @@
     @endphp
     <div class="grid ai-center mb16">
         <div class="grid--cell fl1 fs-body3">
-            {{ $allPosts->count() }} {{ trans_choice('page.tag.tag', $allPosts->count()) }}
+            {{ $allPosts->count() }} {{ trans_choice('page.post.postCount', $allPosts->count()) }}
         </div>
         <div class="grid--cell">
             <div class="grid tabs-filter s-btn-group tt-capitalize">
@@ -76,9 +75,9 @@
                     <div class="excerpt">
                         {!! str_limit(strip_tags($post->content), 400) !!}
                     </div>          
-                    <div class="tags t-nodeûjs t-angular t-webpack t-angular6">
+                    <div class="tags">
                         @foreach ($post->tags as $tag)
-                        <a href="{{ route('home.tag.detail', $tag->name) }}" class="post-tag" data-title="" rel="tag">
+                        <a href="{{ route('home.tag.detail', $tag->name) }}" class="post-tag">
                             {{ $tag->name }}
                         </a>
                         @endforeach
@@ -89,9 +88,9 @@
                                 {{ __('page.post.wrote') }} <span class="relativetime">{{ time_from_now($post->created_at) }}</span>
                             </div>
                             <div class="user-gravatar32">
-                                <a href="#">
+                                <a href="{{ route('home.user.detail', $post->user->id) }}">
                                     <div class="gravatar-wrapper-32">
-                                        {{ Html::image(image_upload_path($post->user->image_path), '', ['class' => 'scale24']) }}
+                                        {{ Html::image('/' . config('constants.IMAGE_UPLOAD_PATH') . $post->user->image_path, '', ['class' => 'scale24']) }}
                                     </div>
                                 </a>
                             </div>

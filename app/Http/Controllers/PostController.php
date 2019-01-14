@@ -94,6 +94,41 @@ class PostController extends Controller
         }
     }
 
+    public function edit($id)
+    {
+        $post = $this->postRepository->findPostWithTags($id);
+        $post->content = $this->replaceIframeEmbedded($post->content); // <iframe> to <p>
+        $tags = '';
+
+        foreach ($post->tags as $key => $tag) {
+            $tags .= $tag->name . ',';
+        }
+        $tags = trim($tags, ',');
+
+        return view('home.post.edit', compact('post', 'tags'));
+    }
+
+    public function postEdit(EditPostRequest $request, $id)
+    {
+        $input = $request->all();
+
+        $input['tags'] = explode(',', $input['tags']);
+        $input['content'] = $this->removeSpace($input['content']); // remove space thua
+        $input['content'] = $this->insertIframeEmbedded($input['content']); // insert iframe tag
+
+        if ($post = $this->postRepository->update($input, $id)) {
+            if ($tagsId = $this->tagRepository->firstOrCreateMultiple($input['tags'])) {
+                if ($this->postRepository->updatePostsTags($tagsId, $id)) {
+                    Session::flash('success_alert', __('alert.success.update'));
+
+                    return redirect()->route('home.post.detail', $id);
+                }
+            }
+        }
+
+        return redirect()->route('home.post.write');
+    }
+
     public function write()
     {
         return view('home.post.write');
@@ -252,5 +287,13 @@ class PostController extends Controller
         $iframe = '<iframe src="$1" scrolling="no" class="iframe-embedded"></iframe>';
 
         return preg_replace($pattern, $iframe, $input);
+    }
+
+    public function replaceIframeEmbedded($input = '')
+    {
+        $pattern = '/<iframe src="(.+?)".+<\/iframe>/';
+        $resu = '<p>{@embed:$1}</p>';
+
+        return preg_replace($pattern, $resu, $input);
     }
 }

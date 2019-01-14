@@ -4,36 +4,35 @@
             <ol class="nav-links">
                 <li>    
                 </li>
-                <li class="youarehere">
-                    <a href="#" class="pl8 js-gps-track nav-links--link">
+                <li class="{{ in_array(getCurrentRouteName(), ['home.post.write', 'home.post.edit', 'home.index']) ? 'youarehere' : '' }}">
+                    <a href="{{ route('home.index') }}" class="pl8 js-gps-track nav-links--link">
                         {{ __('layout.leftbar.home') }}        
                     </a>
                 </li>
                 <li>
                     <ol class="nav-links">
                         <li class="fs-fine tt-uppercase ml8 mt16 mb4 fc-light">{{ __('layout.leftbar.public') }}</li>
-                        <li>
-                            <a id="nav-questions" href="#" class="pl8 js-gps-track nav-links--link -link__with-icon">
-                                <svg aria-hidden="true" class="svg-icon iconGlobe" width="18" height="18" viewBox="0 0 18 18">
+                        <li class="{{ in_array(getCurrentRouteName(), ['home.login', 'home.signup']) ? 'youarehere' : '' }}">
+                            <a id="nav-questions" href="{{ route('home.index') }}" class="pl8 js-gps-track nav-links--link -link__with-icon">
+                                <svg aria-hidden="true" class="svg-icon iconGlobe scale18" viewBox="0 0 18 18">
                                     <path d="M9 1a8 8 0 1 0 0 16A8 8 0 0 0 9 1zM8 15.32a6.4 6.4 0 0 1-5.23-7.75L7 11.68v.8c0 .88.12 1.32 1 1.32v1.52zm5.72-2c-.2-.66-1-1.32-1.72-1.32h-1v-2c0-.44-.56-1-1-1H6V7h1c.44 0 1-.56 1-1V5h2c.88 0 1.4-.72 1.4-1.6v-.33a6.4 6.4 0 0 1 2.32 10.24z">
                                     </path>
                                 </svg>
-                                <!-- ten rieng -->
-                                <span class="-link--channel-name">Stack Overflow
+                                <span class="-link--channel-name">Stack OverFollower
                                 </span>
                             </a>
                         </li>
-                        <li>
-                            <a id="nav-tags" href="{{ route('home.post.index') }}" class=" js-gps-track nav-links--link">
+                        <li class="{{ in_array(getCurrentRouteName(), ['home.post.index', 'home.post.all', 'home.post.detail']) ? 'youarehere' : '' }}">
+                            <a id="nav-tags" href="{{ route('home.post.index') }}" class="js-gps-track nav-links--link">
                                 {{ __('layout.leftbar.post') }}
                             </a>
                         </li>
-                        <li>
+                        <li class="{{ in_array(getCurrentRouteName(), ['home.tag.detail', 'home.tag.index', 'home.tag.info']) ? 'youarehere' : '' }}">
                             <a id="nav-tags" href="{{ route('home.tag.index') }}" class=" js-gps-track nav-links--link">
                                 {{ __('layout.leftbar.tag') }}
                             </a>
                         </li>
-                        <li>
+                        <li class="{{ in_array(getCurrentRouteName(), ['home.user.detail', 'home.user.index', 'home.user.setting', 'home.user.activity', 'home.user.answer', 'home.user.password']) ? 'youarehere' : '' }}">
                             <a id="nav-users" href="{{ route('home.user.index') }}" class=" js-gps-track nav-links--link">
                                 {{ __('layout.leftbar.user') }}        
                             </a>
@@ -49,7 +48,7 @@
                                     {{ __('layout.leftbar.learnMore') }}
                                 </a>
                                 <div class="ps-absolute t4 rn6">
-                                    <svg width="53" height="49" fill="none">
+                                    <svg class="scale53" fill="none">
                                         <path d="M49 11l.2 31H18.9L9 49v-7H4V8h31" fill="#CCEAFF"></path>
                                         <path d="M44.5 19v-.3l-.2-.1-18-13-.1-.1H.5v33h4V46l.8-.6 9.9-6.9h29.3V19z" stroke="#1060E1" stroke-miterlimit="10"></path>
                                         <path d="M31 2l6-1.5 7 2V38H14.9L5 45v-7H1V6h25l5-4z" fill="#fff"></path>

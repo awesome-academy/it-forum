@@ -5,7 +5,6 @@
 @endsection
 
 @section('content')
-{{-- mainbar --}}
 <div id="mainbar">
     <div class="grid">
         <h1 class="grid--cell fl1 fs-headline1 mb24">
@@ -72,7 +71,7 @@
                     <div class="excerpt">
                         {!! str_limit(strip_tags($post->content), config('constants.LIMIT_WORD')) !!}
                     </div>
-                    <div class="tags t-nodeûjs t-angular t-webpack t-angular6">
+                    <div class="tags">
                         @foreach ($post->tags as $tag)
                         <a href="{{ route('home.tag.detail', $tag->name) }}" class="post-tag" rel="tag">
                             {{ $tag->name }}
@@ -85,9 +84,9 @@
                                 {{ __('page.post.wrote') }} <span class="relativetime">{{ $post->created_at }}</span>
                             </div>
                             <div class="user-gravatar32">
-                                <a href="#">
+                                <a href="{{ route('home.user.detail', $post->user->id) }}">
                                     <div class="gravatar-wrapper-32">
-                                        <img src="/{{ config('constants.IMAGE_UPLOAD_PATH') . $post->user->image_path }}" class="image32">
+                                        {{ Html::image('/' . config('constants.IMAGE_UPLOAD_PATH') . $post->user->image_path, '', ['class' => 'scale32']) }}
                                     </div>
                                 </a>
                             </div>
