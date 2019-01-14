@@ -99,6 +99,10 @@ header {
     margin-top: 20px;
 }
 
+.tag-editor{
+    padding-top: 3px !important;
+}
+
 /* pagination */
 .pager a {
     margin-left: 3px;

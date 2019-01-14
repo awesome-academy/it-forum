@@ -17,7 +17,9 @@ class CheckLogin
     public function handle($request, Closure $next)
     {
         if (!Auth::check()) {
-            return redirect()->route('home.index');
+            \Session::flash('error_alert', __('alert.error.needLogin'));
+
+            return redirect()->route('home.login');
         }
 
         return $next($request);

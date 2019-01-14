@@ -11,6 +11,8 @@ return [
     'LIMIT_WORD' => 400,
     'UNVOTED' => 'unvoted',
     'UNFOLLOWED' => 'unfollowed',
+    'MAX_TAG' => 6,
+    'MIN_TAG' => 2,
     'IMAGE_UPLOAD_PATH' => 'uploads/images/user/',
     'DEFAULT_USER_IMAGE' => 'avater.png',
     'GENDER' => [

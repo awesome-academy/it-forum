@@ -43,6 +43,7 @@ mix.js(
 // ckeditor
 mix.js('resources/js/post-detail.js', 'public/js/custom.js');
 mix.copyDirectory('node_modules/ckeditor', 'public/plugins/ckeditor');
+mix.copyDirectory('node_modules/jquery-tageditor', 'public/plugins/jquery-tageditor');
 
 // mix.extract(['jquery', 'bootstrap', 'fontawesome']);
 

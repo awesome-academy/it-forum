@@ -16,6 +16,8 @@ Route::group(['middleware' => 'Language'], function() {
     Route::get('/test', 'HomeController@test')->name('home.test');
     Route::get('/post', 'PostController@index')->name('home.post.index');
     Route::get('/post/all', 'PostController@all')->name('home.post.all');
+    Route::get('/post/write', 'PostController@write')->name('home.post.write')->middleware('CheckLogin');
+    Route::post('/post/postWrite', 'PostController@postWrite')->name('home.post.postWrite')->middleware('CheckLogin');
     Route::post('/post/postVote', 'PostController@postVote')->name('home.post.postVote');
     Route::post('/post/postComment', 'PostController@postComment')->name('home.post.postComment');
     Route::post('/post/postBestAnswer', 'PostController@postBestAnswer')->name('home.post.postBestAnswer');

@@ -36,5 +36,6 @@ return [
         'report' => 'Báo cáo thành công',
         'follow' => 'Theo dõi thành công',
         'unfollow' => 'Bỏ theo dõi thành công',
+        'createSocialAccount' => 'Tạo thông tin thành công. Bạn hãy cập nhật lại thông tin của mình',
     ],
 ];

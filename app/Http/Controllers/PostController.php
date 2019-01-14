@@ -94,6 +94,32 @@ class PostController extends Controller
         }
     }
 
+    public function write()
+    {
+        return view('home.post.write');
+    }
+
+    public function postWrite(WritePostRequest $request)
+    {
+        $input = $request->all();
+        $input['tags'] = explode(',', $input['tags']);
+        $input['user_id'] = Auth::id();
+        $input['content'] = $this->removeSpace($input['content']); // remove space thua
+        $input['content'] = $this->insertIframeEmbedded($input['content']); // insert iframe tag
+
+        if ($post = $this->postRepository->create($input)) {
+            if ($tagsId = $this->tagRepository->firstOrCreateMultiple($input['tags'])) {
+                if ($this->postRepository->createPostsTags($tagsId, $post->id)) {
+                    Session::flash('success_alert', __('alert.success.create'));
+
+                    return redirect()->route('home.post.detail', $post->id);
+                }
+            }
+        }
+
+        return redirect()->route('home.post.write');
+    }
+
     public function postComment(Request $request)
     {
         $input = $request->all();

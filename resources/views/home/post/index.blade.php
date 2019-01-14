@@ -12,7 +12,7 @@
             {{ __('page.post.list') }}
         </h1>
         <div class="pl8 aside-cta grid--cell">
-            <a href="#" class="d-inline-flex ai-center ws-nowrap s-btn s-btn__primary">
+            <a href="{{ route('home.post.write') }}" class="d-inline-flex ai-center ws-nowrap s-btn s-btn__primary">
                 {{ __('page.post.write') }}
             </a>
         </div>

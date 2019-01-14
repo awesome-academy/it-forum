@@ -293,4 +293,12 @@ class PostRepository implements PostRepositoryInterface
             return false;
         }
     }
+    // insert records posts_tags table
+    public function createPostsTags($tags, $postId)
+    {
+        $post = $this->model()->find($postId);
+        $post->tags()->attach($tags);
+
+        return true;
+    }
 }

@@ -36,5 +36,6 @@ return [
         'report' => 'Report success',
         'follow' => 'Follow error',
         'unfollow' => 'Unfollow success',
+        'createSocialAccount' => 'Create your account success, let\'s update your information',
     ],
 ];
