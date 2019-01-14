@@ -136,4 +136,20 @@ class UserRepository implements UserRepositoryInterface
 
         return $query;
     }
+
+    public function getPostsUser($id, $limit = null)
+    {
+        $limit = is_null($limit) ? config('constants.PAGINATION_LIMIT_NUMBER', 16) : $limit;
+        $posts = $this->model()->find($id)->posts()->with('tags')->paginate($limit);
+
+        return $posts;
+    }
+
+    public function getAnswerUser($id, $limit = null)
+    {
+        $limit = is_null($limit) ? config('constants.PAGINATION_LIMIT_NUMBER', 16) : $limit;
+        $answers = $this->model()->find($id)->answers()->with('post')->paginate($limit);
+
+        return $answers;
+    }
 }

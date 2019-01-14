@@ -77,7 +77,7 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Report');
     }
-    
+
     public function role()
     {
         return $this->belongsTo('App\Role');
@@ -87,7 +87,7 @@ class User extends Authenticatable
     {
         return $this->morphMany('App\Follow', 'followable');
     }
-    
+
     public static function boot()
     {
         parent::boot();

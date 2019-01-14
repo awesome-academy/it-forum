@@ -59,6 +59,11 @@
                             <p>
                                 <a href="{{ route('home.user.setting') }}">{{ __('page.user.clickEdit') }}</a>
                             </p>
+                                @if (Auth::user()['role_id'] == 1)
+                                <p>
+                                    <a href="{{ route('admin.index') }}" target="_blank">{{ __('page.admin') }}</a>
+                                </p>
+                                @endif
                             @endif
                         </div>
                     </div>
