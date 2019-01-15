@@ -5,7 +5,7 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\Contracts\PostRepositoryInterface;
-use App\Http\Requests\EditPostRequest;
+use App\Http\Requests\EditPostAdminRequest;
 use App\Post;
 use Input;
 use Auth;
@@ -19,7 +19,7 @@ class PostController extends Controller
     {
         $this->postRepository = $postRepository;
     }
-    
+
     public function index()
     {
         $posts = $this->postRepository->paginate(config('constants.PAGINATION_LIMIT_NUMBER'));
@@ -59,11 +59,11 @@ class PostController extends Controller
     {
         $post = $this->postRepository->find($id);
         $tags = $this->getTag($post->tags);
-        
+
         return view('admin.post.edit', compact('post', 'tags'));
     }
 
-    public function update(EditPostRequest $request)
+    public function update(EditPostAdminRequest $request)
     {
         $input = $request->all();
         if (!isset($input['status'])) {

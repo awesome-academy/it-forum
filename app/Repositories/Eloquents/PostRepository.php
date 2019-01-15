@@ -301,4 +301,17 @@ class PostRepository implements PostRepositoryInterface
 
         return true;
     }
+
+    public function updatePostsTags($tags, $postId)
+    {
+        $post = $this->model()->find($postId);
+        $post->tags()->sync($tags);
+
+        return true;
+    }
+
+    public function findPostWithTags($id)
+    {
+        return $this->model()->with('tags')->findOrFail($id);
+    }
 }

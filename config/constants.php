@@ -15,6 +15,10 @@ return [
     'MIN_TAG' => 2,
     'IMAGE_UPLOAD_PATH' => 'uploads/images/user/',
     'DEFAULT_USER_IMAGE' => 'avater.png',
+    'DEFAULT_USER_FULLNAME' => 'Your Fullname',
+    'DEFAULT_USER_GENDER' => '1',
+    'DEFAULT_USER_ROLE_ID' => '2',
+    'DEFAULT_USER_STATUS' => '1',
     'GENDER' => [
         '1' => 'male',
         '2' => 'female',

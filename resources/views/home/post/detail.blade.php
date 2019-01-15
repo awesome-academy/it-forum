@@ -44,7 +44,7 @@
                     <div class="grid ps-relative d-block">
                         <!-- tags -->
                         @foreach ($post->tags as $tag)
-                        <a href="{{ route('home.tag.detail', $tag->name) }}" title="{{ $tag->name }}" class="post-tag js-gps-track">{{ $tag->name }}</a> 
+                            <a href="{{ route('home.tag.detail', $tag->name) }}" title="{{ $tag->name }}" class="post-tag js-gps-track">{{ $tag->name }}</a> 
                         @endforeach
                         <!-- end tags -->
                     </div>
@@ -54,6 +54,11 @@
                         <div class="post-menu">
                             <a href="#" id="btnShare" class="short-link">{{ __('page.post.share') }}</a>
                             <span class="lsep">|</span>
+                            @if (Auth::check())
+                                @if (Auth::id() == $post->user->id)
+                                    <a href="{{ route('home.post.edit', $post->id) }}" class="suggest-edit-post">{{ __('page.post.edit') }}</a>
+                                @endif
+                            @endif
                         </div>
                     </div>
                     <div class="post-signature owner grid--cell fl0">
@@ -67,7 +72,7 @@
                             <div class="user-gravatar32 wb-hat-checked">
                                 <a href="#">
                                     <div class="gravatar-wrapper-32">
-                                        <img src="{{ image_upload_path($post->user->image_path) }}" class="scale32">
+                                        {{ Html::image('/' . config('constants.IMAGE_UPLOAD_PATH') . $post->user->image_path, '', ['class' => 'scale32']) }}
                                     </div>
                                 </a>
                             </div>
@@ -241,7 +246,6 @@
                                     <span class="js-link-separator dno">&nbsp;|&nbsp;</span>
                                     <a href="#" class="js-show-link comments-link dno"></a>
                                 </div>
-
                                 {!! Form::open(['id' => 'formReplyAnswers' . $key, 'route' => 'home.post.postComment', 'class' => 'formReply hidden']) !!}
                                     <div class="post-editor js-post-editor js-wz-element">
                                         <div class="ps-relative"> 
