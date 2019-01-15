@@ -22,6 +22,8 @@ Route::group(['middleware' => 'Language'], function() {
     Route::post('/post/postComment', 'PostController@postComment')->name('home.post.postComment');
     Route::post('/post/postBestAnswer', 'PostController@postBestAnswer')->name('home.post.postBestAnswer');
     Route::get('/post/{id}', 'PostController@detail')->name('home.post.detail')->where(['id' => '[0-9]+']);
+    Route::get('/post/e/{id}', 'PostController@edit')->name('home.post.edit')->middleware('CheckLogin')->where(['id' => '[0-9]+']);
+    Route::post('/post/postEdit{id}', 'PostController@postEdit')->name('home.post.postEdit')->middleware('CheckLogin');
     // User
     Route::group(['prefix' => 'user'], function() {
         Route::get('/', 'UserController@index')->name('home.user.index');

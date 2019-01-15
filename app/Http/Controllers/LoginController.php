@@ -65,7 +65,7 @@ class LoginController extends Controller
             $input['fullname'] = 'your fullname';
 
             if ($this->userRepository->create($input)) {
-                \Session::flash('success_alert', __('alert.success.login'));
+                \Session::flash('success_alert', __('alert.success.signup'));
 
                 return redirect()->route('home.index');
             } else {
