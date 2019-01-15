@@ -38,7 +38,7 @@ return [
     'header' => [
         'search' => 'Search',
         'login' => 'Login',
-        'signup' => 'Logout',
+        'signup' => 'Signup',
     ],
     'leftbar' => [
         'home' => 'Home',

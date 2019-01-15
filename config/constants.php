@@ -13,6 +13,7 @@ return [
     'UNFOLLOWED' => 'unfollowed',
     'MAX_TAG' => 6,
     'MIN_TAG' => 2,
+    'RANDOM_NUMBER_NAME' => 10,
     'IMAGE_UPLOAD_PATH' => 'uploads/images/user/',
     'DEFAULT_USER_IMAGE' => 'avater.png',
     'GENDER' => [

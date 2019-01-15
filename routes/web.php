@@ -11,6 +11,7 @@
 */
 
 Route::group(['middleware' => 'Language'], function() {
+    Auth::routes(['verify' => true]);
     Route::get('changeLanguage/{language}', 'LanguageController@changeLanguage')->name('language.change');
     Route::get('/', 'HomeController@index')->name('home.index');
     Route::get('/test', 'HomeController@test')->name('home.test');
@@ -51,12 +52,33 @@ Route::group(['middleware' => 'Language'], function() {
         Route::get('/{tagName?}', 'TagController@detail')->name('home.tag.detail')->where(['tagName' => '[-0-9.a-z]+']);
         Route::get('/i/{tagName}', 'TagController@info')->name('home.tag.info')->where(['tagName' => '[-0-9.a-z]+']);
     });
+    Route::group(['prefix' => 'code'], function() {
+        Route::any('/', 'CodeController@index')->name('home.code.index');
+        Route::any('/test', 'CodeController@test')->name('home.code.test');
+        // code execute
+        Route::get('/{codename}/execute', 'CodeController@execute')->name('home.code.execute');
+        Route::post('/read', 'CodeController@read')->name('home.code.read');
+        Route::post('/readPhp', 'CodeController@readPhp')->name('home.code.readPhp');
+
+        Route::group(['middleware' => 'CheckLogin'], function() {
+            // create code
+            Route::get('/l', 'CodeController@list')->name('home.code.list');
+            Route::get('/create', 'CodeController@create')->name('home.code.create');
+            Route::post('/postCreate', 'CodeController@postCreate')->name('home.code.postCreate');
+        });
+
+        // code show
+        Route::get('/{codename}', 'CodeController@show')->name('home.code.show');
+        Route::get('/{codename}/embedded', 'CodeController@embedded')->name('home.code.embedded');
+    });
     Route::get('/search', 'SearchController@search')->name('home.search');
     Route::any('/signup', 'LoginController@signup')->name('home.signup');
     Route::any('/postSignup', 'LoginController@postSignup')->name('home.postSignup');
     Route::get('/login', 'LoginController@login')->name('home.login');
     Route::post('/postLogin', 'LoginController@postLogin')->name('home.postLogin');
     Route::get('/logout', 'LoginController@logout')->name('home.logout');
+    Route::get('/email/resend/{id}', 'LoginController@resend')->name('home.email.resend');
+    Route::get('/email/verified/{id}', 'LoginController@verify')->name('home.email.verify');
 });
 
 /*
