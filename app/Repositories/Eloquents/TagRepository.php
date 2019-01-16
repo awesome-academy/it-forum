@@ -140,7 +140,8 @@ class TagRepository implements TagRepositoryInterface
         $tagsId = [];
 
         foreach ($tags as $k => $t) {
-            if ($tag = $this->model()->firstOrCreate(['name' => $t])) {
+            $status = config('constants.DEFAULT_USER_STATUS');
+            if ($tag = $this->model()->firstOrCreate(['name' => $t, 'status' => $status])) {
                 $tagsId[] = $tag->id;
             } else {
                 return false;

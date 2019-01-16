@@ -64,7 +64,7 @@ class PostRepository implements PostRepositoryInterface
     {
         $limit = is_null($limit) ? config('repository.pagination.limit', 10) : $limit;
 
-        return $this->model()->with('user', 'tags')->paginate($limit, $columns);
+        return $this->model()->with('user', 'tags', 'reports')->paginate($limit, $columns);
     }
     /**
      * Find data by id

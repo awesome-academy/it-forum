@@ -26,6 +26,10 @@ class LoginController extends Controller
 
     public function login()
     {
+        if (Auth::check()) {
+            return redirect()->back();
+        }
+
         return view('home.account.login');
     }
 
@@ -70,7 +74,7 @@ class LoginController extends Controller
             $input['password'] = bcrypt($input['password']);
             $input['fullname'] = config('constants.DEFAULT_USER_FULLNAME');
             $input['gender'] = config('constants.DEFAULT_USER_GENDER');
-            $input['image_path'] = config('constants.IMAGE_UPLOAD_PATH') . config('constants.DEFAULT_USER_IMAGE');
+            $input['image_path'] = config('constants.DEFAULT_USER_IMAGE');
             $input['role_id'] = config('constants.DEFAULT_USER_ROLE_ID');
             $input['status'] = config('constants.DEFAULT_USER_STATUS');
             if ($user = $this->userRepository->create($input)) {

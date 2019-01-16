@@ -48,7 +48,7 @@ class EditUserRequest extends FormRequest
             'gender.required' => __('validation.required', ['attribute' => __('admin.form.gender')]),
             'role_id.required' => __('validation.required', ['attribute' => __('admin.form.role_id')]),
             'address.required' => __('validation.required', ['attribute' => __('admin.form.address')]),
-            'birhday.date' => __('validation.date', ['attribute' => __('admin.form.birthday')]),
+            'birthday.date' => __('validation.date', ['attribute' => __('admin.form.birthday')]),
             'phone.numeric' => __('validation.only_num', ['attribute' => __('admin.form.phone')]),
             'email.email' => __('validation.email', ['attribute' => __('admin.form.username')]),
             'email.unique' => __('validation.unique', ['attribute' => __('admin.form.email')]),
