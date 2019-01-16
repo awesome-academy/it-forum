@@ -10,7 +10,7 @@ return [
     'edit' => 'Edit',
     'delete' => 'Delete',
     'welcome' => 'Welcome',
-    'current' => 'Current',
+    'current' => 'Total',
     'thisWeek' => 'This week',
     'thisMonth' => 'This month',
     'count' => 'Amount',
@@ -24,6 +24,14 @@ return [
         'tag' => 'Tag',
         'report' => 'Report',
         'config' => 'Config',
+    ],
+
+    'type' => [
+        'spam' => 'Spam',
+        'rulesViolation' => 'Rules Violation',
+        'harashment' => 'Harashment',
+        'infringesCopyright' => 'Infringes Copyright',
+        'orther' => 'Orther',
     ],
 
     'alert' => [
@@ -72,5 +80,6 @@ return [
         'total_view' => 'Total_view',
         'name' => 'Name',
         'comment' => 'Comment',
+        'type' => 'Type',
     ],
 ];

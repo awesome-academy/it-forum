@@ -14,7 +14,7 @@ return [
     'MAX_TAG' => 6,
     'MIN_TAG' => 2,
     'IMAGE_UPLOAD_PATH' => 'uploads/images/user/',
-    'DEFAULT_USER_IMAGE' => 'avater.png',
+    'DEFAULT_USER_IMAGE' => 'avatar.png',
     'DEFAULT_USER_FULLNAME' => 'Your Fullname',
     'DEFAULT_USER_GENDER' => '1',
     'DEFAULT_USER_ROLE_ID' => '2',
@@ -36,11 +36,15 @@ return [
         '0' => false,
     ],
     'REPORT_MESSAGES' => [
-        '0' => 'Spam',
-        '1' => 'Rules Violation',
-        '2' => 'Harashment',
-        '3' => 'Infringes copyright',
-        '4' => 'Orther',
-    ]
+        '0' => 'spam',
+        '1' => 'rulesViolation',
+        '2' => 'harashment',
+        '3' => 'infringesCopyright',
+        '4' => 'orther',
+    ],
+    'REPORT_DELETE_ADMIN' => [
+        'true' => 'disabled',
+        'flase' => '',
+    ],
 ];
 ?>

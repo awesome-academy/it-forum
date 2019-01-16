@@ -9,7 +9,8 @@
     <meta content="{{ csrf_token() }}" name="csrf-token">
 
     <title>Admin IT-FORUM</title>
-
+    
+    @yield('link-header')
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 

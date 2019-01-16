@@ -44,7 +44,6 @@ mix.js(
 mix.js('resources/js/post-detail.js', 'public/js/custom.js');
 mix.copyDirectory('node_modules/ckeditor', 'public/plugins/ckeditor');
 mix.copyDirectory('node_modules/jquery-tageditor', 'public/plugins/jquery-tageditor');
-
-// mix.extract(['jquery', 'bootstrap', 'fontawesome']);
+mix.copy('resources/image/code_link.png', 'public/plugins/ckeditor/skins/moono-lisa/code_link.png');
 
 mix.sourceMaps();
