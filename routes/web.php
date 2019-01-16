@@ -11,6 +11,7 @@
 */
 
 Route::group(['middleware' => 'Language'], function() {
+    Auth::routes(['verify' => true]);
     Route::get('changeLanguage/{language}', 'LanguageController@changeLanguage')->name('language.change');
     Route::get('/', 'HomeController@index')->name('home.index');
     Route::get('/test', 'HomeController@test')->name('home.test');
@@ -57,6 +58,8 @@ Route::group(['middleware' => 'Language'], function() {
     Route::get('/login', 'LoginController@login')->name('home.login');
     Route::post('/postLogin', 'LoginController@postLogin')->name('home.postLogin');
     Route::get('/logout', 'LoginController@logout')->name('home.logout');
+    Route::get('/email/resend/{id}', 'LoginController@resend')->name('home.email.resend');
+    Route::get('/email/verified/{id}', 'LoginController@verify')->name('home.email.verify');
 });
 
 /*
