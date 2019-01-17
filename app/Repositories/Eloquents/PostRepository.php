@@ -314,4 +314,15 @@ class PostRepository implements PostRepositoryInterface
     {
         return $this->model()->with('tags')->findOrFail($id);
     }
+
+    public function recountDataPost()
+    {
+        $posts = $this->model()->with('answers', 'votes')->get();
+        foreach ($posts as $post) {
+            $totalAnswer = $post->answers->count();
+            $totalVote = $post->votes->sum('score');
+            $post->update(['total_answer' => $totalAnswer]);
+            $post->update(['total_vote' => $totalVote]);
+        }
+    }
 }

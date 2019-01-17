@@ -52,7 +52,7 @@
                         <tr>
                             <td class="align-middle">{{ $i }}</td>
                             <td class="align-middle">{{ $post->user->username }}</td>
-                            <td class="align-middle">{{ $post->title }}</td>
+                            <td class="align-middle"><a href="{{ route('home.post.detail', ['id' => $post->id]) }}" target="_blank">{{ $post->title }}</a></td>
                             <td class="align-middle"><div class="scrollable">{!! $post->content !!}</div></td>
                             <td class="align-middle">{{ $tags[$i - 1] }}</td>
                             <td class="align-middle">{{ $post->total_vote }}</td>
