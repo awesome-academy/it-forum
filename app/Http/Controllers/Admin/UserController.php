@@ -56,7 +56,8 @@ class UserController extends Controller
     {
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
-        $input['image_path'] = config('constants.IMAGE_UPLOAD_PATH') . config('constants.DEFAULT_USER_IMAGE');
+        $input['birthday'] = date('Y-m-d', strtotime($input['birthday']));
+        $input['image_path'] = config('constants.DEFAULT_USER_IMAGE');
         if (!isset($input['status'])) {
             $input['status'] = 0;
         }
@@ -84,6 +85,7 @@ class UserController extends Controller
     public function update(EditUserRequest $request)
     {
         $input = $request->all();
+        $input['birthday'] = date('Y-m-d', strtotime($input['birthday']));
         if (!isset($input['status'])) {
             $input['status'] = 0;
         }

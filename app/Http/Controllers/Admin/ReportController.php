@@ -22,8 +22,10 @@ class ReportController extends Controller
     public function index()
     {
         $reports = $this->reportRepository->paginate(config('constants.PAGINATION_LIMIT_NUMBER'));
-
-        return view('admin.report.index', compact('reports'));
+        $types = $this->getType($reports);
+        $comments = $this->getComment($reports);
+        
+        return view('admin.report.index', compact('reports', 'types', 'comments'));
     }
 
     public function search(Request $request)
@@ -54,8 +56,9 @@ class ReportController extends Controller
     public function edit($id)
     {
         $report = $this->reportRepository->find($id);
-        
-        return view('admin.report.edit', compact('report', 'tags'));
+        $typeComment = explode('|||', $report->comment);
+
+        return view('admin.report.edit', compact('report', 'typeComment'));
     }
 
     public function update(Request $request)
@@ -67,5 +70,27 @@ class ReportController extends Controller
         $this->reportRepository->update($input, $request->id);
 
         return redirect()->route('admin.report.index');
+    }
+
+    public function getType($reports)
+    {
+        $types = [];
+        foreach ($reports as $report) {
+            $tmp = explode('|||', $report->comment);
+            array_push($types, $tmp['0']);
+        }
+
+        return $types;
+    }
+
+    public function getComment($reports)
+    {
+        $comments = [];
+        foreach ($reports as $report) {
+            $tmp = explode('|||', $report->comment);
+            array_push($comments, $tmp['1']);
+        }
+
+        return $comments;
     }
 }

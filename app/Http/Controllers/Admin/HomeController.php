@@ -71,7 +71,8 @@ class HomeController extends Controller
         $reports = $this->reportRepository->getDataBetween($start, $end)->count();
         $max = $this->findMaxChart($users, $posts, $tags, $reports);
 
-        return view('admin.index', compact('users', 'posts', 'tags', 'reports', 'max'));
+        return view('admin.index', compact('users', 'posts', 'tags', 'reports', 'max'))
+            ->withInput($request->flashOnly(['from', 'to']));
     }
 
     public function findMaxChart($users, $posts, $tags, $reports)

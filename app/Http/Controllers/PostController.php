@@ -139,6 +139,7 @@ class PostController extends Controller
         $input = $request->all();
         $input['tags'] = explode(',', $input['tags']);
         $input['user_id'] = Auth::id();
+        $input['status'] = config('constants.DEFAULT_USER_STATUS');
         $input['content'] = $this->removeSpace($input['content']); // remove space thua
         $input['content'] = $this->insertIframeEmbedded($input['content']); // insert iframe tag
 
@@ -182,7 +183,7 @@ class PostController extends Controller
             } else {
                 $returnHTML = '';
                 $input['user_id'] = $currentUser->id;
-
+                $input['status'] = config('constants.DEFAULT_USER_STATUS');
                 if ($input['target'] == 1) {
                     $postReply = $this->postRepository->createReplies($input);
                     $returnHTML = view('home.post.view.postReplyView', compact('postReply'))->render();
@@ -197,8 +198,9 @@ class PostController extends Controller
                     $input['content'] = $this->removeSpace($input['content']);
                     $input['content'] = $this->insertIframeEmbedded($input['content']);
                     $answer = $this->answerRepository->create($input);
+                    $authorId = $this->postRepository->find($input['post_id'])->user_id;
                     $this->postRepository->increaseAnswerTotal($input['post_id']);
-                    $returnHTML = view('home.post.view.answerView', compact('answer', 'input'))->render();
+                    $returnHTML = view('home.post.view.answerView', compact('answer', 'input', 'authorId'))->render();
                 } else {
                     return $this->returnResponse('Error!!!', 403);
                 }
