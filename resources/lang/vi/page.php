@@ -160,7 +160,6 @@ return [
         'runCodeHtml' => 'Chạy HTML/CSS/JAVASCRIPT',
         'runCodePhp' => 'Chạy PHP',
         'back' => 'Quay lại',
-        'create' => 'Tạo dự án',
         'openFile' => 'Mở file code',
         'result' => 'Kết quả',
         'editWithEditor' => 'Sửa',
