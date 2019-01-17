@@ -141,4 +141,13 @@ class AnswerRepository implements AnswerRepositoryInterface
 
         return $temp;
     }
+
+    public function recountDataAnswer()
+    {
+        $answers = $this->model()->with('votes')->get();
+        foreach ($answers as $answer) {
+            $totalVote = $answer->votes->sum('score');
+            $answer->update(['total_vote' => $totalVote]);
+        }
+    }
 }

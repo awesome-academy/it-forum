@@ -43,8 +43,8 @@ return [
         '4' => 'orther',
     ],
     'REPORT_DELETE_ADMIN' => [
-        'true' => 'disabled',
-        'flase' => '',
+        'true' => '',
+        'false' => 'disabled',
     ],
 ];
 ?>
