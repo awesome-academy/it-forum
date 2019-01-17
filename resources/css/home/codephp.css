@@ -1,0 +1,58 @@
+body {
+    font-family: Arial;
+    margin: 0px;
+    padding: 0px;
+    background: #64749D;
+    font-size: 12px;
+}
+
+#container {
+    padding-right: 2px;
+}
+
+.tab-content {
+    height: 200px;
+}
+
+#codeoutput {
+    border-radius: 0px;
+    background: #fff;
+    border: none;
+    outline: none;
+    height: 180px;
+}
+
+#btnRun {
+    margin-top: 2px;
+    font-weight: normal;
+}
+
+#openfile {
+    margin-top: 2px;
+    font-weight: normal;
+}
+
+.nav-tabs {
+    padding: 0px;
+}
+
+#tab-content-php-result {
+    height: 202px;
+    padding: 0px;
+}
+
+#tab-content-php {
+    padding: 0px;
+}
+
+#codeoutput {
+    height: 200px;
+    border-radius: 0px;
+    background: #fff;
+    border: none;
+    outline: none;
+}
+
+#container-php {
+    padding: 2px;
+}

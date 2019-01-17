@@ -25,7 +25,6 @@ mix.styles(
         'resources/css/home/adminLTE.css',
         'resources/css/home/custom.css'
     ], 'public/css/template.css');
-
 mix.styles(
     [
         'node_modules/@fortawesome/fontawesome-free/css/all.min.css',
@@ -40,8 +39,21 @@ mix.js(
         'resources/js/admin/chart.min.js',
         'resources/js/admin/jquery-ui.min.js',
     ], 'public/js/admin.js');
-// ckeditor
+// custom js
 mix.js('resources/js/post-detail.js', 'public/js/custom.js');
+// Runcode page
+mix.copy('resources/js/jquery-3.1.1.min.js', 'public/js/jquery.js');
+mix.copy('resources/js/bootstrap.min.js', 'public/js/bootstrap.js');
+mix.copyDirectory('node_modules/codemirror', 'public/plugins/codemirror');
+mix.styles(
+    [
+        'resources/css/home/bootstrap.min.css',
+        'resources/css/home/AdminLTE.min.css',
+        'resources/css/home/codehtml.css',
+    ], 'public/css/codehtml.css');
+mix.styles('resources/css/home/codephp.css', 'public/css/codephp.css');
+mix.styles('resources/css/home/code.css', 'public/css/code.css');
+// ckeditor
 mix.copyDirectory('node_modules/ckeditor', 'public/plugins/ckeditor');
 mix.copyDirectory('node_modules/jquery-tageditor', 'public/plugins/jquery-tageditor');
 mix.copy('resources/image/code_link.png', 'public/plugins/ckeditor/skins/moono-lisa/code_link.png');

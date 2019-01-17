@@ -26,6 +26,7 @@
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.6.3",
         "ckeditor": "^4.11.1",
+        "codemirror": "^5.42.2",
         "fontawesome": "^4.7.2",
         "jquery-tageditor": "^1.0.1",
         "toastr": "^2.1.4",

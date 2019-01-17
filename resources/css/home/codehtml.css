@@ -1,0 +1,178 @@
+body {
+    font-family: Arial;
+    margin: 0px;
+}
+
+.bodyPhp {
+    padding: 0px;
+    background: #64749D;
+    font-size: 12px;
+}
+
+.code-create-container{
+    padding: 0px 100px;
+}
+
+.textarea {
+    border: none;
+}
+
+.bgpurple {
+    background: #64749D;
+}
+
+#container-loading {
+    background-color: silver;
+    width: 100%;
+    height: 500px;
+}
+
+.lds-facebook {
+    margin: auto;
+    display: box;
+    position: relative;
+    width: 64px;
+    height: 64px;
+    margin: auto;
+    top: 40%;
+}
+
+.lds-facebook div {
+    display: inline-block;
+    position: absolute;
+    left: 6px;
+    width: 13px;
+    background: #fff;
+    animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+}
+
+.lds-facebook div:nth-child(1) {
+    left: 6px;
+    animation-delay: -0.24s;
+}
+
+.lds-facebook div:nth-child(2) {
+    left: 26px;
+    animation-delay: -0.12s;
+}
+
+.lds-facebook div:nth-child(3) {
+    left: 45px;
+    animation-delay: 0;
+}
+
+@keyframes lds-facebook {
+    0% {
+        top: 6px;
+        height: 51px;
+    }
+    50%, 100% {
+        top: 19px;
+        height: 26px;
+    }
+}
+
+#iframeResult {
+    width: 100%;
+    height: 500px;
+    display: none;
+}
+
+#btnResult {
+    color: #dc3545;
+}
+
+#edit-with-editor {
+    margin-top: 7px;
+    background: #eee;
+}
+
+/* nav-tabs */
+.nav-tabs {
+    padding: 0px;
+}
+
+/* php */
+.textarea {
+    border: none;
+}
+
+.padding0px {
+    padding: 0px;
+}
+
+.height300px {
+    height: 500px !important;
+}
+
+/*.padding2px {
+    padding: 2px !important;
+}*/
+#codeoutput {
+    border-radius: 0px;
+    background: #fff;
+    border: none;
+    outline: none;
+    height: 300px;
+}
+
+#openfile {
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+#btnRun {
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+#php {
+    height: 281px;
+}
+
+.bgpurple {
+    background: #64749D;
+}
+
+#container-php {
+    padding: 2px;
+}
+
+.tab-content {
+    border-bottom: 1px solid silver !important;
+}
+
+#tab-content-php {
+    padding: 0px;
+}
+
+#tab-content-php-result {
+    padding: 0px;
+    height: 302px;
+}
+
+#container {
+    padding-right: 2px;
+}
+
+/* custom css embedded page */
+.margintop3px {
+    margin-top: 3px !important;
+}
+
+.fontsize12px {
+    font-family: Arial;
+    font-size: 12px;
+}
+
+.height190px {
+    height: 190px !important;
+}
+
+.container-loading-embedded {
+    height: 190px !important;
+}
+
+.padding10px {
+    padding: 10px;
+}

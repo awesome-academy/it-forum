@@ -1,0 +1,36 @@
+/* test page, index page */
+.padding10px0px {
+    padding: 10px 0px;
+}
+
+#button-code-create {
+    padding: 10px;
+    background-color: #00a65a;
+    color: white;
+    text-decoration: none;
+}
+
+#button-code-list {
+    padding: 10px;
+    background-color: #ffc107;
+    color: black;
+    text-decoration: none;
+}
+
+#button-code-test {
+    padding: 10px;
+    background-color: silver;
+    color: black;
+    text-decoration: none;
+}
+
+.iframe-embedded {
+    height: 345px !important;
+    width: 1000px !important;
+}
+
+.iframe-embedded-test {
+    height: 247px;
+    width: 646px;
+    border: 1px solid #bbb;
+}
