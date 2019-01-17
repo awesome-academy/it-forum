@@ -154,10 +154,10 @@ if (editor) {
     });
 
     editor.ui.addButton('SuperButton', {
-        label: "Click me",
+        label: 'Online code',
         command: 'mySimpleCommand',
         toolbar: 'insert',
-        icon: ''
+        icon: 'code_link.png',
     });
 }
 

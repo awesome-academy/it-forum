@@ -61,7 +61,7 @@
                 </div>
                 <div class="form-group col-md-3">
                     {!! Form::label('birthday', __('admin.form.birthday')) !!}
-                    {!! Form::date('birthday', '', ['id' => 'birthday', 'class' => 'form-control', 'placeholder' => '*', 'required']) !!}
+                    {!! Form::text('birthday', '', ['id' => 'birthday', 'class' => 'form-control', 'placeholder' => '*', 'required', 'autocomplete' => 'off']) !!}
                 </div>
                 <div class="form-group col-md-3">
                     {!! Form::label('gender', __('admin.form.gender')) !!}
@@ -86,4 +86,8 @@
         {!! Form::close() !!}
     </div>
 </div>
+@endsection
+
+@section('script')
+    @include('admin.layout.datepicker-script')
 @endsection

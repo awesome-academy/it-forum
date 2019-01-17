@@ -14,18 +14,18 @@
                 <canvas id="myBarChart" width="100%" height="50"></canvas>
             </div>
             <div class="col-md-4 mt-2">
-                <a href="{{ route('admin.index') }}" class="btn btn-primary m-1">{{ __('admin.current') }}</a>
-                <a href="{{ route('admin.search.week') }}" class="btn btn-primary m-1">{{ __('admin.thisWeek') }}</a>
-                <a href="{{ route('admin.search.month') }}" class="btn btn-primary m-1">{{ __('admin.thisMonth') }}</a>
+                <a href="{{ route('admin.index') }}" class="btn btn-primary m-1 btnSearchAdmin">{{ __('admin.current') }}</a>
+                <a href="{{ route('admin.search.week') }}" class="btn btn-primary m-1 btnSearchAdmin">{{ __('admin.thisWeek') }}</a>
+                <a href="{{ route('admin.search.month') }}" class="btn btn-primary m-1 btnSearchAdmin">{{ __('admin.thisMonth') }}</a>
                 {!! Form::open(['method' => 'get', 'class' => 'form-validation mt-3', 'route' => 'admin.search.custom', 'novalidate']) !!}
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             {!! Form::label('from', __('admin.from')) !!}
-                            {!! Form::text('from', '', ['id' => 'from', 'class' => 'form-control', 'placeholder' => '*', 'required', 'autocomplete' => 'off']) !!}
+                            {!! Form::text('from', old('from'), ['id' => 'from', 'class' => 'form-control', 'placeholder' => '*', 'required', 'autocomplete' => 'off']) !!}
                         </div>
                         <div class="form-group col-md-6">
                             {!! Form::label('to', __('admin.to')) !!}
-                            {!! Form::text('to', '', ['id' => 'to', 'class' => 'form-control', 'placeholder' => '*', 'required', 'autocomplete' => 'off']) !!}
+                            {!! Form::text('to', old('to'), ['id' => 'to', 'class' => 'form-control', 'placeholder' => '*', 'required', 'autocomplete' => 'off']) !!}
                         </div>
                     </div>
                     {!! Form::submit(__('admin.action.search'), ['class' => 'btn btn-primary']) !!}

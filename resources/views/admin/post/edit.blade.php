@@ -1,5 +1,9 @@
 @extends('admin.master')
 
+@section('link-header')
+    <link rel="stylesheet" href="{{ asset('plugins/jquery-tageditor/jquery.tag-editor.css') }}">
+@endsection
+
 @section('content')
 <div class="card m-1">
     <div class="card-header">
@@ -47,11 +51,11 @@
             </div>
             <div class="form-group">
                 {!! Form::label('content', __('admin.form.content')) !!}
-                {!! Form::textarea('content', $post->content, ['id' => 'content', 'class' => 'form-control', 'placeholder' => '*', 'required']) !!}
+                {!! Form::textarea('content', $post->content, ['id' => 'editor', 'class' => 'form-control', 'placeholder' => '*', 'required']) !!}
             </div>
             <div class="form-group">
                 {!! Form::label('content', __('admin.category.tag')) !!}
-                {!! Form::text('tags', $tags, ['id' => 'tags', 'class' => 'form-control disable', 'required', 'readonly']) !!}
+                {!! Form::textarea('tags', $tags, ['id' => 'textareaTag']) !!}
             </div>
             <div class="form-group">
                 <div class="form-check">
@@ -63,4 +67,58 @@
         {!! Form::close() !!}
     </div>
 </div>
+@endsection
+
+@section('script')
+<script> var CKEDITOR_BASEPATH = '/plugins/ckeditor/'; </script>
+<script src="{{ asset('plugins/ckeditor/ckeditor.js') }}"></script>
+<script src="{{ asset('plugins/ckeditor/config.js') }}"></script>
+<script src="{{ asset('plugins/jquery-tageditor/jquery.tag-editor.min.js') }}"></script>
+<script src="{{ asset('plugins/jquery-tageditor/jquery.caret.min.js') }}"></script>
+<script>
+    $(document).ready(function($) {
+        $('body').addClass('question-page unified-theme')
+    });
+    editor = CKEDITOR.replace('editor');
+    if (editor) {
+        CKEDITOR.on('instanceReady', function(evt) {
+            evt.editor.dataProcessor.htmlFilter.addRules({
+                elements: {
+                    img: function(el) {
+                        el.addClass('img-responsive');
+                    }
+                }
+            });
+        });
+        editor.addCommand('mySimpleCommand', {
+            exec: function(edt) {
+                var person = prompt('Please enter your name');
+
+                if (!person) {
+                    alert('Hãy nhập url!');
+                } else if (!ValidURL(person)) {
+                    alert('Url không hợp lệ!');
+                } else {
+                    edt.insertHtml('{@embed: ' + person + '}');
+                }
+            }
+        });
+        editor.ui.addButton('SuperButton', {
+            label: 'Online code',
+            command: 'mySimpleCommand',
+            toolbar: 'insert',
+            icon: "{{ asset('plugins/ckeditor/skins/moono-lisa/code_link.png')}}",
+        });
+    }
+    $(function () {
+        $('body').addClass('home-page unified-theme');
+        $('#textareaTag').tagEditor({
+            delimiter: ', ',
+            placeholder: '...',
+            maxTags: {{ config('constants.MAX_TAG', 6) }},
+            minTags: {{ config('constants.MIN_TAG', 2) }}
+        });
+    });
+    editor.setData(`{!! $post->content !!}`);
+</script>
 @endsection

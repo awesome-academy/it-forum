@@ -362,7 +362,12 @@ body #content {
 }
 
 table .action {
-    width: 4em !important;
+    width: 5em !important;
+    margin-top: 5px;
+}
+
+.btnSearchAdmin {
+    width: 7em !important;
 }
 
 div .scrollable {

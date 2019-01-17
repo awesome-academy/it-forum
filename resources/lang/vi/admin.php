@@ -10,7 +10,7 @@ return [
     'edit' => 'Sửa',
     'delete' => 'Xóa',
     'welcome' => 'Xin chào',
-    'current' => 'Hiện tại',
+    'current' => 'Tổng số',
     'thisWeek' => 'Tuần này',
     'thisMonth' => 'Tháng này',
     'count' => 'Số lượng',
@@ -24,6 +24,14 @@ return [
         'tag' => 'Thẻ',
         'report' => 'Báo cáo',
         'config' => 'Cấu hình',
+    ],
+
+    'type' => [
+        'spam' => 'Bài viết rác',
+        'rulesViolation' => 'Vi phạm luật',
+        'harashment' => 'Quấy rối',
+        'infringesCopyright' => 'Vi phạm bản quyền',
+        'orther' => 'Khác',
     ],
 
     'alert' => [
@@ -72,6 +80,7 @@ return [
         'total_view' => 'Lượt xem',
         'name' => 'Tên',
         'comment' => 'Bình luận',
+        'type' => 'Loại',
     ],
 
     'day' => [

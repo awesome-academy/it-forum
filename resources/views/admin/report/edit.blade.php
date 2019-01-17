@@ -46,8 +46,12 @@
                 </div>
             </div>
             <div class="form-group">
+                {!! Form::label('type', __('admin.form.type')) !!}
+                {!! Form::text('type', __('admin.type.' . config('constants.REPORT_MESSAGES.' . $typeComment['0'])), ['id' => 'comment', 'class' => 'form-control disable', 'placeholder' => '*', 'required', 'readonly']) !!}
+            </div>
+            <div class="form-group">
                 {!! Form::label('comment', __('admin.form.comment')) !!}
-                {!! Form::textarea('comment', $report->comment, ['id' => 'comment', 'class' => 'form-control disable', 'placeholder' => '*', 'required', 'readonly']) !!}
+                {!! Form::textarea('comment', $typeComment['1'], ['id' => 'comment', 'class' => 'form-control disable', 'placeholder' => '*', 'required', 'readonly']) !!}
             </div>
             <div class="form-group">
                 <div class="form-check">

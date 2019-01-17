@@ -176,7 +176,7 @@
                                             <path d="M6 14l8 8L30 6v8L14 30l-8-8z"></path>
                                         </svg>
                                     </div>
-                                @elseif (Auth::id() == $answer->user->id)
+                                @elseif (Auth::id() == $post->user->id)
                                     <div class="vote-best-answer" data-answer-id="{{ $answer->id }}" data-post-id="{{ $post->id }}" data-action="{{ route('home.post.postBestAnswer') }}">
                                         <svg class="svg-icon iconCheckmarkLg scale36">
                                             <path d="M6 14l8 8L30 6v8L14 30l-8-8z"></path>

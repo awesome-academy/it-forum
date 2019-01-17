@@ -1,6 +1,6 @@
 <script>
     $(document).ready(function() {
-        $('#from, #to').datepicker({
+        $('#from, #to, #birthday').datepicker({
         autoSize: true,
         changeDay: true,
         changeMonth: true,
