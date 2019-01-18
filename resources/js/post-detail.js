@@ -87,6 +87,7 @@ $('body').on('click', '.postReport', function () {
 // end btn report
 
 $('body').on('click', '.button-follow', function() {
+    $(this).attr('disabled', 'disabled');
     var url = $(this).attr('data-action');
     var targetId = $(this).attr('data-target-id');
     var targetType = $(this).attr('data-target-type');
@@ -118,6 +119,10 @@ $('body').on('click', '.button-follow', function() {
                 toastr.error(data.content);
             }
         },
+
+        complete: function() {
+            $(self).removeAttr('disabled');
+        }
     });
 });
 

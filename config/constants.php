@@ -16,6 +16,7 @@ return [
     'MAX_TAG' => 6,
     'MIN_TAG' => 2,
     'RANDOM_NUMBER_NAME' => 10,
+    'NOTIFICATIONS_LIMIT' => 5,
     'IMAGE_UPLOAD_PATH' => 'uploads/images/user/',
     'DEFAULT_USER_IMAGE' => 'avatar.png',
     'DEFAULT_USER_FULLNAME' => 'Your Fullname',

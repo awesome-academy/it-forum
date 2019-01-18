@@ -29,6 +29,8 @@
         "codemirror": "^5.42.2",
         "fontawesome": "^4.7.2",
         "jquery-tageditor": "^1.0.1",
+        "laravel-echo": "^1.5.2",
+        "pusher-js": "^4.3.1",
         "toastr": "^2.1.4",
         "vue-resource": "^1.5.1"
     }

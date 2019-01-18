@@ -7,6 +7,8 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
+use App\Observers\PostObserver;
+use App\Post;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -17,6 +19,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Post::observe(PostObserver::class);
         Schema::defaultStringLength(191);
 
         VerifyEmail::toMailUsing(function ($notifiable) {
