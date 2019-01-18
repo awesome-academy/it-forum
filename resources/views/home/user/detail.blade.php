@@ -108,3 +108,7 @@
     </div>
 </div>
 @endsection
+
+@section('js-setting-page')
+    <script src="{{ asset('js/custom.js') }}"></script>
+@endsection

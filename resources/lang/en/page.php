@@ -181,4 +181,10 @@ return [
         'noneInbox' => 'None of new alert',
         'allInbox' => 'See all inbox items',
     ],
+    'report' => [
+        'thank' => 'Thanks for the feedback',
+        'reason' => 'Reason for reporting this content',
+        'send' => 'Send report',
+        'typing' => 'Typing reason for reporting this content',
+    ],
 ];
