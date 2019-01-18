@@ -256,6 +256,7 @@ $('body').on('mouseenter', '.newComment', function () {
 $('body').on('click', '.showForm', function () {
     $('.formReply').hide(100);
     $('#' + $(this).attr('data-form')).show(100);
+    $('#' + $(this).attr('data-form')).removeClass('hidden');
 });
 
 $('body').on('click', '.hideForm', function () {

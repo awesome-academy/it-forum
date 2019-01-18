@@ -49,5 +49,9 @@ return [
         'true' => '',
         'false' => 'disabled',
     ],
+    'USER_DETELE_ADMIN' => [
+        '1' => 'disabled',
+        '2' => '',
+    ],
 ];
 ?>

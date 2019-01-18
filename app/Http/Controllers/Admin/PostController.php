@@ -38,8 +38,9 @@ class PostController extends Controller
         if ($request->ajax()) {
             $posts = $this->checkSearchValue($request->search);
             $tags = $this->setTag($posts);
+            $reports = $this->checkReport($posts);
 
-            return view('admin.layout.posttable', compact('posts', 'tags'));
+            return view('admin.layout.posttable', compact('posts', 'tags', 'reports'));
         }
     }
 

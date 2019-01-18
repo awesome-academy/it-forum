@@ -4,6 +4,8 @@ namespace App\Repositories\Eloquents;
 
 use App\Repositories\Contracts\UserRepositoryInterface;
 use App\User;
+use App\Post;
+use App\Answer;
 use Carbon\Carbon;
 
 class UserRepository implements UserRepositoryInterface
@@ -119,6 +121,21 @@ class UserRepository implements UserRepositoryInterface
      */
     public function delete($id)
     {
+        $user = $this->model()->with('posts')->where('id', $id)->first();
+        foreach ($user->posts as $post) {
+            $tmpPost = Post::with('answers', 'replies')->where('id', $post->id)->first();
+            foreach ($tmpPost->answers as $answer) {
+                $tmpAnswer = Answer::with('replies')->where('id', $answer->id)->first();
+                foreach ($tmpAnswer->replies as $reply) {
+                    $reply->delete();
+                }
+                $answer->delete();
+            }
+            foreach ($tmpPost->replies as $reply) {
+                $reply->delete();
+            }
+        }
+
         return $this->model()->destroy($id);
     }
 
