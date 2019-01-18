@@ -111,6 +111,15 @@ class PostRepository implements PostRepositoryInterface
      */
     public function delete($id)
     {
+        $post = $this->model()->with('answers')->where('id', $id)->first();
+        foreach ($post->answers as $answer) {
+            $tmpAnswer = Answer::with('replies')->where('id', $answer->id)->first();
+            foreach ($tmpAnswer->replies as $reply) {
+                $reply->delete();
+            }
+            $answer->delete();
+        }
+
         return $this->model()->destroy($id);
     }
 

@@ -63,7 +63,7 @@
                             <td class="align-middle">{{ __('admin.' . config('constants.STATUS.' . $user->status)) }}</td>
                             <td class="align-middle">
                                 <a class="btn btn-primary action" id="action" href="{{ route('admin.user.edit', ['id' => $user->id] ) }}">{{ __('admin.edit') }}</a>
-                                <a class="btn btn-danger action" onclick="return confirm('{{ __('admin.alert.delete') }}')" href="{{ route('admin.user.delete', ['id' => $user->id] ) }}" id="action">{{ __('admin.delete') }}</a>
+                                <a class="btn btn-danger action {{ config('constants.USER_DETELE_ADMIN.' . $user->role_id) }}" onclick="return confirm('{{ __('admin.alert.delete') }}')" href="{{ route('admin.user.delete', ['id' => $user->id] ) }}" id="action">{{ __('admin.delete') }}</a>
                             </td>
                         </tr>
                     @endforeach

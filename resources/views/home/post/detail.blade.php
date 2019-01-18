@@ -192,9 +192,6 @@
                             <div class="grid mb0 fw-wrap ai-start jc-end gs8 gsy">
                                 <div class="grid--cell mr16 share-edit-post">
                                     <div class="post-menu">
-                                        @if (Auth::id() == $answer->user->id)
-                                            <a href="#" class="suggest-edit-post">{{ __('page.post.edit') }}</a>
-                                        @endif
                                     </div>                    
                                 </div>
                                 <div class="post-signature owner grid--cell fl0">
