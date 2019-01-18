@@ -64,9 +64,15 @@ class UserController extends Controller
     public function detail($id)
     {
         $user = $this->userRepository->find($id);
+        $checkFollow = '';
+
+        if (Auth::check()) {
+            $currentId = Auth::id();
+            $checkFollow = $this->follow->checkFollowUser($currentId, $id);
+        }
 
         if (!empty($user)) {
-            return view('home.user.detail', compact('activePage', 'user', 'id'));
+            return view('home.user.detail', compact('user', 'id', 'checkFollow'));
         } else {
             return view('home.index');
         }
@@ -196,5 +202,46 @@ class UserController extends Controller
                 ->withErrors(['oldPassword' => __('alert.error.oldPassword')]);
             }
         }
+    }
+
+    public function postFollow(Request $request, User $user)
+    {
+        $input = $request->all();
+        $currentUser = Auth::user();
+
+        if ($request->ajax() && !empty($input['target_id']) && !empty($input['target_type']) && Auth::check()) {
+            $input['user_id'] = Auth::id();
+            $result = '';
+
+            if ($input['target_type'] == config('constants.NUMBER_FOLLOW_USER')) {
+                $result = $this->userRepository->saveFollow($input);
+            } elseif ($input['target_type'] == config('constants.NUMBER_FOLLOW_TAG')) {
+                $result = $this->tagRepository->saveFollow($input);
+            } else {
+                return $this->returnResponse(__('alert.error.follow'), 401);
+            }
+
+            if (!empty($result)) {
+                if ($result === config('constants.UNFOLLOWED')) {
+                    return $this->returnResponse(__('alert.success.unfollow'), 202);
+                }
+
+                return $this->returnResponse(__('alert.success.follow'), 200);
+            } else {
+                return $this->returnResponse(__('alert.error.follow'), 401);
+            }
+        } else {
+            return $this->returnResponse(__('alert.error.needLogin'), 401);
+        }
+    }
+
+    public function returnResponse($content, $returnCode)
+    {
+        $data = [
+            'returnCode' => $returnCode,
+            'content' => $content,
+        ];
+
+        return response()->json($data);
     }
 }

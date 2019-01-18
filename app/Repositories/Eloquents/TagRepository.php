@@ -213,4 +213,22 @@ class TagRepository implements TagRepositoryInterface
 
         return $this->searchPosts($postQuery, $input, $limit);
     }
+
+    public function saveFollow($input)
+    {
+        $data = [
+            'user_id' => $input['user_id'],
+            'followable_type' => 'App\Tag',
+        ];
+
+        $follow = $this->model()->find($input['target_id'])->follows()->where($data)->first();
+
+        if (!empty($follow)) {
+            $follow->delete();
+
+            return 'unfollowed';
+        } else {
+            return $this->model()->find($input['target_id'])->follows()->create($data);
+        }
+    }
 }

@@ -9,6 +9,14 @@
     <div class="grid">
         <h1 class="grid--cell fl1 fs-headline1 mb24">
             {{ __('page.tag.list') }} [{{ $tagName }}]
+            @if (Auth::check())
+                @if ($checkF)
+                    <button class="pull-right button-follow followed" data-action="{{ route('home.user.postFollow') }}" data-target-id="{{ $tag->id }}" data-target-type="2">{{ __('page.user.unfollow') }}</button>
+                @else
+                    <button class="pull-right button-follow" data-action="{{ route('home.user.postFollow') }}" data-target-id="{{ $tag->id }}" data-target-type="2">{{ __('page.user.follow') }} +</button>
+                @endif
+            @endif
+            <span id="labelTitle" unfollow-title="{{ __('page.user.unfollow') }}" follow-title="{{ __('page.user.follow') }}"></span>
         </h1>
     </div>
     <?php $input['tab'] = !empty($input['tab']) ? $input['tab'] : ''; ?>
@@ -54,11 +62,17 @@
                                 <div class="viewcount">{{ trans_choice('page.post.votes', $post->total_vote) }}</div>
                             </div>
                         </div>
-                        <div class="status answered">
-                            <strong>{{ $post->total_answer }}</strong>{{ trans_choice('page.post.answers', $post->total_answer) }}
-                        </div>
+                        @if (!empty($post->best_answer_id))
+                            <div class="status answered-accepted">
+                                <strong>{{ $post->total_answer }}</strong>{{ trans_choice('page.post.answers', $post->total_answer) }}
+                            </div>
+                        @else
+                            <div class="status {{ ($post->total_answer > 0) ? 'answered' : '' }}">
+                                <strong>{{ $post->total_answer }}</strong>{{ trans_choice('page.post.answers', $post->total_answer) }}
+                            </div>
+                        @endif
                     </div>
-                    <div class="views">
+                    <div class="views {{ ($post->total_view > config('constants.TOTAL_VIEW_HOT')) ? 'hot' : '' }}">
                         {{ $post->total_view }} {{ trans_choice('page.post.views', $post->total_view) }}
                     </div>
                 </div>

@@ -59,7 +59,7 @@
                 <a href="{{ route('home.user.detail', Auth::id()) }}" class="my-profile js-gps-track wb-hat-checked" data-gps-track="profile_summary.click()">
                     <div class="gravatar-wrapper-24" title="{{ Auth::user()['fullname'] }}">
                         {{ Html::image('/' . config('constants.IMAGE_UPLOAD_PATH') . Auth::user()->image_path, '', ['class' => 'scale24 -avatar js-avatar-me']) }}
-                    <div class="-rep js-header-rep" title="your reputation: 1">1</div>
+                    <div class="-rep js-header-rep" title="your reputation: 1">{{ Auth::user()->posts()->sum('total_vote') }}</div>
                 </a>
             </li>
             @else

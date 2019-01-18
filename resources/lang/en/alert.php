@@ -38,4 +38,9 @@ return [
         'unfollow' => 'Unfollow success',
         'createSocialAccount' => 'Create your account success, let\'s update your information',
     ],
+    'notify' => [
+        'followed' => 'You are followed by :follower',
+        'posted' => ':following posted: :post',
+        'welcome' => 'Welcome to Stack Overfollower!',
+    ],
 ];
