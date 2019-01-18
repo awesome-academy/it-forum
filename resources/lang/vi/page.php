@@ -56,6 +56,7 @@ return [
         'tags' => 'Thẻ',
         'post' => 'Đăng bài',
         'times' => 'lần',
+        'newPost' => 'Bài viết mới',
         'postCount' => 'Bài viết',
     ],
     'account' => [
@@ -72,6 +73,7 @@ return [
         'dontLoggedYet' => 'Để bình luận, bạn cần phải :login hoặc :signup một tài khoản ^^',
     ],
     'user' => [
+        'welcome' => 'Chào mừng',
         'list' => 'Danh sách người dùng',
         'filter' => 'Lọc người dùng',
         'newUser' => 'Người dùng mới',
@@ -114,6 +116,9 @@ return [
         'following' => 'Đang theo dõi',
         'follower' => 'Người theo dõi',
         'followingTag' => 'Thẻ đang theo dõi',
+        'follow' => 'Theo dõi',
+        'unfollow' => 'Bỏ theo dõi',
+        'inbox' => 'Tin nhắn',
     ],
     'tag' => [
         // index page
@@ -168,5 +173,26 @@ return [
         'php' => 'PHP',
         'errorFormat' => 'File không đúng địng dạng',
         'run' => 'Chạy',
+    ],
+    'code' => [
+        'list' => 'Danh sách code',
+        'home' => 'Trang chủ',
+        'create' => 'Tạo dự án',
+        'testEmbbed' => 'Test nhúng code',
+        'runCodeHtml' => 'Chạy HTML/CSS/JAVASCRIPT',
+        'runCodePhp' => 'Chạy PHP',
+        'back' => 'Quay lại',
+        'create' => 'Tạo dự án',
+        'openFile' => 'Mở file code',
+        'result' => 'Kết quả',
+        'editWithEditor' => 'Sửa',
+        'author' => 'Tác giả',
+        'php' => 'PHP',
+        'errorFormat' => 'File không đúng địng dạng',
+        'run' => 'Chạy',
+    ],
+    'notify' => [
+        'noneInbox' => 'Không có thông báo mới',
+        'allInbox' => 'Xem tất cả các thông báo',
     ],
 ];

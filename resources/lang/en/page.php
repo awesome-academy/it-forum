@@ -57,6 +57,7 @@ return [
         'post' => 'Post your posts',
         'cancel' => 'Cancel',
         'times' => 'times',
+        'newPost' => 'New posts',
         'postCount' => '[0,1] post |[2,*] posts',
     ],
     'account' => [
@@ -73,6 +74,7 @@ return [
         'dontLoggedYet' => 'To answer a question, you must :login, :signup for an account ^^',
     ],
     'user' => [
+        'welcome' => 'Welcome',
         'list' => 'User list',
         'filter' => 'Filter by user',
         'newUser' => 'New user',
@@ -118,6 +120,9 @@ return [
         'following' => 'Following',
         'follower' => 'Follower',
         'followingTag' => 'Tag following',
+        'follow' => 'Follow',
+        'unfollow' => 'Unfollow',
+        'inbox' => 'Inbox',
     ],
     'tag' => [
         // index page
@@ -171,5 +176,9 @@ return [
         'php' => 'PHP',
         'errorFormat' => 'File is incorrect format',
         'run' => 'Run',
+    ],
+    'notify' => [
+        'noneInbox' => 'None of new alert',
+        'allInbox' => 'See all inbox items',
     ],
 ];

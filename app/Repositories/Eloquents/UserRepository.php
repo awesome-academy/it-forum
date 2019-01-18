@@ -152,4 +152,22 @@ class UserRepository implements UserRepositoryInterface
 
         return $answers;
     }
+
+    public function saveFollow($input)
+    {
+        $data = [
+            'user_id' => $input['user_id'],
+            'followable_type' => 'App\User',
+        ];
+
+        $follow = $this->model()->find($input['target_id'])->follows()->where($data)->first();
+
+        if (!empty($follow)) {
+            $follow->delete();
+
+            return 'unfollowed';
+        } else {
+            return $this->model()->find($input['target_id'])->follows()->create($data);
+        }
+    }
 }

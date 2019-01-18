@@ -35,6 +35,42 @@ function ValidURL(str) {
     }
 }
 
+// end btn report
+$('body').on('click', '.button-follow', function() {
+    var url = $(this).attr('data-action');
+    var targetId = $(this).attr('data-target-id');
+    var targetType = $(this).attr('data-target-type');
+    var token = $('meta[name="csrf-token"]').attr('content');
+    var self = $(this);
+
+    jQuery.ajax({
+
+        url: url,
+        type: 'POST',
+        dataType: 'json',
+        data: {
+            target_id: targetId,
+            target_type: targetType,
+            _token: token
+        },
+
+        success: function(data, textStatus, xhr) {
+
+            if (data.returnCode == 200) {
+                $(self).addClass('followed');
+                $(self).html($('#labelTitle').attr('unfollow-title'));
+                toastr.success(data.content);
+            } else if (data.returnCode == 202) {
+                $(self).removeClass('followed');
+                $(self).html($('#labelTitle').attr('follow-title') + ' +');
+                toastr.success(data.content);
+            } else if (data.returnCode == 401) {
+                toastr.error(data.content);
+            }
+        },
+    });
+});
+
 function scrollTopTo(scrollTop, speed = 'fast') {
     $('html, body').animate({scrollTop: scrollTop}, speed);
 }

@@ -11,6 +11,8 @@ return [
     'LIMIT_WORD' => 400,
     'UNVOTED' => 'unvoted',
     'UNFOLLOWED' => 'unfollowed',
+    'NUMBER_FOLLOW_USER' => 1,
+    'NUMBER_FOLLOW_TAG' => 2,
     'MAX_TAG' => 6,
     'MIN_TAG' => 2,
     'RANDOM_NUMBER_NAME' => 10,

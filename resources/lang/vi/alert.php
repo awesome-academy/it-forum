@@ -38,4 +38,9 @@ return [
         'unfollow' => 'Bỏ theo dõi thành công',
         'createSocialAccount' => 'Tạo thông tin thành công. Bạn hãy cập nhật lại thông tin của mình',
     ],
+    'notify' => [
+        'followed' => 'Bạn đã được <strong>:follower</strong> theo dõi',
+        'posted' => '<strong>:following</strong> đã đăng bài viết: <strong>:post</strong>',
+        'welcome' => 'Xin chào bạn đã đến với Stack Overfollower!',
+    ],
 ];

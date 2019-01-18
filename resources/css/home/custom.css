@@ -186,6 +186,11 @@ header {
     height: 53px;
 }
 
+.scale164 {
+    width: 164px;
+    height: 164px;
+}
+
 .vote-best-answer {
     cursor: pointer;
 }
@@ -236,6 +241,8 @@ header {
 
 /* user detail page */
 .button-follow {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
     display: inline-block;
     width: 100px;
     height: 20px;
@@ -266,4 +273,27 @@ header {
 
 .custom-username {
     height: 50px;
+}
+
+/* header layout */
+#inbox-dialog {
+    top: 47px;
+    right: 280px;
+    max-width: 1193.5px;
+    display: none;
+}
+
+#inbox-dialog-detail {
+    width: 770px;
+    position: relative;
+    display: block;
+}
+
+.iconInbox {
+    width: 20px;
+    height: 18px;
+}
+
+.modal-content {
+    min-height: 100px !important;
 }

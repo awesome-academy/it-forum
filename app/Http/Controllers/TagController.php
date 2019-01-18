@@ -4,15 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\Contracts\TagRepositoryInterface;
+use App\Follow;
+use Auth;
 
 class TagController extends Controller
 {
 
     protected $tagRepository;
+    protected $follow;
 
-    public function __construct(TagRepositoryInterface $tagRepository)
+    public function __construct(TagRepositoryInterface $tagRepository, Follow $follow)
     {
         $this->tagRepository = $tagRepository;
+        $this->follow = $follow;
     }
 
     public function index(Request $request)
@@ -50,12 +54,19 @@ class TagController extends Controller
             $input['tagName'] = $tagName;
             $allPosts = $this->tagRepository->getPostsbyTagName($input);
             $relatedTags = $this->tagRepository->getRelatedTags($tagName);
+            $tag = $this->tagRepository->findByName($tagName);
+            $checkF = '';
+
+            if (Auth::check()) {
+                $currentId = Auth::id();
+                $checkF = $this->follow->checkFollowTag($currentId, $tag->id);
+            }
 
             if ($allPosts === false) {
                 return redirect()->route('home.index');
             }
 
-            return view('home.tag.detail', compact('allPosts', 'input', 'tagName', 'relatedTags'));
+            return view('home.tag.detail', compact('allPosts', 'input', 'tagName', 'relatedTags', 'checkF', 'tag'));
         }
 
         return redirect()->route('home.index');
