@@ -22,6 +22,7 @@ Route::group(['middleware' => 'Language'], function() {
     Route::post('/post/postVote', 'PostController@postVote')->name('home.post.postVote');
     Route::post('/post/postComment', 'PostController@postComment')->name('home.post.postComment');
     Route::post('/post/postBestAnswer', 'PostController@postBestAnswer')->name('home.post.postBestAnswer');
+    Route::post('/post/postReport', 'PostController@postReport')->name('home.post.postReport');
     Route::get('/post/{id}', 'PostController@detail')->name('home.post.detail')->where(['id' => '[0-9]+']);
     Route::get('/post/e/{id}', 'PostController@edit')->name('home.post.edit')->middleware('CheckLogin')->where(['id' => '[0-9]+']);
     Route::post('/post/postEdit{id}', 'PostController@postEdit')->name('home.post.postEdit')->middleware('CheckLogin');

@@ -58,6 +58,7 @@
                                 @if (Auth::id() == $post->user->id)
                                     <a href="{{ route('home.post.edit', $post->id) }}" class="suggest-edit-post">{{ __('page.post.edit') }}</a>
                                 @endif
+                                <a href="#" onclick="return false" data-toggle="modal" data-target="#exampleModal" id="btnReportPost" class="short-link">{{ __('page.post.report') }}</a>
                             @endif
                         </div>
                     </div>
@@ -375,6 +376,7 @@
         </ul>
     </div>
 </div>
+@include('home.layout.modal')
 @endsection
 
 @section('js')

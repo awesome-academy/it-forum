@@ -35,7 +35,57 @@ function ValidURL(str) {
     }
 }
 
+jQuery.fn.center = function () {
+    this.css('position', 'absolute');
+    this.css('top', ($(window).height() - this.height()) / 2 + $(window).scrollTop() - 100 + 'px');
+    this.css('left', ($(window).width() - this.width()) / 2 + $(window).scrollLeft() + 'px');
+
+    return this;
+}
+
+// btn report
+$('body').on('click', '#btnReportPost', function (event) {
+    var mousePosX = event.pageX;
+    $('#report-modal').show(300).center();
+});
+
+$('body').on('click', '.popup-close', function () {
+    $('#report-modal').hide(300);
+});
+
+$('body').on('click', '.postReport', function () {
+    var url = $('#reportForm').attr('action');
+    var formData = new FormData(document.getElementById('reportForm'));
+
+    jQuery.ajax({
+
+        url: url,
+        type: 'POST',
+        dataType: 'json',
+        data: formData,
+        contentType: false,
+        processData: false,
+
+        beforeSend: function() {
+            $('#reportError').html('');
+        },
+
+        success: function(data, textStatus, xhr) {
+
+            if (data.returnCode == 200) {
+                $('#report-modal').hide(300);
+                $('#note').val('');
+                toastr.success(data.content);
+            } else if (data.returnCode == 401) {
+                toastr.error(data.content);
+            } else if (data.returnCode == 403) {
+                $('#reportError').html(data.content.note);
+            }
+        },
+    });
+});
 // end btn report
+
 $('body').on('click', '.button-follow', function() {
     var url = $(this).attr('data-action');
     var targetId = $(this).attr('data-target-id');

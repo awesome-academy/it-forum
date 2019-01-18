@@ -8,11 +8,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Report extends Model
 {
     use SoftDeletes;
-    
+
     protected $dates = ['deleted_at'];
-    
+
     protected $fillable = [
         'user_id',
+        'post_id',
         'comment',
         'status',
     ];
@@ -25,5 +26,14 @@ class Report extends Model
     public function user()
     {
         return $this->belongsTo('App\User');
+    }
+
+    public function saveReport($input)
+    {
+        if (!empty($input['comment'])) {
+            return Report::create($input);
+        } else {
+            return false;
+        }
     }
 }

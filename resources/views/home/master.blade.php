@@ -33,10 +33,9 @@
     <script src="{{ asset('js/manifest.js') }}"></script>
     <script src="{{ asset('js/vendor.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('js/custom.js') }}"></script>
     <script>
         $(document).ready(function() {
-            $('.nuxt-progress').animate({ width: "100%" }, 1000, function() {
+            $('.nuxt-progress').animate({ width: '100%' }, 1000, function() {
                 $('.nuxt-progress').css('opacity', 0);
             });
 
