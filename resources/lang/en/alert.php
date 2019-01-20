@@ -24,6 +24,7 @@ return [
         'vote' => 'Vote error',
         'report' => 'Report error',
         'follow' => 'Follow error',
+        'accountExist' => 'Account exist',
     ],
     'success' => [
         'login' => 'Login success.',
