@@ -176,6 +176,10 @@ return [
     'notify' => [
         'noneInbox' => 'Không có thông báo mới',
         'allInbox' => 'Xem tất cả các thông báo',
+        'inbox' => 'Tin nhắn',
+        'allItems' => 'Tất cả',
+        'alertAll' => 'Hộp tin nhắn là nơi bạn nhận được thông báo khi người nào đó theo dõi bạn hoặc người bạn đang theo dõi đăng bài',
+        'getStarted' => 'To get started',
     ],
     'report' => [
         'thank' => 'Cảm ơn vì đã phản hồi',
