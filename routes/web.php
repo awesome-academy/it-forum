@@ -86,10 +86,23 @@ Route::group(['middleware' => 'Language'], function() {
     Route::get('/auth/{provider}', 'SocialAuthController@redirectToProvider')->name('home.social.login');
     Route::get('/auth/{provider}/callback', 'SocialAuthController@handleProviderCallback')->name('home.social.callback');
     // forgot password
+    Route::get('/login/forgotten-password', ['uses' => 'MySiteLoginController@forgottenPassword']);
     Route::post('/password/email', ['uses'=> 'Auth\ForgotPasswordController@sendResetLinkEmail'])->name('password.email');
     Route::post('/password/reset', ['uses'=> 'Auth\ResetPasswordController@reset'])->name('password.update');
     Route::get('/password/reset', ['uses'=> 'Auth\ForgotPasswordController@showLinkRequestForm'])->name('password.request');
     Route::get('/password/reset/{token}', ['uses'=> 'Auth\ResetPasswordController@showResetForm'])->name('password.reset');
+    // File driver
+    Route::group(['prefix' => 'file'], function() {
+        Route::group(['middleware' => 'CheckLogin'], function() {
+            Route::get('/', 'FileController@index')->name('home.file.index');
+            Route::post('/postRead', 'FileController@postRead')->name('home.file.postRead');
+            Route::post('/postIndex', 'FileController@postIndex')->name('home.file.postIndex');
+            Route::post('/postCreate', 'FileController@postCreate')->name('home.file.postCreate');
+            Route::post('/postEdit', 'FileController@postEdit')->name('home.file.postEdit');
+            Route::post('/postEditContent', 'FileController@postEditContent')->name('home.file.postEditContent');
+            Route::post('/postDelete', 'FileController@postDelete')->name('home.file.postDelete');
+        });
+    });
 });
 
 /*

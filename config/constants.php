@@ -1,5 +1,6 @@
 <?php
 
+
 return [
     'PAGINATION_LIMIT_NUMBER' => 10,
     'PAGINATION_LIMIT_TAG' => 16,
@@ -18,11 +19,13 @@ return [
     'RANDOM_NUMBER_NAME' => 10,
     'NOTIFICATIONS_LIMIT' => 5,
     'IMAGE_UPLOAD_PATH' => 'uploads/images/user/',
-    'DEFAULT_USER_IMAGE' => 'avatar.png',
+    'DEFAULT_USER_IMAGE' => 'image-default-',
     'DEFAULT_USER_FULLNAME' => 'Your Fullname',
     'DEFAULT_USER_GENDER' => '1',
     'DEFAULT_USER_ROLE_ID' => '2',
     'DEFAULT_USER_STATUS' => '1',
+    'PNG' => '.png',
+    'DRIVER_PATH' => '/uploads/driver/',
     'GENDER' => [
         '1' => 'male',
         '2' => 'female',
@@ -54,5 +57,6 @@ return [
         '1' => 'disabled',
         '2' => '',
     ],
+    'EXECUTE_PATH' => '/uploads/execute.php',
 ];
 ?>

@@ -43,7 +43,7 @@
                 </a>
             </li>
             <li class="-item help-button-item" data-remove-order="1">
-                <a href="#" class="-link js-help-button" data-title="Help Center and other resources">
+                <a href="{{ route('home.file.index') }}" class="-link js-help-button" data-title="Help Center and other resources">
                     <svg aria-hidden="true" class="svg-icon iconHelp scale18" viewBox="0 0 18 18">
                         <path d="M9 1a8 8 0 1 0 0 16A8 8 0 0 0 9 1zm.81 12.13c-.02.71-.55 1.15-1.24 1.13-.66-.02-1.17-.49-1.15-1.2.02-.72.56-1.18 1.22-1.16.7.03 1.2.51 1.17 1.23zM11.77 8a5.8 5.8 0 0 1-1.02.91l-.53.37c-.26.2-.42.43-.5.69a4 4 0 0 0-.09.75c0 .05-.03.16-.18.16H7.88c-.16 0-.18-.1-.18-.15.03-.66.12-1.21.4-1.66a5.29 5.29 0 0 1 1.43-1.22c.16-.12.28-.25.38-.39a1.34 1.34 0 0 0 .02-1.71c-.24-.31-.51-.46-1.03-.46-.51 0-.8.26-1.02.6-.21.33-.18.73-.18 1.1H5.75c0-1.38.35-2.25 1.1-2.76.52-.35 1.17-.5 1.93-.5 1 0 1.79.18 2.49.71.64.5.98 1.18.98 2.12 0 .57-.2 1.05-.48 1.44z">
                         </path>
@@ -95,8 +95,9 @@
                                     <li class="inbox-item unread-item">
                                         @if ($data['type'] == 'post')
                                         <a href="{{ route('home.post.detail', [$data['target_id'], 'read' => $value->id]) }}" class="js-gps-track grid gs8 gsx">
-                                        @endif
+                                        @else
                                         <a href="{{ route('home.user.detail', [$data['target_id'], 'read' => $value->id]) }}" class="js-gps-track grid gs8 gsx">
+                                        @endif
                                             <div class="favicon favicon-stackoverflow site-icon grid--cell"></div>
                                             <div class="item-content grid--cell fl1">
                                                 <div class="item-header">
