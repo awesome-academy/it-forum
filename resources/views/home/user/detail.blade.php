@@ -1,5 +1,7 @@
 @extends('home.user.master')
 
+@section('title', __('page.user.profile'))
+
 @section('tab')
 <div id="tabs">
     <a href="{{ route('home.user.detail', $id) }}" class="youarehere" data-shortcut="P">

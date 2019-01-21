@@ -269,8 +269,8 @@ class PostController extends Controller
 
         if ($request->ajax() && !empty($input['post_id']) && Auth::check()) {
             $input['user_id'] = Auth::id();
-            $input['comment'] = config('constants.REPORT_MESSAGES.' . $input['report'], null);
-            $input['comment'] = $input['comment'] . '|||' . $input['note'];
+            $input['comment'] = $input['report'] . '|||' . $input['note'];
+            $input['status'] = config('constants.DEFAULT_USER_STATUS');
 
             $validator = \Validator::make(
                 $input,
