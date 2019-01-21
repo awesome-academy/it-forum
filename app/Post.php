@@ -60,7 +60,7 @@ class Post extends Model
             $post->answers()->delete();
             $post->replies()->delete();
             $post->votes()->delete();
-            $post->tag()->detach();
+            $post->tags()->detach();
         });
     }
 }

@@ -95,8 +95,9 @@
                                     <li class="inbox-item unread-item">
                                         @if ($data['type'] == 'post')
                                         <a href="{{ route('home.post.detail', [$data['target_id'], 'read' => $value->id]) }}" class="js-gps-track grid gs8 gsx">
-                                        @endif
+                                        @else
                                         <a href="{{ route('home.user.detail', [$data['target_id'], 'read' => $value->id]) }}" class="js-gps-track grid gs8 gsx">
+                                        @endif
                                             <div class="favicon favicon-stackoverflow site-icon grid--cell"></div>
                                             <div class="item-content grid--cell fl1">
                                                 <div class="item-header">

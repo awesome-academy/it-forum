@@ -146,8 +146,7 @@ class PostController extends Controller
     {
         $reports = [];
         foreach ($posts as $post) {
-            $tmp = $post->total_view / 20;
-            if ($post->reports->count() > $tmp) {
+            if ($post->reports->count() > 0) {
                 array_push($reports, 'true');
             } else {
                 array_push($reports, 'false');

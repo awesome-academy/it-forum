@@ -74,7 +74,7 @@ class LoginController extends Controller
             $input['password'] = bcrypt($input['password']);
             $input['fullname'] = config('constants.DEFAULT_USER_FULLNAME');
             $input['gender'] = config('constants.DEFAULT_USER_GENDER');
-            $input['image_path'] = config('constants.DEFAULT_USER_IMAGE');
+            $input['image_path'] = config('constants.DEFAULT_USER_IMAGE') . random_int(1, 11) . config('constants.PNG');
             $input['role_id'] = config('constants.DEFAULT_USER_ROLE_ID');
             $input['status'] = config('constants.DEFAULT_USER_STATUS');
             if ($user = $this->userRepository->create($input)) {

@@ -361,12 +361,12 @@
             </a>
         </h4>
         <ul>
-            @foreach ($relatedPost as $post)
+            @foreach ($relatedPost as $postR)
             <li>
                 <div class="favicon favicon-travel" data-title="Travel Stack Exchange"></div>
                 <a href="{{ route('home.post.detail', $post->id) }}" class="js-gps-track question-hyperlink mb0">
                     <!-- ten cau hoi -->
-                    {{ $post->title }}
+                    {{ $postR->title }}
                 </a>
             </li>
             @endforeach
