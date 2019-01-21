@@ -40,4 +40,10 @@ return [
         ],
     ],
 
+    'facebook' => [
+        'client_id' => '289602251670713',
+        'client_secret' => '18187d88d05170f9cbfab00586420673',
+        'redirect' => env('APP_URL') . '/auth/facebook/callback',
+    ],
+
 ];

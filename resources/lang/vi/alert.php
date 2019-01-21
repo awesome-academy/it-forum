@@ -24,6 +24,7 @@ return [
         'vote' => 'Vote lỗi',
         'report' => 'Lỗi khi báo cáo',
         'follow' => 'Theo dõi lỗi',
+        'accountExist' => 'Email này đã tồn tại',
     ],
     'success' => [
         'login' => 'Đăng nhập thành công.',

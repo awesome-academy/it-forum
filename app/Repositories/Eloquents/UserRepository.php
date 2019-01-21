@@ -3,10 +3,12 @@
 namespace App\Repositories\Eloquents;
 
 use App\Repositories\Contracts\UserRepositoryInterface;
+use App\SocialAccount;
 use App\User;
 use App\Post;
 use App\Answer;
 use Carbon\Carbon;
+use Socialite;
 
 class UserRepository implements UserRepositoryInterface
 {
@@ -190,6 +192,41 @@ class UserRepository implements UserRepositoryInterface
             return 'unfollowed';
         } else {
             return $this->model()->find($input['target_id'])->follows()->create($data);
+        }
+    }
+
+    public function createOrGetUser($user, $provider)
+    {
+        $account = SocialAccount::whereProvider($provider)
+            ->whereProviderUserId($user->getId())->with('user')
+            ->first();
+        if (!empty($account->user)) {
+            return ['isExist' => 1, 'userData' => $account->user];
+        } else {
+            $account = new SocialAccount([
+                'provider_user_id' => $user->getId(),
+                'provider' => $provider,
+            ]);
+            $userExist = $this->model()->whereEmail($user->getEmail())->first();
+
+            if (!$userExist) {
+                $user = $this->model()->create([
+                    'username' => $user->getName(),
+                    'fullname' => 'Your fullname',
+                    'email' => $user->getEmail(),
+                    'image_path' => now(),
+                    'image_path' => $user->getAvatar(),
+                    'password' => md5(rand(1, 10000)),
+                    'is_social_account' => 1,
+                ]);
+
+                $account->user()->associate($user);
+                $account->save();
+            } else {
+                return ['isExist' => 1, 'userData' => $userExist];
+            }
+
+            return ['isExist' => 0, 'userData' => $user];
         }
     }
 }
