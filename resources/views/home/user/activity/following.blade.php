@@ -35,6 +35,11 @@
                             </a>
                         </li>
                         <li>
+                            <a href="{{ route('home.user.inbox', $id) }}">
+                                {{ __('page.user.inbox') }}
+                            </a>
+                        </li>
+                        <li>
                             <a href="{{ route('home.user.following', $id) }}" class="youarehere">
                                 {{ __('page.user.following') }}
                             </a>

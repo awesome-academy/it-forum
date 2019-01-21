@@ -180,6 +180,10 @@ return [
     'notify' => [
         'noneInbox' => 'None of new alert',
         'allInbox' => 'See all inbox items',
+        'inbox' => 'Inbox',
+        'allItems' => 'All items',
+        'alertAll' => 'The inbox is where you receive notifications when someone answers one of your questions or comments on one of your posts',
+        'getStarted' => 'To get started',
     ],
     'report' => [
         'thank' => 'Thanks for the feedback',
