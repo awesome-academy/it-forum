@@ -29,4 +29,9 @@ class ForgotPasswordController extends Controller
     {
         $this->middleware('guest');
     }
+
+    public function showLinkRequestForm($token = null)
+    {
+        return view('home.account.email')->with('token', $token);
+    }
 }

@@ -12,7 +12,7 @@
     <div id="formContainer" class="bar-md">
         <div id="openid-buttons" class="">
             <div class="major-provider google-login">
-                <svg aria-hidden="true" class="svg-icon native iconGoogle" width="18" height="18" viewBox="0 0 18 18">
+                <svg aria-hidden="true" class="svg-icon native iconGoogle scale18" viewBox="0 0 18 18">
                     <g>
                         <path d="M16.51 8H8.98v3h4.3c-.18 1-.74 1.48-1.6 2.04v2.01h2.6a7.8 7.8 0 0 0 2.38-5.88c0-.57-.05-.66-.15-1.18z" fill="#4285F4"></path>
                         <path d="M8.98 17c2.16 0 3.97-.72 5.3-1.94l-2.6-2a4.8 4.8 0 0 1-7.18-2.54H1.83v2.07A8 8 0 0 0 8.98 17z" fill="#34A853"></path>
@@ -23,7 +23,7 @@
                 {{ __('page.account.google') }}
             </div>
             <div class="major-provider facebook-login">
-                <svg aria-hidden="true" class="svg-icon iconFacebook" width="18" height="18" viewBox="0 0 18 18">
+                <svg aria-hidden="true" class="svg-icon iconFacebook scale18" viewBox="0 0 18 18">
                     <path d="M1.88 1C1.4 1 1 1.4 1 1.88v14.24c0 .48.4.88.88.88h7.67v-6.2H7.46V8.4h2.09V6.61c0-2.07 1.26-3.2 3.1-3.2.88 0 1.64.07 1.87.1v2.16h-1.29c-1 0-1.19.48-1.19 1.18V8.4h2.39l-.31 2.42h-2.08V17h4.08c.48 0 .88-.4.88-.88V1.88c0-.48-.4-.88-.88-.88H1.88z" fill="#3C5A96">
                     </path>
                 </svg>
@@ -55,7 +55,7 @@
                 {!! Form::password('password_confirmation', ['id' => 'password_confirmation', 'autocomplete' => 'off', 'placeholder' => '********']) !!}
                 <span class="errors">{{ $errors->first('password_confirmation') }}</span>
                 <br>
-                <a id="forgot-pw" class="fr" href="#">{{ __('page.account.forgot') }}?</a>
+                <a id="forgot-pw" class="fr" href="{{ route('password.request') }}">{{ __('page.account.forgot') }}?</a>
                 <br class="cbt">
                 {!! Form::submit(__('page.account.signup'), ['class' => 's-btn s-btn__primary s-btn__md', 'id' => 'submit-button']) !!}
             </div>

@@ -82,6 +82,14 @@ Route::group(['middleware' => 'Language'], function() {
     Route::get('/logout', 'LoginController@logout')->name('home.logout');
     Route::get('/email/resend/{id}', 'LoginController@resend')->name('home.email.resend');
     Route::get('/email/verified/{id}', 'LoginController@verify')->name('home.email.verify');
+    // facebook auth
+    Route::get('/auth/{provider}', 'SocialAuthController@redirectToProvider')->name('home.social.login');
+    Route::get('/auth/{provider}/callback', 'SocialAuthController@handleProviderCallback')->name('home.social.callback');
+    // forgot password
+    Route::post('/password/email', ['uses'=> 'Auth\ForgotPasswordController@sendResetLinkEmail'])->name('password.email');
+    Route::post('/password/reset', ['uses'=> 'Auth\ResetPasswordController@reset'])->name('password.update');
+    Route::get('/password/reset', ['uses'=> 'Auth\ForgotPasswordController@showLinkRequestForm'])->name('password.request');
+    Route::get('/password/reset/{token}', ['uses'=> 'Auth\ResetPasswordController@showResetForm'])->name('password.reset');
 });
 
 /*
