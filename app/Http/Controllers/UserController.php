@@ -8,6 +8,7 @@ use App\Repositories\Contracts\TagRepositoryInterface;
 use App\Http\Requests\EditProfileRequest;
 use App\Http\Requests\EditImageRequest;
 use App\Http\Requests\EditPasswordRequest;
+use App\Notifications\UserFollowed;
 use App\User;
 use App\Follow;
 use Auth;
@@ -33,6 +34,11 @@ class UserController extends Controller
         $this->userRepository = $userRepository;
         $this->tagRepository = $tagRepository;
         $this->follow = $follow;
+    }
+
+    public function notifications()
+    {
+        return Auth::user()->unreadNotifications()->get()->toArray();
     }
 
     public function index()
@@ -98,6 +104,13 @@ class UserController extends Controller
         }
 
         return view('home.index');
+    }
+
+    public function inbox($id)
+    {
+        $allNotifications = Auth::user()->notifications()->paginate(config('constants.NOTIFICATIONS_LIMIT'));
+
+        return view('home.user.activity.inbox', compact('id', 'allNotifications'));
     }
 
     public function following($id)
@@ -224,6 +237,8 @@ class UserController extends Controller
             if (!empty($result)) {
                 if ($result === config('constants.UNFOLLOWED')) {
                     return $this->returnResponse(__('alert.success.unfollow'), 202);
+                } elseif (!empty($result->followable_type) && $result->followable_type == 'App\User') {
+                    $this->userRepository->notify($result->followable_id, new UserFollowed(Auth::user()));
                 }
 
                 return $this->returnResponse(__('alert.success.follow'), 200);

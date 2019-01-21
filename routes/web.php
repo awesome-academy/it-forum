@@ -33,12 +33,14 @@ Route::group(['middleware' => 'Language'], function() {
         Route::get('/{id?}', 'UserController@detail')->name('home.user.detail')->where(['id' => '[0-9]+']);
         Route::get('/{id}/activity', 'UserController@activity')->name('home.user.activity')->where(['id' => '[0-9]+']);
         Route::get('/{id}/answer', 'UserController@answer')->name('home.user.answer')->where(['id' => '[0-9]+']);
+        Route::get('/{id}/inbox', 'UserController@inbox')->name('home.user.inbox')->where(['id' => '[0-9]+']);
         Route::get('/{id}/following', 'UserController@following')->name('home.user.following')->where(['id' => '[0-9]+']);
         Route::get('/{id}/follower', 'UserController@follower')->name('home.user.follower')->where(['id' => '[0-9]+']);
         Route::get('/{id}/followingTag', 'UserController@followingTag')->name('home.user.followingTag');
         Route::post('/postFollow', 'UserController@postFollow')->name('home.user.postFollow');
 
         Route::group(['middleware' => 'CheckLogin'], function() {
+            Route::get('/notifications', 'UserController@notifications');
             Route::get('/setting', 'UserController@setting')->name('home.user.setting');
             Route::post('/editProfile', 'UserController@editProfile')->name('home.user.editProfile');
             Route::post('/editImage', 'UserController@editImage')->name('home.user.editImage');

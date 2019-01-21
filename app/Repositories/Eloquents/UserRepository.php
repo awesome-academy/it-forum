@@ -33,6 +33,11 @@ class UserRepository implements UserRepositoryInterface
     {
     }
 
+    public function notify($userId, $notify)
+    {
+        return $this->model()->find($userId)->notify($notify);
+    }
+
     /**
      * Retrieve all data of repository
      */

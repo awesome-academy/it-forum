@@ -8,12 +8,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Notification extends Model
 {
     use SoftDeletes;
-    
+
     protected $dates = ['deleted_at'];
-    
+
     protected $fillable = [
         'notification_content_id',
-        'user_id',
         'target_id',
         'post_id',
         'status',

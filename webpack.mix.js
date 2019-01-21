@@ -41,7 +41,8 @@ mix.js(
     ], 'public/js/admin.js');
 // custom js
 mix.js('resources/js/post-detail.js', 'public/js/custom.js');
-mix.js('resources/js/code.js', 'public/js/code.js');
+// notifications
+mix.js('resources/js/notifications.js', 'public/js/notifications.js');
 // Runcode page
 mix.copy('resources/js/jquery-3.1.1.min.js', 'public/js/jquery.js');
 mix.copy('resources/js/bootstrap.min.js', 'public/js/bootstrap.js');
