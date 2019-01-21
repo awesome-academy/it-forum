@@ -37,7 +37,7 @@
             <div id="se-login-fields">
                 {!! Form::label(__('user.username')) !!}
                 <br>
-                {!! Form::text('username', '', ['id' => 'display-name', 'placeholder' => 'P. Lam']) !!}
+                {!! Form::text('username', '', ['id' => 'display-name', 'placeholder' => '*']) !!}
                 <span class="errors">{{ $errors->first('username') }}</span>
                 <br>
                 {!! Form::label(__('user.email')) !!}

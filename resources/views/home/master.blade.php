@@ -7,8 +7,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <meta content="{{ csrf_token() }}" name="csrf-token">
     <!-- Tell the browser to be responsive to screen width -->
-    {{-- <link rel="icon" href="{{ asset('icon/favicon.ico') }}" type="image/x-icon" />
-    <link rel="shortcut icon" href="{{ asset('icon/favicon.ico') }}"> --}}
+    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/x-icon">
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/template.css') }}">

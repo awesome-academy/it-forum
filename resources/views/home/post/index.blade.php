@@ -1,6 +1,7 @@
 @extends('home.master')
 
-@section('title', __('page.post.list'))
+@section('title', __('admin.category.post'))
+
 @section('link-header')
 @endsection
 

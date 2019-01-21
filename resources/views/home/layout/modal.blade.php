@@ -13,7 +13,7 @@
             <p><span class="errors">*</span> {{ __('page.report.reason') }}</p>
 
             @foreach (config('constants.REPORT_MESSAGES') as $key => $report)
-            {{ Form::radio('report', $key, true, ['id' => 'labelFor' . $key]) }} {!! Form::label('labelFor' . $key, $report) !!}
+            {{ Form::radio('report', $key, true, ['id' => 'labelFor' . $key]) }} {!! Form::label('labelFor' . $key, __('admin.type.' . $report)) !!}
             <br>
             @endforeach
             <span class="errors" id="reportError"></span>

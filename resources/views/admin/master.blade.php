@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta content="{{ csrf_token() }}" name="csrf-token">
-
+    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/x-icon">
     <title>Admin IT-FORUM</title>
     
     @yield('link-header')

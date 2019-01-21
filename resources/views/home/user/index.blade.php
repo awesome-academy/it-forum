@@ -1,6 +1,7 @@
 @extends('home.master')
 
-@section('title', __('user.userList'))
+@section('title', __('admin.category.user'))
+
 @section('link-header')
 @endsection
 
@@ -28,8 +29,8 @@
                         </a>
                     </div>
                     <div class="user-details">
-                        <a :href="'{{ route('home.user.detail') }}/' + user.id">@{{ user.fullname }}</a>
-                        <span class="user-location">@{{ user.address }}</span>
+                        <a :href="'{{ route('home.user.detail') }}/' + user.id">@{{ user.username }}</a>
+                        <span class="user-location">@{{ user.fullname }}</span>
                         <div class="-flair">
                             <span class="reputation-score" dir="ltr">1,094</span>
                         </div>
