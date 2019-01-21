@@ -1,5 +1,6 @@
 <?php
 
+
 return [
     'PAGINATION_LIMIT_NUMBER' => 10,
     'PAGINATION_LIMIT_TAG' => 16,
@@ -56,5 +57,6 @@ return [
         '1' => 'disabled',
         '2' => '',
     ],
+    'EXECUTE_PATH' => '/uploads/execute.php',
 ];
 ?>
