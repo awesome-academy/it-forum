@@ -201,7 +201,7 @@ class UserRepository implements UserRepositoryInterface
             ->whereProviderUserId($user->getId())->with('user')
             ->first();
         if (!empty($account->user)) {
-            return ['isExist' => 1, 'userData' => $account->user];
+            return ['isExist' => 2, 'userData' => $account->user];
         } else {
             $account = new SocialAccount([
                 'provider_user_id' => $user->getId(),
@@ -217,6 +217,9 @@ class UserRepository implements UserRepositoryInterface
                     'image_path' => now(),
                     'image_path' => $user->getAvatar(),
                     'password' => md5(rand(1, 10000)),
+                    'gender' => config('constants.DEFAULT_USER_GENDER'),
+                    'role_id' => config('constants.DEFAULT_USER_ROLE_ID'),
+                    'status' => config('constants.DEFAULT_USER_STATUS'),
                     'is_social_account' => 1,
                 ]);
 

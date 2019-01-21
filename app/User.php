@@ -83,6 +83,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->morphMany('App\Follow', 'followable');
     }
 
+    public function socialAccount()
+    {
+        return $this->hasOne('App\SocialAccount');
+    }
+
     public static function boot()
     {
         parent::boot();
@@ -95,6 +100,7 @@ class User extends Authenticatable implements MustVerifyEmail
             $user->codes()->delete();
             $user->reports()->delete();
             $user->follows()->delete();
+            $user->socialAccount()->delete();
         });
     }
 }

@@ -40,6 +40,11 @@ class SocialAuthController extends Controller
             Session::flash('success_alert', __('alert.success.createSocialAccount'));
 
             return redirect()->route('home.user.setting', Auth::id());
+        } elseif ($user['isExist'] == 2) {
+            Auth::login($user['userData']);
+            Session::flash('success_alert', __('alert.success.login'));
+
+            return redirect()->route('home.index');
         }
         Session::flash('success_alert', __('alert.error.accountExist'));
 

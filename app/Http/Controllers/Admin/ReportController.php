@@ -32,8 +32,10 @@ class ReportController extends Controller
     {
         if ($request->ajax()) {
             $reports = $this->checkSearchValue($request->search);
+            $types = $this->getType($reports);
+            $comments = $this->getComment($reports);
 
-            return view('admin.layout.reporttable', compact('reports'));
+            return view('admin.layout.reporttable', compact('reports', 'types', 'comments'));
         }
     }
 

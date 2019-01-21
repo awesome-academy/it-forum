@@ -10,6 +10,7 @@
                 <div class="card-header">{{ __('Reset Password') }}</div>
                 <div class="card-body">
                     {!! Form::open(['route' => 'password.update']) !!}
+                        {{ Form::hidden('token', $token) }}
                         <div class="form-group row">
                             {!! Form::label('email', __('E-Mail Address'), ['class' => 'col-md-4 col-form-label text-md-right']) !!}
                             <div class="col-md-6">

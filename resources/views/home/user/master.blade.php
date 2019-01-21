@@ -1,6 +1,7 @@
 @extends('home.master')
 
-@section('title', 'Phạm Tùng Lâm')
+@section('title', __('page.user.profile'))
+
 @section('link-header')
 @endsection
 

@@ -57,7 +57,7 @@ class UserController extends Controller
         $input = $request->all();
         $input['password'] = bcrypt($input['password']);
         $input['birthday'] = date('Y-m-d', strtotime($input['birthday']));
-        $input['image_path'] = config('constants.DEFAULT_USER_IMAGE');
+        $input['image_path'] = config('constants.DEFAULT_USER_IMAGE') . random_int(1, 11) . config('constants.PNG');
         if (!isset($input['status'])) {
             $input['status'] = 0;
         }
